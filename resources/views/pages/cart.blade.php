@@ -34,8 +34,8 @@
                                         <tr>
                                             <th>IMAGE</th>
                                             <th>PRODUCT NAME</th>
+                                            <th>QUANTITY</th>
                                             <th>PRICE</th>
-                                            <th>QTY</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,14 +50,23 @@
                                             <td style="width: 25%;">
                                                 <div class="product-title">{{ $cart->product->name }}</div>
                                             </td>
+                                            <td style="width: 25%;" class="align-middle">
+                                                <form action="#">
+                                                    <div class="quantity">
+                                                        <button type="button" data-quantity="minus" data-field="quantity"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" name="quantity" value="1" />
+                                                        <button type="button" data-quantity="plus" data-field="quantity"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                </form>
+                                            </td>
                                             <td style="width: 25%;">
                                                 <div class="product-title">Rp {{ number_format($cart->product->prices) }}</div>
                                             </td>
-                                            <td style="width: 25%;">
+                                            <td class="align-middle">
                                                 <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-remove-cart">Remove</button>
+                                                    <button type="submit" class="btn"><i class="fas fa-times fa-2x" style="color: #F32355;"></i></button>
                                                 </form>
                                             </td>
                                         </tr> 
@@ -209,5 +218,44 @@
                     },
                 }
             });
+        </script>
+        <script>
+            jQuery(document).ready(function() {
+                // This button will increment the value
+                $("[data-quantity='plus' ] ").click(function(e) {
+                    // Stop acting like a button
+                    e.preventDefault();
+                    // Get the field name
+                    fieldName = $(this).attr('data-field');
+                    // Get its current value
+                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    // If is not undefined
+                    if (!isNaN(currentVal)) {
+                        // Increment
+                        $('input[name=' + fieldName + ']').val(currentVal + 1);
+                    } else {
+                        // Otherwise put a 0 there
+                        $('input[name=' + fieldName + ']').val(0);
+                    }
+                });
+                // This button will decrement the value till 0
+                $("[data-quantity='minus' ] ").click(function(e) {
+                    // Stop acting like a button
+                    e.preventDefault();
+                    // Get the field name
+                    fieldName = $(this).attr('data-field');
+                    // Get its current value
+                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    // If it isn't undefined or its greater than 0
+                    if (!isNaN(currentVal) && currentVal > 0) {
+                        // Decrement one
+                        $('input[name=' + fieldName + ']').val(currentVal - 1);
+                    } else {
+                        // Otherwise put a 0 there
+                        $('input[name=' + fieldName + ']').val(0);
+                    }
+                });
+            });
+            
         </script>
 @endpush

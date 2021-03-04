@@ -52,6 +52,16 @@
                                 <h1 style="margin-bottom: 15px;">{{ $product->name }}</h1>
                                 {!! $product->description !!}
                                 <div class="price">Rp {{ number_format($product->prices) }} </div>
+                                <div class="product-quantity d-flex flex-wrap align-items-center">
+                                    <span class="quantity-title">Quantity: </span>
+                                    <form action="#">
+                                        <div class="quantity d-flex">
+                                            <button type="button" data-quantity="minus" data-field="quantity"><i class="fas fa-minus"></i></button>
+                                            <input type="text" name="quantity" value="1" />
+                                            <button type="button" data-quantity="plus" data-field="quantity"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
                                 @auth
                                     <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -112,6 +122,44 @@
 
                     }
                 }
+            });
+        </script>
+        <script>
+            jQuery(document).ready(function() {
+                // This button will increment the value
+                $('[data-quantity="plus"]').click(function(e) {
+                    // Stop acting like a button
+                    e.preventDefault();
+                    // Get the field name
+                    fieldName = $(this).attr('data-field');
+                    // Get its current value
+                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    // If is not undefined
+                    if (!isNaN(currentVal)) {
+                        // Increment
+                        $('input[name=' + fieldName + ']').val(currentVal + 1);
+                    } else {
+                        // Otherwise put a 0 there
+                        $('input[name=' + fieldName + ']').val(0);
+                    }
+                });
+                // This button will decrement the value till 0
+                $('[data-quantity="minus"]').click(function(e) {
+                    // Stop acting like a button
+                    e.preventDefault();
+                    // Get the field name
+                    fieldName = $(this).attr('data-field');
+                    // Get its current value
+                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    // If it isn't undefined or its greater than 0
+                    if (!isNaN(currentVal) && currentVal > 0) {
+                        // Decrement one
+                        $('input[name=' + fieldName + ']').val(currentVal - 1);
+                    } else {
+                        // Otherwise put a 0 there
+                        $('input[name=' + fieldName + ']').val(0);
+                    }
+                });
             });
         </script>
 @endpush

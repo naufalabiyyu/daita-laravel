@@ -10,10 +10,13 @@
                                     <li><a href="">Phone : +628 7882712065</a></li>
                                     <li><a href="">Email: daita@gmail.com</a></li>
                                 </ul>
-                                <div class="footer-social">
-                                    <a href="#">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
+                                <div class="widget-social ">
+                                    <ul class="list-unstyled">
+                                        <li><a href="# "><i class="fab fa-facebook-f " style="color: #0C0D36;"></i></a></li>
+                                        <li><a href="# "><i class="fab fa-twitter" style="color: #0C0D36;"></i></a></li>
+                                        <li><a href="# "><i class="fab fa-google-plus-g" style="color: #0C0D36;"></i></a></li>
+                                        <li><a href="# "><i class="fab fa-youtube" style="color: #0C0D36;"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
 

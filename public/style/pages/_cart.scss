@@ -19,6 +19,24 @@
         color: #0c0d36;
         margin-top: 30px;
     }
+    .quantity {
+        button {
+            height: 30px;
+            width: 30px;
+            background: none;
+            border: 0;
+            font-size: 14px;
+            color: #222222;
+        }
+        input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+            width: 50px;
+            padding: 0 10px;
+            background: none;
+            text-align: center;
+            color: #222222;
+            border: 0;
+        }
+    }
     .cart-image {
         border-radius: 11px;
         max-height: 100px;
