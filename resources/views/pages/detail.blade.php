@@ -50,8 +50,8 @@
                             <div class="store-info col-lg-5" data-aos="fade-left" data-aos-delay="200">
                                 <span>Daita</span>
                                 <h1 style="margin-bottom: 15px;">{{ $product->name }}</h1>
-                                {!! $product->description !!}
                                 <div class="price">Rp {{ number_format($product->prices) }} </div>
+                                {!! $product->description !!}
                                 <div class="product-quantity d-flex flex-wrap align-items-center">
                                     <span class="quantity-title">Quantity: </span>
                                     <form action="#">
