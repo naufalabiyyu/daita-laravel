@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="110" height="40" viewBox="0 0 110 40">
+  <defs>
+    <clipPath id="clip-Logo">
+      <rect width="110" height="40"/>
+    </clipPath>
+  </defs>
+  <g id="Logo" clip-path="url(#clip-Logo)">
+    <g id="Logo-2" data-name="Logo" transform="translate(-151 -26)">
+      <text id="DAITA_" data-name="DAITA
+" transform="translate(156 50)" font-size="34" font-family="AdobeDevanagari-Bold, Adobe Devanagari" font-weight="700"><tspan x="0" y="0">DAITA</tspan><tspan x="0" y="53"></tspan></text>
+      <text id="_DaitaLoveYourSkin" data-name="#DaitaLoveYourSkin" transform="translate(151 65)" font-size="14" font-family="AdobeDevanagari-BoldItalic, Adobe Devanagari" font-weight="700" font-style="italic"><tspan x="0" y="0">#DaitaLoveYourSkin</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,117 @@
+.page-dashboard {
+    #page-content-wrapper {}
+    #sidebar-wrapper {
+        background: #EEEAE8;
+        margin-top: 50px;
+        min-height: 100vh;
+        margin-left: -18rem;
+        transition: margin 0.2s ease out;
+        .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+        }
+        .list-group {
+            width: 18rem;
+        }
+    }
+    #wrapper {
+        &.toggled {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+        }
+    }
+    .product-title {
+        font-size: 16px;
+        text-align: left;
+        line-height: 25px;
+        color: #c5c5c5;
+    }
+    .product-subtitle {
+        font-size: 18px;
+        text-align: left;
+        line-height: 30px;
+        color: #342e2e;
+        margin-bottom: 20px;
+    }
+    .navbar-store {
+        margin-top: 0;
+        box-shadow: 0px 4px 5px #cacad1;
+        @include media-breakpoint-up(md) {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+    .list-group-item {
+        background: #EEEAE8;
+        border: none;
+        text-decoration: none;
+        border: none;
+        font-size: 18px;
+        color: #342E2E;
+        &.active {
+            background: linear-gradient( 270deg, rgba(226, 149, 120, 0.32) 2%, rgba(255, 255, 255, 0) 100%);
+            border-right: 4px solid #ff7158;
+            color: #342E2E;
+        }
+    }
+    @include media-breakpoint-up(md) {
+        #sidebar-wrapper {
+            margin-left: 0;
+            margin-top: 0;
+        }
+        #page-content-wrapper {
+            min-width: 0;
+            width: 100%;
+        }
+        #wrapper {
+            &.toggled {
+                #sidebar-wrapper {
+                    margin-left: -15rem;
+                }
+            }
+        }
+    }
+    .section-content {
+        margin-top: 100px;
+        @include media-breakpoint-up(md) {
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-right: 40px;
+        }
+        h5 {
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: 0.02em;
+            text-align: left;
+            color: #342e2e;
+        }
+        .dashboard-title {
+            font-weight: 600;
+            font-size: 34px;
+            letter-spacing: 0.02em;
+            text-align: left;
+            color: #342e2e;
+        }
+        .dashboard-subtitle {
+            font-weight: 300;
+            font-size: 18px;
+            text-align: left;
+            color: #342e2e;
+        }
+        .gallery-container {
+            .delete-gallery {
+                display: block;
+                position: absolute;
+                top: -10px;
+                right: 0;
+            }
+        }
+    }
+    .action-success {
+        color: #29a867;
+    }
+    .action-process {
+        color: #F32355;
+    }
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-sign-out-dashboard">
+      <rect width="50" height="50"/>
+    </clipPath>
+  </defs>
+  <g id="sign-out-dashboard" clip-path="url(#clip-sign-out-dashboard)">
+    <path id="Path_11" data-name="Path 11" d="M6236.9,1537.091h10.736v22.794H6236.9" transform="translate(-6215 -1523)" fill="none" stroke="#342e2e" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Path_12" data-name="Path 12" d="M6231.281,1543.7l-3.964,4.294,3.964,3.964" transform="translate(-6216 -1522)" fill="none" stroke="#342e2e" stroke-linecap="round" stroke-width="3"/>
+    <path id="Path_13" data-name="Path 13" d="M6226.987,1547.827h14.865" transform="translate(-6215 -1522)" fill="none" stroke="#342e2e" stroke-linecap="round" stroke-width="3"/>
+  </g>
+</svg>

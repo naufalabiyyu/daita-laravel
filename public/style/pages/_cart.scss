@@ -1,0 +1,40 @@
+.store-cart {
+    .card-details {
+        padding: 30px;
+        border-radius: 11px;
+    }
+    h2 {
+        font-weight: bold;
+        font-size: 18px;
+        color: #0c0d36;
+        margin-top: 18px;
+    }
+    .table-cart {
+        margin-left: -15px;
+        text-align: center;
+    }
+    .product-title {
+        font-weight: normal;
+        font-size: 20px;
+        color: #0c0d36;
+        margin-top: 30px;
+    }
+    .cart-image {
+        border-radius: 11px;
+        max-height: 100px;
+    }
+    .btn-remove-cart {
+        margin-top: 25px;
+        @include button-variant(#e7cbbe, transparent);
+    }
+    .card-right {
+        @include media-breakpoint-down(md) {
+            margin-top: 25px;
+        }
+    }
+    .payment-instruction {
+        font-size: 14px;
+        text-align: left;
+        color: #b1b1b1;
+    }
+}
