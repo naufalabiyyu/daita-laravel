@@ -53,9 +53,9 @@
                                             <td style="width: 25%;" class="align-middle">
                                                 <form action="#">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="quantity"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" name="quantity" value="1" />
-                                                        <button type="button" data-quantity="plus" data-field="quantity"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $cart->product->id }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" name="formInput{{ $cart->product->id }}" value="1"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $cart->product->id }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
