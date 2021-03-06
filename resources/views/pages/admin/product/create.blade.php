@@ -40,12 +40,12 @@
                                                 <input type="number" name="prices" class="form-control" required>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-12">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="qty">Qty</label>
-                                                <input type="number" name="qty" class="form-control" required>
+                                                <label>Stock</label>
+                                                <input type="number" name="stock" class="form-control" required>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Deskripsi</label>

@@ -25,8 +25,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nama</th>
-                                                {{-- <th>Pemilik</th> --}}
                                                 <th>Harga</th>
+                                                <th>Stok</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -57,6 +57,7 @@
                { data: 'name', name: 'name'},
             //    { data: 'user.name', name: 'user.name'},
                { data: 'prices', name: 'prices'},
+               { data: 'stock', name: 'stock'},
                {
                    data: 'action',
                    name: 'action',

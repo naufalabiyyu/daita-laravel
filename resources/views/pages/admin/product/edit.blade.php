@@ -41,12 +41,12 @@
                                                 <input type="number" name="prices" class="form-control" value="{{ $item->prices }}" required>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Qty</label>
-                                                <input type="number" name="qty" class="form-control" value="{{ $item->qty }}" required>
+                                                <label>Stok</label>
+                                                <input type="number" name="stock" class="form-control" value="{{ $item->stock }}" required>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Deskripsi</label>
