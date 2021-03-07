@@ -57,14 +57,14 @@
                                     <form action="#">
                                         <div class="quantity d-flex">
                                             <button type="button" data-quantity="minus" data-field="quantity"><i class="fas fa-minus"></i></button>
-                                            <input type="text" name="quantity" value="1" />
+                                            <input type="number" id="quantity" value="1"/>
                                             <button type="button" data-quantity="plus" data-field="quantity"><i class="fas fa-plus"></i></button>
                                         </div>
                                     </form>
                                 </div>
                                 @auth
                                     <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="quantity" />
+                                    <input type="hidden" name="quantity" value="1" />
                                     @csrf
                                         <button type="submit" class="btn btn-success text-white mt-3 pd-cart">
                                             ADD TO CART
@@ -126,7 +126,10 @@
             });
         </script>
         <script>
+            const stock = '{{ $product->stock }}'
             jQuery(document).ready(function() {
+                let quantity = 0;
+
                 // This button will increment the value
                 $('[data-quantity="plus"]').click(function(e) {
                     // Stop acting like a button
@@ -134,13 +137,19 @@
                     // Get the field name
                     fieldName = $(this).attr('data-field');
                     // Get its current value
-                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    var currentVal = parseInt($('input[id=' + fieldName + ']').val());
                     // If is not undefined
                     if (!isNaN(currentVal)) {
                         // Increment
-                        $('input[name=' + fieldName + ']').val(currentVal + 1);
+                        quantity = currentVal + 1;
+                        if (quantity > stock){
+                            quantity = stock
+                        }
+                        $('input[id=' + fieldName + ']').val(quantity);
+                        $('input[name=' + fieldName + ']').val(quantity);
                     } else {
                         // Otherwise put a 0 there
+                        $('input[id=' + fieldName + ']').val(0);
                         $('input[name=' + fieldName + ']').val(0);
                     }
                 });
@@ -151,16 +160,27 @@
                     // Get the field name
                     fieldName = $(this).attr('data-field');
                     // Get its current value
-                    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                    var currentVal = parseInt($('input[id=' + fieldName + ']').val());
                     // If it isn't undefined or its greater than 0
                     if (!isNaN(currentVal) && currentVal > 0) {
                         // Decrement one
-                        $('input[name=' + fieldName + ']').val(currentVal - 1);
+                        quantity = currentVal - 1;
+                        $('input[id=' + fieldName + ']').val(quantity);
+                        $('input[name=' + fieldName + ']').val(quantity);
                     } else {
                         // Otherwise put a 0 there
+                        $('input[id=' + fieldName + ']').val(0);
                         $('input[name=' + fieldName + ']').val(0);
                     }
                 });
+            });
+
+            $("#quantity").change(function() {
+                let angka = $(this).val()
+                
+                if (angka > stock){
+                    $(this).val(stock)
+                }
             });
         </script>
 @endpush

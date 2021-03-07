@@ -27,8 +27,6 @@ class DetailController extends Controller
 
         $userId = Auth::user()->id;
 
-        $data = $request->all();
-
         // Cari dulu produk yang ada di keranjang
         // Kalo ID nya sama dengan yang mau ditambahkan lagi
         // Maka tambahkan quantitynya aja
@@ -46,7 +44,7 @@ class DetailController extends Controller
             $data = [
                 'products_id' => $id,
                 'users_id' => $userId,
-                'quantity' => $data['quantity']
+                'quantity' => $request->input('quantity')
             ];
     
             Cart::create($data);
