@@ -24,13 +24,31 @@ class DetailController extends Controller
 
     public function add(Request $request, $id)
     {
-        $data = [
-            'products_id' => $id,
-            'users_id' => Auth::user()->id,
-        ];
 
-        Cart::create($data);
+        $userId = Auth::user()->id;
 
+        // Cari dulu produk yang ada di keranjang
+        // Kalo ID nya sama dengan yang mau ditambahkan lagi
+        // Maka tambahkan quantitynya aja
+        $produkDiKeranjang = Cart::where(['products_id' => $id, 'users_id' => $userId])->first();
+
+        // dd($produkDiKeranjang);
+
+        if ($produkDiKeranjang) {
+            $quantityProdukDiKeranjang = $produkDiKeranjang->quantity;
+            $quantitySekarang = $quantityProdukDiKeranjang + 1;
+            
+            // Update quantity
+            Cart::where(['products_id' => $id, 'users_id' => $userId])->update(['quantity' => $quantitySekarang]);
+        } else {
+            $data = [
+                'products_id' => $id,
+                'users_id' => $userId,
+                'quantity' => $request->input('quantity')
+            ];
+    
+            Cart::create($data);
+        }
         return redirect()->route('cart');
     }
 }

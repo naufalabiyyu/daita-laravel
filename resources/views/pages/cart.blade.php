@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         @php $totalPrice = 0 @endphp
-                                       @foreach ($carts as $cart)
+                                       @foreach ($carts as $index=>$cart)
                                         <tr>
                                             <td style="width: 25%;">
                                                 @if ($cart->product->galleries)
@@ -48,19 +48,20 @@
                                                 @endif
                                             </td>
                                             <td style="width: 25%;">
-                                                <div class="product-title">{{ $cart->product->name }}</div>
+                                                <div class="product-title items">{{ $cart->product->name }}</div>
                                             </td>
                                             <td style="width: 25%;" class="align-middle">
                                                 <form action="#">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $cart->product->id }}"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" name="formInput{{ $cart->product->id }}" value="1"/>
-                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $cart->product->id }}"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
                                             <td style="width: 25%;">
                                                 <div class="product-title">Rp {{ number_format($cart->product->prices ) }}</div>
+                                                <div class="product-title" id="productPrice{{ $index }}" >{{ $cart->product->prices }}</div>
                                             </td>
                                             <td class="align-middle">
                                                 <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
@@ -139,8 +140,7 @@
                                 </tr>
                                 </tr>
                                     <td width="50% " >Sub total</td>
-                                     <td width="50% " class="text-right" style="color: green;">Rp {{ number_format($totalPrice 
-                                     ?? 0) }}</td>
+                                     <td width="50% " class="text-right" style="color: green;" id="subTotal"></td>
                                 </tr>
                                 <tr>
                                     <td width="50% " >Pajak</td>
@@ -151,7 +151,7 @@
                                     <td width="50% " class="text-right ">Rp10.000</td>
                                 </tr>
                                     <td width="50% " >Total Biaya</td>
-                                     <td width="50% " class="text-right" style="color: green;">Rp {{ number_format($totalPrice+10000 ?? 0) }}</td>
+                                     <td width="50% " class="text-right" style="color: green;" id="totalBiaya"></td>
                                 </tr>
                                 
                             </table>
@@ -221,8 +221,33 @@
         </script>
         <script>
             jQuery(document).ready(function() {
+
+                const jumlahItems = document.querySelectorAll(".items");
+                const subTotal = document.getElementById('subTotal')
+                const totalBiaya = document.getElementById('totalBiaya')
+                let hargaProduk;
+                let productPriceShow;
+                let totalHarga = 0;
+
+                for(i = 0; i < jumlahItems.length; i++){
+                    const firstQuantity = document.getElementById('quantity' + i).value
+                    hargaProduk = document.getElementById('productPrice' + i).innerHTML
+                    productPriceShow = hargaProduk
+                    const firstHargaProduk = hargaProduk * firstQuantity
+
+                    totalHarga += firstHargaProduk;
+                    console.log(totalHarga)
+                    
+                    productPriceShow.innerText = 'Rp. ' + parseFloat(firstHargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                }
+
+                
+
                 // This button will increment the value
                 $("[data-quantity='plus' ] ").click(function(e) {
+                    let quantity;
                     // Stop acting like a button
                     e.preventDefault();
                     // Get the field name
@@ -232,14 +257,25 @@
                     // If is not undefined
                     if (!isNaN(currentVal)) {
                         // Increment
-                        $('input[name=' + fieldName + ']').val(currentVal + 1);
+                        quantity = currentVal + 1;
+                        $('input[name=' + fieldName + ']').val(quantity);
                     } else {
                         // Otherwise put a 0 there
-                        $('input[name=' + fieldName + ']').val(0);
+                        quantity = 0;
+                        $('input[name=' + fieldName + ']').val(quantity);
                     }
+
+                    // Update Produk Price
+                    updateHarga = hargaProduk * (quantity - currentVal )
+                    totalHarga += updateHarga;
+                    subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                 });
+
                 // This button will decrement the value till 0
                 $("[data-quantity='minus' ] ").click(function(e) {
+                    let quantity;
+
                     // Stop acting like a button
                     e.preventDefault();
                     // Get the field name
@@ -249,11 +285,18 @@
                     // If it isn't undefined or its greater than 0
                     if (!isNaN(currentVal) && currentVal > 0) {
                         // Decrement one
-                        $('input[name=' + fieldName + ']').val(currentVal - 1);
+                        quantity = currentVal - 1;
+                        $('input[name=' + fieldName + ']').val(quantity);
                     } else {
                         // Otherwise put a 0 there
-                        $('input[name=' + fieldName + ']').val(0);
+                        quantity = 0;
+                        $('input[name=' + fieldName + ']').val(quantity);
                     }
+
+                    updateHarga = hargaProduk * (currentVal - quantity)
+                    totalHarga -= updateHarga;
+                    subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                 });
             });
             

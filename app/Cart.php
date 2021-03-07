@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     protected $fillable = [
-        'products_id', 'users_id'
+        'products_id', 'users_id', 'quantity'
     ];
 
     protected $hidden = [
@@ -16,7 +16,7 @@ class Cart extends Model
 
     public function product() 
     {
-        return $this->hasOne(Product::class, 'id', 'products_id'); // karena setiap item cart itu punya 1 product 
+        return $this->hasOne(Product::class, 'id', 'products_id', 'quantity'); // karena setiap item cart itu punya 1 product 
     }
 
     public function user()

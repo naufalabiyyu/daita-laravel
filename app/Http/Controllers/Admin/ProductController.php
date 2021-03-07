@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-use App\Http\Requests\Admin\productRequest;
-use App\product;
+use App\Http\Requests\Admin\ProductRequest;
+use App\Product;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         if(request()-> ajax())
         {
-            $query = product::query();
+            $query = Product::query();
             // ->withTrashed(); // untuk mengambalikan data menggunakan softdeletes;
             // $query = product::with(['user']);
 
