@@ -60,7 +60,7 @@
                                                 </form>
                                             </td>
                                             <td style="width: 25%;">
-                                                <div class="product-title">Rp {{ number_format($cart->product->prices) }}</div>
+                                                <div class="product-title">Rp {{ number_format($cart->product->prices ) }}</div>
                                             </td>
                                             <td class="align-middle">
                                                 <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
