@@ -176,10 +176,13 @@
             });
 
             $("#quantity").change(function() {
-                let angka = $(this).val()
+                const angka = parseInt($(this).val())
                 
                 if (angka > stock){
                     $(this).val(stock)
+                    $('input[name=quantity]').val(stock);
+                } else {
+                    $('input[name=quantity]').val(angka);
                 }
             });
         </script>

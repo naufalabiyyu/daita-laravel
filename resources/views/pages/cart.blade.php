@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         @php $totalPrice = 0 @endphp
-                                       @foreach ($carts as $index=>$cart)
+                                        @foreach ($carts as $index=>$cart)
                                         <tr>
                                             <td style="width: 25%;">
                                                 @if ($cart->product->galleries)
@@ -53,9 +53,9 @@
                                             <td style="width: 25%;" class="align-middle">
                                                 <form action="#">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}"/>
-                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
@@ -231,18 +231,27 @@
                 for(i = 0; i < jumlahItems.length; i++){
                     const firstQuantity = document.getElementById('quantity' + i).value
                     hargaProduk = document.getElementById('productPrice' + i).innerHTML
-                    productPriceShow = hargaProduk
+                    productPriceShow = document.getElementById('productPrice' + i)
                     const firstHargaProduk = hargaProduk * firstQuantity
 
                     totalHarga += firstHargaProduk;
-                    console.log(totalHarga)
                     
-                    productPriceShow.innerText = 'Rp. ' + parseFloat(firstHargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    productPriceShow.innerText = 'Rp. ' + parseFloat(hargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                }
 
-                
+                    $("#quantity" + i).change(function() {
+                        const angka = parseInt($(this).val())
+                        const stock = $(this).attr('data-stock');
+                        
+                        if (angka > stock){
+                            $(this).val(stock)
+                            $('input[name=quantity]').val(stock);
+                        } else {
+                            $('input[name=quantity]').val(angka);
+                        }
+                    });
+                }
 
                 // This button will increment the value
                 $("[data-quantity='plus' ] ").click(function(e) {
@@ -251,12 +260,17 @@
                     e.preventDefault();
                     // Get the field name
                     fieldName = $(this).attr('data-field');
+                    // Get stock
+                    stock = $(this).attr('data-stock');
                     // Get its current value
                     var currentVal = parseInt($('input[name=' + fieldName + ']').val());
                     // If is not undefined
                     if (!isNaN(currentVal)) {
                         // Increment
                         quantity = currentVal + 1;
+                        if (quantity > stock) {
+                            quantity = stock
+                        }
                         $('input[name=' + fieldName + ']').val(quantity);
                     } else {
                         // Otherwise put a 0 there
