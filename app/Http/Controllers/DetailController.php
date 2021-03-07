@@ -26,13 +26,18 @@ class DetailController extends Controller
     {
 
         $userId = Auth::user()->id;
+        $quantity = $request->input('quantity');
 
         // Cari dulu produk yang ada di keranjang
         // Kalo ID nya sama dengan yang mau ditambahkan lagi
         // Maka tambahkan quantitynya aja
         $produkDiKeranjang = Cart::where(['products_id' => $id, 'users_id' => $userId])->first();
+        $produkDetail = Product::where(['id' => $id])->first();
 
-        // dd($produkDiKeranjang);
+        // Quantity tidak boleh lebih dari stock
+        if ($quantity > $produkDetail['stock']){
+            $quantity = $produkDetail['stock'];
+        }
 
         if ($produkDiKeranjang) {
             $quantityProdukDiKeranjang = $produkDiKeranjang->quantity;
@@ -44,11 +49,12 @@ class DetailController extends Controller
             $data = [
                 'products_id' => $id,
                 'users_id' => $userId,
-                'quantity' => $request->input('quantity')
+                'quantity' => $quantity
             ];
     
             Cart::create($data);
         }
+        
         return redirect()->route('cart');
     }
 }
