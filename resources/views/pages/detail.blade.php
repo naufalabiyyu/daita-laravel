@@ -64,6 +64,7 @@
                                 </div>
                                 @auth
                                     <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="quantity" />
                                     @csrf
                                         <button type="submit" class="btn btn-success text-white mt-3 pd-cart">
                                             ADD TO CART
