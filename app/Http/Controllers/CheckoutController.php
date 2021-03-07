@@ -30,7 +30,7 @@ class CheckoutController extends Controller
                     ->get();
 
         // Transaction create
-        $transaction = Transaction::create([
+        $transaction = Transaction::insertGetId([
             'users_id' => Auth::user()->id,
             'shipping_price' => 0,
             'total_price' => $request->total_price,
@@ -42,7 +42,7 @@ class CheckoutController extends Controller
             $trx = 'TRX-' . mt_rand(000000,999999);
 
             TransactionDetail::create([
-                'transactions_id' => $transaction->id,
+                'transactions_id' => $transaction,
                 'products_id' => $cart->product->id,
                 'prices' => $cart->product->prices,
                 'shipping_status' => 'PENDING',
