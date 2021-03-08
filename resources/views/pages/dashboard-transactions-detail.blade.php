@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Payment Status</div>
-                                            <div class="product-subtitle text-danger">{{ $transactions->transaction->transaction_status }}</div>
+                                            <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : 'text-danger' }}">{{ $transactions->transaction->transaction_status }}</div>
                                         </div>
                                     </div>
                                     <form action="{{ route('dashboard-transaction-update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
