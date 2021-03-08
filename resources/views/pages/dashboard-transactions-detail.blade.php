@@ -25,7 +25,7 @@
                                         <!-- End -->
                                         <div class="col-12 col-md-3">
                                             <div class="product-title">ID Transaction</div>
-                                            <div class="product-subtitle">#{{ $transactions->code }}</div>
+                                            <div class="product-subtitle">#{{ $transactions->transaction->code }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Product Name</div>
