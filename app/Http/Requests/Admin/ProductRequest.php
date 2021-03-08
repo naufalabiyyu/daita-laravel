@@ -29,7 +29,8 @@ class ProductRequest extends FormRequest
             'description' => 'required',
             'prices' => 'required',
             'how_to_use' => 'required',
-            'ingredients' => 'required'
+            'ingredients' => 'required',
+            'stock' => 'required'
         ];
     }
 }
