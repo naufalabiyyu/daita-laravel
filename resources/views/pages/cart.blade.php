@@ -87,8 +87,7 @@
                             <div class="card card-details  ">
                                 <div class="form-group  col-lg-12">
                                     <h2 class="">Shipping Address</h2>
-                                </div>                               
-                                <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+                                </div>
                                 <div class="form-group  col-lg-12">
                                     <label for="address_one">Address 1</label>
                                     <input type="text" class="form-control" id="address_one" name="address_one" value="{{ $user->address_one }}">

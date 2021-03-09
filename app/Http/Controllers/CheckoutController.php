@@ -24,22 +24,30 @@ class CheckoutController extends Controller
         $user->update($request->except('total_price'));
 
         // process Checkout
-        $code = 'STORE-' . mt_rand(000000,999999);
+        $code = 'STORE-' . mt_rand(000000, 999999);
         $carts = Cart::with(['product', 'user'])
-                    ->where('users_id', Auth::user()->id)
-                    ->get();
+            ->where('users_id', Auth::user()->id)
+            ->get();
+
+        // Hitung total price
+        $totalPrice = 0;
+        foreach ($carts as $cart) {
+            $totalPrice += $cart->quantity * $cart->product->prices;
+        }
 
         // Transaction create
         $transaction = Transaction::insertGetId([
             'users_id' => Auth::user()->id,
             'shipping_price' => 0,
-            'total_price' => $request->total_price,
+            'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
-            'code' => $code
+            'code' => $code,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         foreach ($carts as $cart) {
-            $trx = 'TRX-' . mt_rand(000000,999999);
+            $trx = 'TRX-' . mt_rand(000000, 999999);
 
             TransactionDetail::create([
                 'transactions_id' => $transaction,
@@ -47,15 +55,16 @@ class CheckoutController extends Controller
                 'prices' => $cart->product->prices,
                 'shipping_status' => 'PENDING',
                 'resi' => '',
-                'code' => $trx
+                'code' => $trx,
+                'quantity' => $cart->quantity
             ]);
         }
 
         // Delete Cart Data
-        Cart::with(['product','user'])
-                ->where('users_id', Auth::user()->id)
-                ->delete();
-        
+        Cart::with(['product', 'user'])
+            ->where('users_id', Auth::user()->id)
+            ->delete();
+
         // Set your Merchant Server Key
         Config::$serverKey = config('services.midtrans.serverKey');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -69,7 +78,7 @@ class CheckoutController extends Controller
         $midtrans = [
             'transaction_details' => [
                 'order_id' => $code,
-                'gross_amount' => (int) $request->total_price,
+                'gross_amount' => (int) $totalPrice,
             ],
             'customer_details' => [
                 'first_name' => Auth::user()->name,
@@ -85,17 +94,15 @@ class CheckoutController extends Controller
         try {
             // Get Snap Payment Page URL
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
-            
+
             // Redirect to Snap Payment Page
             return redirect($paymentUrl);
-            }
-            catch (Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
     public function callback(Request $request)
     {
-        
     }
 }

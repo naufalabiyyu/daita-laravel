@@ -17,8 +17,8 @@ class TransactionDetail extends Model
         'prices', 
         'shipping_status', 
         'resi', 
-        'code'
-        
+        'code',
+        'quantity'
     ];
 
     /**
