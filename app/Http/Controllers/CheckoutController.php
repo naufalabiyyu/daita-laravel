@@ -35,6 +35,8 @@ class CheckoutController extends Controller
         foreach ($carts as $cart) {
             $totalPrice += $cart->quantity * $cart->product->prices;
         }
+        // Tambah ongkir Rp. 10K
+        $totalPrice += 10000;
 
         // Transaction create
         $transaction = Transaction::insertGetId([
