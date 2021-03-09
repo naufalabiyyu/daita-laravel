@@ -69,7 +69,12 @@
                                         <a href="{{ route('home') }}" class="dropdown-item">Home</a>
                                         <a href="{{ route('dashboard-profile') }}" class="dropdown-item">Setting</a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" 
+								            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
+								        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                     <li>
                                         <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">

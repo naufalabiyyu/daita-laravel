@@ -70,7 +70,12 @@
                                         {{-- <a href="/dashboard.html" class="dropdown-item">Dashboard</a> --}}
                                         
                                         {{-- <div class="dropdown-divider"></div> --}}
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" 
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
