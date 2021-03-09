@@ -34,7 +34,7 @@
 					<ul class="navbar-nav navbar-store d-none d-lg-flex">
 						<li class="nav-item dropdown">
 							<a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
-								<img src="/images/icon_user.png" alt="" class="rounded-circle mr-2 profile-picture"> Hi, {{ Auth::user()->name }}
+								<img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=FF7158&color=FFF" height="60" alt="" class="rounded-circle mr-2 profile-picture"> Hi, {{ Auth::user()->name }}
 							</a>
 							<div class="dropdown-menu">
 								<a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
