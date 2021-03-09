@@ -67,7 +67,7 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <a href="{{ route('home') }}" class="dropdown-item">Home</a>
-                                        <a href="/dashboard-account.html" class="dropdown-item">Setting</a>
+                                        <a href="{{ route('dashboard-profile') }}" class="dropdown-item">Setting</a>
                                         <div class="dropdown-divider"></div>
                                         <a href="/" class="dropdown-item">Logout</a>
                                     </div>

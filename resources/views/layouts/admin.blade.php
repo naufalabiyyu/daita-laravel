@@ -68,7 +68,7 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         {{-- <a href="/dashboard.html" class="dropdown-item">Dashboard</a> --}}
-                                        <a href="/dashboard-account.html" class="dropdown-item">Setting</a>
+                                        
                                         {{-- <div class="dropdown-divider"></div> --}}
                                         <a href="/" class="dropdown-item">Logout</a>
                                     </div>
