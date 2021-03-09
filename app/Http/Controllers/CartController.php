@@ -30,7 +30,12 @@ class CartController extends Controller
         ]);
     }
 
-    
+    public function update(Request $request, $id){
+        $cart = Cart::findOrFail($id);
+        $cart->update([
+            'quantity' => $request->quantity
+        ]);
+    }
 
     public function delete(Request $request, $id)
     {

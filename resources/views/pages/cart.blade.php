@@ -52,10 +52,11 @@
                                             </td>
                                             <td style="width: 25%;" class="align-middle">
                                                 <form action="#">
+                                                <input type="hidden" value="{{ csrf_token() }}" id="quantityToken">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}"/>
-                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" data-formQuantity="quantity" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
@@ -224,13 +225,12 @@
                 const jumlahItems = document.querySelectorAll(".items");
                 const subTotal = document.getElementById('subTotal')
                 const totalBiaya = document.getElementById('totalBiaya')
-                let hargaProduk;
                 let productPriceShow;
                 let totalHarga = 0;
 
                 for(i = 0; i < jumlahItems.length; i++){
                     const firstQuantity = document.getElementById('quantity' + i).value
-                    hargaProduk = document.getElementById('productPrice' + i).innerHTML
+                    let hargaProduk = document.getElementById('productPrice' + i).innerHTML
                     productPriceShow = document.getElementById('productPrice' + i)
                     const firstHargaProduk = hargaProduk * firstQuantity
 
@@ -239,22 +239,58 @@
                     productPriceShow.innerText = 'Rp. ' + parseFloat(hargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-
-                    $("#quantity" + i).change(function() {
-                        const angka = parseInt($(this).val())
-                        const stock = $(this).attr('data-stock');
-                        
-                        if (angka > stock){
-                            $(this).val(stock)
-                            $('input[name=quantity]').val(stock);
-                        } else {
-                            $('input[name=quantity]').val(angka);
-                        }
-                    });
                 }
 
+                // Ketika quantity diganti manual tanpa klik tombol
+                let currenValueInput = 0;
+                $("[data-formQuantity='quantity' ] ").on('focusin', function(e) {
+                    currenValueInput = parseInt($(this).val());
+                });
+                
+                $("[data-formQuantity='quantity' ] ").change(function(e) {
+                    let quantity = 0
+                    let stockBerubah = 0
+                    const angka = parseInt($(this).val())
+                    const stock = $(this).attr('data-stock');
+                    const hargaProduk = $(this).attr('data-productPrice');
+                    
+                    if (angka > stock){
+                        quantity = stock
+                        $(this).val(stock)
+                        $('input[name=quantity]').val(quantity);
+                    } else {
+                        quantity = angka
+                        $('input[name=quantity]').val(quantity);
+                    }
+
+                    // Update Produk Price
+                    if (currenValueInput < quantity) {
+                        updateHarga = hargaProduk * (quantity - currenValueInput)
+                        totalHarga += updateHarga;
+                    } else {
+                        updateHarga = hargaProduk * (currenValueInput - quantity)
+                        totalHarga -= updateHarga;
+                    }
+                    subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+
+                    // Update quantity 
+                    let productId = $(this).attr('data-productId');
+                    let CSRFToken = document.getElementById("quantityToken").value
+
+                    $.ajax({
+                        url: `cart/${productId}`,
+                        type: 'post',
+                        data: {
+                            _token: CSRFToken,
+                            quantity: quantity
+                        },
+                    });
+                });
+            
                 // This button will increment the value
                 $("[data-quantity='plus' ] ").click(function(e) {
+                    const hargaProduk = $(this).attr('data-productPrice');
                     let quantity;
                     // Stop acting like a button
                     e.preventDefault();
@@ -283,10 +319,24 @@
                     totalHarga += updateHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+
+                    // Update quantity 
+                    let productId = $(this).attr('data-productId');
+                    let CSRFToken = document.getElementById("quantityToken").value
+
+                    $.ajax({
+                        url: `cart/${productId}`,
+                        type: 'post',
+                        data: {
+                            _token: CSRFToken,
+                            quantity: quantity
+                        },
+                    });
                 });
 
                 // This button will decrement the value till 0
                 $("[data-quantity='minus' ] ").click(function(e) {
+                    const hargaProduk = $(this).attr('data-productPrice');
                     let quantity;
 
                     // Stop acting like a button
@@ -310,6 +360,19 @@
                     totalHarga -= updateHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+
+                    // Update quantity 
+                    let productId = $(this).attr('data-productId');
+                    let CSRFToken = document.getElementById("quantityToken").value
+
+                    $.ajax({
+                        url: `cart/${productId}`,
+                        type: 'post',
+                        data: {
+                            _token: CSRFToken,
+                            quantity: quantity
+                        },
+                    });
                 });
             });
             
