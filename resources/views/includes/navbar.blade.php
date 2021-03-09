@@ -18,7 +18,7 @@
 							<a class="nav-link" href="#about-section">About</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Customer Care</a>
+							<a class="nav-link border-right" href="#">Customer Care &nbsp;</a>
 						</li>
 						@guest
 						<li class="nav-item">
