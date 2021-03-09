@@ -91,11 +91,11 @@
                                 <input type="hidden" name="total_price" value="{{ $totalPrice }}">
                                 <div class="form-group  col-lg-12">
                                     <label for="address_one">Address 1</label>
-                                    <input type="text" class="form-control" id="address_one" name="address_one" value="Jl. Kahuripan Raya">
+                                    <input type="text" class="form-control" id="address_one" name="address_one" value="{{ $user->address_one }}">
                                 </div>
                                 <div class="form-group  col-lg-12 ">
                                     <label for="address_two">Address 2</label>
-                                    <input type="text" class="form-control" id="address_two" name="address_two" value="Perumnas 3">
+                                    <input type="text" class="form-control" id="address_two" name="address_two" value="{{ $user->address_two }}">
                                 </div>
 
                                 <div class="form-row pl-3 pr-3">
@@ -116,16 +116,16 @@
                                 <div class="form-row pl-3 pr-3">
                                     <div class="form-group col-lg-6">
                                         <label for="zip_code">Postal Kode</label>
-                                        <input type="text" class="form-control" id="zip_code" name="zip_code" value="15138">
+                                        <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ $user->zip_code }}">
                                     </div>
                                     <div class="form-group col-lg-6 ">
                                         <label for="country">Country</label>
-                                        <input type="text" class="form-control" id="country" name="country" value="Indonesia">
+                                        <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}">
                                     </div>
                                 </div>
                                 <div class="form-group  col-lg-12">
                                     <label for="phone_number">Mobile</label>
-                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="628 5152 5354">
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
                                 </div>
 
                             </div>
@@ -134,10 +134,10 @@
                             <div class="card card-details card-right">
                                 <h2 class="">Payment Information</h2>
                                 <table class="pay-info">
-                                <tr>
+                                {{-- <tr>
                                         <td width="50%">ID transaction</td>
                                         <td class="text-right" style="color: #B1B1B1;">#DA280800</td>
-                                </tr>
+                                </tr> --}}
                                 </tr>
                                     <td width="50% " >Sub total</td>
                                      <td width="50% " class="text-right" style="color: green;" id="subTotal"></td>
