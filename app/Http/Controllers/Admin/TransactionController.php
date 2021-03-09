@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Product;
 use App\Transaction;
+use App\TransactionDetail;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -109,11 +112,22 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Update Transaction
         $data = $request->all();
-
         $item = Transaction::findOrFail($id);
-
         $item->update($data);
+
+
+        if ($data['transaction_status'] == "SHIPPING"){
+            // Update stock product
+            $TransactonDetails = TransactionDetail::where(['transactions_id' => $id])->get();
+            foreach($TransactonDetails as $TD){
+                $item = Product::findOrFail($TD->products_id);
+                $item->update([
+                    'stock' => $item->stock - $TD->quantity
+                ]);
+            }
+        }
 
         return redirect()->route('transaction.index');
     }

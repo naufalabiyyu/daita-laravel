@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\Transaction;
 use App\TransactionDetail;
-use App\Product;
 
 use Exception;
 
@@ -50,13 +49,6 @@ class CheckoutController extends Controller
         ]);
 
         foreach ($carts as $cart) {
-
-            // Kurangi stok produk
-            $item = Product::findOrFail($cart->products_id);
-            $item->update([
-                'stock' => $item->stock - $cart->quantity
-            ]);
-
             // Tambahkan transaksi detail
             $trx = 'TRX-' . mt_rand(000000, 999999);
 
