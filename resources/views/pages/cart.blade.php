@@ -101,15 +101,24 @@
                                 <div class="form-row pl-3 pr-3">
                                     <div class="form-group col-lg-6">
                                         <label for="provinces_id">Province</label>
-                                        <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
+                                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                                        </select> --}}
+                                        <select name="province_to" class="form-control">
+                                            <option value="" holder>Pilih Provinsi</option>
+                                            @foreach ($provinsi as $result)
+                                            <option value="{{ $result->id }}">{{ $result->province }}</option>
+                                            @endforeach
                                         </select>
                                         <select v-else class="form-control"></select>
                                     </div>
                                     <div class="form-group col-lg-6 ">
                                         <label for="regencies_id">City</label>
-                                        <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
+                                        {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
                                             <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                                        </select> --}}
+                                        <select name="destination" class="form-control">
+                                            <option value="" holder>Pilih Kota</option>
                                         </select>
                                     </div>
                                 </div>
@@ -133,6 +142,12 @@
                         <div class="col-lg-5" data-aos="fade-left" data-aos-delay="500">
                             <div class="card card-details card-right">
                                 <h2 class="">Payment Information</h2>
+                                <select name="courier" id="" class="form-control mt-3 mb-2">
+                                    <option value="" holder>Pilih Kurir</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="pos">POS Indonesia</option>
+                                </select>
                                 <table class="pay-info">
                                 {{-- <tr>
                                         <td width="50%">ID transaction</td>
@@ -376,5 +391,51 @@
                 });
             });
             
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('select[name="province_from"]').on('change', function () {
+                    var cityId = $(this).val();
+                    if (cityId) {
+                        $.ajax({
+                            url: 'getCity/ajax/' + cityId,
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {
+                                $('select[name="origin"]').empty();
+                                $.each(data, function (key, value) {
+                                    $('select[name="origin"]').append(
+                                        '<option value="' +
+                                        key + '">' + value + '</option>');
+                                });
+                            }
+                        });
+                    } else {
+                        $('select[name="origin"]').empty();
+                    }
+                });
+    
+                $('select[name="province_to"]').on('change', function () {
+                    var cityId = $(this).val();
+                    if (cityId) {
+                        $.ajax({
+                            url: 'getCity/ajax/' + cityId,
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {
+                                $('select[name="destination"]').empty();
+                                $.each(data, function (key, value) {
+                                    $('select[name="destination"]').append(
+                                        '<option value="' +
+                                        key + '">' + value + '</option>');
+                                });
+                            }
+                        });
+                    } else {
+                        $('select[name="destination"]').empty();
+                    }
+                });
+            });
+    
         </script>
 @endpush
