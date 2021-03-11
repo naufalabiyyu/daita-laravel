@@ -27,6 +27,8 @@ Route::get('/register/success', 'Auth\RegisterController@success')->name('regist
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/cart', 'CartController@index')->name('cart');
+    Route::get('/getCity/{id}', 'CartController@getCity');
+    Route::post('/getOngkir', 'CartController@getOngkir');
     Route::post('/cart/{id}', 'CartController@update')->name('cart-update-quantity');
     Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
 
