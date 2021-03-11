@@ -110,7 +110,6 @@
                                             <option value="{{ $result->id }}">{{ $result->province }}</option>
                                             @endforeach
                                         </select>
-                                        <select v-else class="form-control"></select>
                                     </div>
                                     <div class="form-group col-lg-6 ">
                                         <label for="regencies_id">City</label>
@@ -142,11 +141,13 @@
                         <div class="col-lg-5" data-aos="fade-left" data-aos-delay="500">
                             <div class="card card-details card-right">
                                 <h2 class="">Payment Information</h2>
-                                <select name="courier" id="" class="form-control mt-3 mb-2">
+                                <select name="couriers" id="couriers" class="form-control mt-3 mb-2" disabled>
                                     <option value="" holder>Pilih Kurir</option>
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
                                     <option value="pos">POS Indonesia</option>
+                                </select>
+                                <select name="services" id="services" class="form-control mt-3 mb-2">
                                 </select>
                                 <table class="pay-info">
                                 {{-- <tr>
@@ -162,8 +163,9 @@
                                         <td width="50% " class="text-right ">10%</td>
                                 </tr>
                                 <tr>
-                                        <td width="50% " >Ongkir</td>
-                                    <td width="50% " class="text-right ">Rp10.000</td>
+                                    <td width="50%">Ongkir</td>
+                                    <input type="hidden" name="ongkir">
+                                    <td width="50% " class="text-right" id="ongkir">Rp 0</td>
                                 </tr>
                                     <td width="50% " >Total Biaya</td>
                                      <td width="50% " class="text-right" style="color: green;" id="totalBiaya"></td>
@@ -236,6 +238,7 @@
         </script>
         <script>
             jQuery(document).ready(function() {
+                let totalBiayaValue = 0;
 
                 const jumlahItems = document.querySelectorAll(".items");
                 const subTotal = document.getElementById('subTotal')
@@ -253,7 +256,8 @@
                     
                     productPriceShow.innerText = 'Rp. ' + parseFloat(hargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga
                 }
 
                 // Ketika quantity diganti manual tanpa klik tombol
@@ -288,6 +292,7 @@
                     }
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
@@ -334,6 +339,7 @@
                     totalHarga += updateHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
@@ -375,6 +381,7 @@
                     totalHarga -= updateHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
@@ -389,37 +396,14 @@
                         },
                     });
                 });
-            });
-            
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('select[name="province_from"]').on('change', function () {
-                    var cityId = $(this).val();
-                    if (cityId) {
-                        $.ajax({
-                            url: 'getCity/ajax/' + cityId,
-                            type: "GET",
-                            dataType: "json",
-                            success: function (data) {
-                                $('select[name="origin"]').empty();
-                                $.each(data, function (key, value) {
-                                    $('select[name="origin"]').append(
-                                        '<option value="' +
-                                        key + '">' + value + '</option>');
-                                });
-                            }
-                        });
-                    } else {
-                        $('select[name="origin"]').empty();
-                    }
-                });
-    
+
+                $('#services').hide();
+
                 $('select[name="province_to"]').on('change', function () {
                     var cityId = $(this).val();
                     if (cityId) {
                         $.ajax({
-                            url: 'getCity/ajax/' + cityId,
+                            url: 'getCity/' + cityId,
                             type: "GET",
                             dataType: "json",
                             success: function (data) {
@@ -431,11 +415,59 @@
                                 });
                             }
                         });
+                        $('#couriers').attr("disabled", false); 
                     } else {
                         $('select[name="destination"]').empty();
+                        $('#couriers').attr("disabled", true); 
                     }
                 });
-            });
     
+                $('select[name="couriers"]').on('change', function () {
+                    var courier = $(this).val();
+                    let ongkirShow = document.getElementById("ongkir")
+                    let CSRFToken = '{{csrf_token()}}'
+                    let dataRequest = {
+                        destination: $('select[name=destination] option').filter(':selected').val(),
+                        courier: courier
+                    }
+                    $.ajax({
+                        url: 'getOngkir',
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            request: dataRequest,
+                            _token: CSRFToken
+                        },
+                        success: function (data) {
+                            $('#services').show();
+                            $('select[name="services"]').empty();
+
+                            // Reset ongkir
+                            ongkirShow.innerText = 'Rp. ' + parseFloat(0, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+
+                            $('select[name="services"]').append("<option value='0'>Pilih Layanan</option>");
+
+                            data.map(item => {
+                                $('select[name="services"]').append(
+                                    '<option value="' +
+                                        item.cost[0].value + '">' + item.service + ' - ' + ' est ' + item.cost[0].etd + ' hari' + '</option>');
+                            })
+                        }
+                    });
+                });
+
+                $('select[name="services"]').on('change', function () {
+                    let hargaOngkir = parseInt($(this).val())
+                    let ongkirShow = document.getElementById("ongkir")
+                    let totalBiaya = document.getElementById('totalBiaya')
+
+                    $('input[name=ongkir]').val(hargaOngkir)
+                    
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalBiayaValue + hargaOngkir, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+
+                    ongkirShow.innerText = 'Rp. ' + parseFloat(hargaOngkir, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                });
+
+            });
         </script>
 @endpush
