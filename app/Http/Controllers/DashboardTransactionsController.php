@@ -23,7 +23,7 @@ class DashboardTransactionsController extends Controller
     {
         $transactions = TransactionDetail::with(['transaction.user','product.galleries'])
                             ->findOrFail($id);
-
+        // dd($transactions);
         return view('pages.dashboard-transactions-detail',[
             'transactions' => $transactions
         ]);

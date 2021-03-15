@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('title')
     Daita Skincare &#8211; Pancarkan Pesona Cantikmu 
@@ -14,32 +14,49 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <form action="">
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>                                        
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            {{-- <input type="hidden" name="users_id" value="{{ Auth::user()->id }}"> --}}
                             <div class="card card-list p-3">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Product Name</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Price</label>
-                                                <input type="number" class="form-control">
+                                                <input type="number" class="form-control" name="prices">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Stock</label>
+                                                <input type="number" name="stock" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Description</label>
-                                                <textarea name="editor"></textarea>
+                                                <textarea name="description" id="editor"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Cara Penggunaan</label>
-                                                <textarea name="howtouse" id cols="30" rows="4" class="form-control"></textarea>
+                                                <textarea name="how_to_use" id cols="30" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -51,7 +68,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Thumbnails</label>
-                                                <input type="file" class="form-control pt-1">
+                                                <input type="file" name="photos" class="form-control pt-1">
                                                 <p class="text-muted">
                                                     Kamu dapat memilih lebih dari satu gambar.
                                                 </p>

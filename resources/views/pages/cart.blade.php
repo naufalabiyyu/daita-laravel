@@ -90,29 +90,29 @@
                                     <h2 class="">Shipping Address</h2>
                                 </div>
                                 <div class="form-group  col-lg-12">
-                                    <label for="address_one">Address 1</label>
+                                    <label for="address_one">Address 1<p style="color: #F32355; display: inline;"> *</p> </label>
                                     <input type="text" class="form-control" id="address_one" name="address_one" value="{{ $user->address_one }}">
                                 </div>
                                 <div class="form-group  col-lg-12 ">
-                                    <label for="address_two">Address 2</label>
+                                    <label for="address_two">Address 2<p style="color: #F32355; display: inline;"> *</p></label>
                                     <input type="text" class="form-control" id="address_two" name="address_two" value="{{ $user->address_two }}">
                                 </div>
 
                                 <div class="form-row pl-3 pr-3">
                                     <div class="form-group col-lg-6">
-                                        <label for="provinces_id">Province</label>
+                                        <label for="provinces_id">Province<p style="color: #F32355; display: inline;"> *</p></label>
                                         {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                         </select> --}}
-                                        <select name="province_to" class="form-control">
-                                            <option value="" holder>Pilih Provinsi</option>
+                                        <select name="province_to" class="form-control" required>
+                                            <option value="" holder >Pilih Provinsi</option>
                                             @foreach ($provinsi as $result)
                                             <option value="{{ $result->id }}">{{ $result->province }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6 ">
-                                        <label for="regencies_id">City</label>
+                                        <label for="regencies_id">City<p style="color: #F32355; display: inline;"> *</p></label>
                                         {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
                                             <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                         </select> --}}
@@ -123,16 +123,16 @@
                                 </div>
                                 <div class="form-row pl-3 pr-3">
                                     <div class="form-group col-lg-6">
-                                        <label for="zip_code">Postal Kode</label>
+                                        <label for="zip_code">Postal Kode<p style="color: #F32355; display: inline;"> *</p></label>
                                         <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ $user->zip_code }}">
                                     </div>
                                     <div class="form-group col-lg-6 ">
-                                        <label for="country">Country</label>
+                                        <label for="country">Country<p style="color: #F32355; display: inline;"> *</p></label>
                                         <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}">
                                     </div>
                                 </div>
                                 <div class="form-group  col-lg-12">
-                                    <label for="phone_number">Mobile</label>
+                                    <label for="phone_number">Mobile<p style="color: #F32355; display: inline;"> *</p></label>
                                     <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
                                 </div>
 

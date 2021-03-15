@@ -26,6 +26,7 @@ class CartController extends Controller
         $carts = Cart::with(['product.galleries','user'])
                         ->where('users_id', Auth::user()->id)
                         ->get();
+                        
         $user = Auth::user();
         
         $provinsi = Province::all(); 

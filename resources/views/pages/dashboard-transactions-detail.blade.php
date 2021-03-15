@@ -44,9 +44,14 @@
                                             <div class="product-subtitle">{{ $transactions->created_at }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
-                                            <div class="product-title">Payment Status</div>
-                                            <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : 'text-danger' }}">{{ $transactions->transaction->transaction_status }}</div>
+                                            <div class="product-title">Jumlah</div>
+                                            <div class="product-subtitle">{{ $transactions->quantity }} pcs</div>
                                         </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Payment Status</div>
+                                            <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transactions->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->transaction_status }}</div>
+                                        </div>
+                                        
                                     </div>
                                     <form action="{{ route('dashboard-transaction-update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf

@@ -28,8 +28,8 @@
                                     <div class="col-md-3">
                                         {{ $transaction->created_at ?? '' }}
                                     </div>
-                                    <div class="col-md-3 {{ $transaction->transaction->transaction_status == 'SUCCESS' ? 'text-success' : 'text-danger' }}">
-                                        {{ $transaction->transaction->transaction_status ?? '' }}
+                                    <div class="col-md-3 {{ $transaction->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transaction->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger') }}">
+                                    {{ $transaction->transaction->transaction_status ?? '' }}
                                     </div>
                                     <div class="col-md-1 d-none d-md-block">
                                         <img src="/images/drawable-mdpi/dashboard-row-right.png" alt="">

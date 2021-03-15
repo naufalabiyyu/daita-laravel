@@ -36,10 +36,14 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::get('/dashboard/product', 'DashboardProductController@index')->name('dashboard-product');
-
-    Route::get('/dashboard/product/create', 'DashboardProductController@create')->name('dashboard-product-create');
-    Route::get('/dashboard/product/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
+    // Route::get('/dashboard/product', 'DashboardProductController@index')->name('dashboard-product');
+    // Route::get('/dashboard/product/create', 'DashboardProductController@create')->name('dashboard-product-create');
+    // Route::post('/dashboard/product/', 'DashboardProductController@store')->name('dashboard-product-store');
+    // Route::get('/dashboard/product/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
+    // Route::post('/dashboard/product/{id}', 'DashboardProductController@update')->name('dashboard-product-update');
+    
+    // Route::post('/dashboard/product/gallery/upload', 'DashboardProductController@uploadGallery')->name('dashboard-product-gallery-upload');
+    // Route::get('/dashboard/product/gallery/delete/{id}', 'DashboardProductController@deleteGallery')->name('dashboard-product-gallery-delete');
 
     Route::get('/dashboard/transactions', 'DashboardTransactionsController@index')->name('dashboard-transactions');
     Route::get('/dashboard/transactions/{id}', 'DashboardTransactionsController@details')->name('dashboard-transaction-details');
@@ -60,7 +64,17 @@ Route::prefix('admin')
     ->group(function() {
         Route::get('/', 'DashboardController@index')->name('admin-dashboard');
         Route::resource('user', 'UserController');
-        Route::resource('product', 'ProductController');
+        // Route::resource('product', 'ProductController');
+
+        Route::get('product', 'ProductController@index')->name('dashboard-product');
+        Route::get('product/create', 'ProductController@create')->name('dashboard-product-create');
+        Route::post('product/', 'ProductController@store')->name('dashboard-product-store');
+        Route::get('product/{id}', 'ProductController@details')->name('dashboard-product-details');
+        Route::post('product/{id}', 'ProductController@update')->name('dashboard-product-update');
+        
+        Route::post('product/gallery/upload', 'ProductController@uploadGallery')->name('dashboard-product-gallery-upload');
+        Route::get('product/gallery/delete/{id}', 'ProductController@deleteGallery')->name('dashboard-product-gallery-delete'); 
+
         Route::resource('product-gallery', 'ProductGalleryController');
         Route::resource('transaction', 'TransactionController');
         

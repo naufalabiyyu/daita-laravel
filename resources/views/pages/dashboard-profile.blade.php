@@ -40,18 +40,27 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="provinces_id">Province</label>
-                                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                         </select>
-                                        <select v-else class="form-control"></select>
+                                        <select v-else class="form-control"></select> --}}
+                                        <select name="province_to" class="form-control">
+                                            <option value="" holder>Pilih Provinsi</option>
+                                            @foreach ($provinsi as $result)
+                                            <option value="{{ $result->id }}">{{ $result->province }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                           <label for="regencies_id">City</label>
-                                          <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                                          {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                                             <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
                                           </select>
-                                          <select v-else class="form-control"></select>
+                                          <select v-else class="form-control"></select> --}}
+                                          <select name="destination" class="form-control">
+                                            <option value="" holder>Pilih Kota</option>
+                                        </select>
                                         </div>
                                       </div>
                                     <div class="form-group col-md-4">
@@ -124,6 +133,30 @@
           },
         }
       });
+    </script>
+    <script>
+        $('select[name="province_to"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'getCity/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="destination"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="destination"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+                $('#couriers').attr("disabled", false); 
+            } else {
+                $('select[name="destination"]').empty();
+                $('#couriers').attr("disabled", true); 
+            }
+        });
     </script>
 @endpush
 

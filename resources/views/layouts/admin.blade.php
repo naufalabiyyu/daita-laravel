@@ -29,7 +29,7 @@
                     <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-active  mt-5">
                         <img src="/images/SVG/dashboard.svg" alt="" class="mr-2 ">Dashboard
                     </a>
-                    <a href="{{ route('product.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product')) ? 'active' : '' }}">
+                    <a href="{{ route('dashboard-product') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product')) ? 'active' : '' }}">
                         <img src="/images/SVG/wish.svg" alt="" class="mr-2">My Products
                     </a>
                     <a href="{{ route('product-gallery.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}">
