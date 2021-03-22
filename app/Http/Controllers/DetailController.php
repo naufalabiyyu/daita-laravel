@@ -24,7 +24,6 @@ class DetailController extends Controller
 
     public function add(Request $request, $id)
     {
-
         $userId = Auth::user()->id;
         $quantity = $request->input('quantity');
 
@@ -41,7 +40,7 @@ class DetailController extends Controller
 
         if ($produkDiKeranjang) {
             $quantityProdukDiKeranjang = $produkDiKeranjang->quantity;
-            $quantitySekarang = $quantityProdukDiKeranjang + 1;
+            $quantitySekarang = $quantityProdukDiKeranjang + $quantity;
             
             // Update quantity
             Cart::where(['products_id' => $id, 'users_id' => $userId])->update(['quantity' => $quantitySekarang]);

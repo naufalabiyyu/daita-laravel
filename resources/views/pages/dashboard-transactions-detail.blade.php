@@ -71,11 +71,11 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">Province</div>
-                                                    <div class="product-subtitle">{{ App\Models\Province::find($transactions->transaction->user->provinces_id)->name }}</div>
+                                                    <div class="product-subtitle">{{ App\Province::find($transactions->transaction->user->provinces_id)->province }}</div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">City</div>
-                                                    <div class="product-subtitle">{{ App\models\Regency::find($transactions->transaction->user->regencies_id)->name }}</div>
+                                                    <div class="product-subtitle">{{ App\City::find($transactions->transaction->user->regencies_id)->city_name }}</div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">Postal Kode</div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
+
 class DashboardTransactionsController extends Controller
 {
     public function index()
@@ -32,6 +33,7 @@ class DashboardTransactionsController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        // dd ($data);
 
         $item = TransactionDetail::findOrFail($id);
 

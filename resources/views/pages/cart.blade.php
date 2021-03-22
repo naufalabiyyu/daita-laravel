@@ -91,11 +91,11 @@
                                 </div>
                                 <div class="form-group  col-lg-12">
                                     <label for="address_one">Address 1<p style="color: #F32355; display: inline;"> *</p> </label>
-                                    <input type="text" class="form-control" id="address_one" name="address_one" value="{{ $user->address_one }}">
+                                    <input type="text" class="form-control" id="address_one" name="address_one" value="{{ $user->address_one }}" readonly>
                                 </div>
                                 <div class="form-group  col-lg-12 ">
                                     <label for="address_two">Address 2<p style="color: #F32355; display: inline;"> *</p></label>
-                                    <input type="text" class="form-control" id="address_two" name="address_two" value="{{ $user->address_two }}">
+                                    <input type="text" class="form-control" id="address_two" name="address_two" value="{{ $user->address_two }}" readonly>
                                 </div>
 
                                 <div class="form-row pl-3 pr-3">
@@ -104,10 +104,10 @@
                                         {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                         </select> --}}
-                                        <select name="province_to" class="form-control" required>
-                                            <option value="" holder >Pilih Provinsi</option>
+                                        <select name="provinces_id" class="form-control"disabled>
+                                            <option value="" holder>Pilih Provinsi</option>
                                             @foreach ($provinsi as $result)
-                                            <option value="{{ $result->id }}">{{ $result->province }}</option>
+                                            <option value="{{ $result->id }}" @php if ($user->provinces_id == $result->id) { echo "selected"; } @endphp  >{{ $result->province }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -116,24 +116,22 @@
                                         {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
                                             <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                         </select> --}}
-                                        <select name="destination" class="form-control">
-                                            <option value="" holder>Pilih Kota</option>
-                                        </select>
+                                        <select name="regencies_id" class="form-control" disabled> </select>
                                     </div>
                                 </div>
                                 <div class="form-row pl-3 pr-3">
                                     <div class="form-group col-lg-6">
                                         <label for="zip_code">Postal Kode<p style="color: #F32355; display: inline;"> *</p></label>
-                                        <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ $user->zip_code }}">
+                                        <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ $user->zip_code }}" readonly>
                                     </div>
                                     <div class="form-group col-lg-6 ">
                                         <label for="country">Country<p style="color: #F32355; display: inline;"> *</p></label>
-                                        <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}">
+                                        <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group  col-lg-12">
                                     <label for="phone_number">Mobile<p style="color: #F32355; display: inline;"> *</p></label>
-                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" readonly>
                                 </div>
 
                             </div>
@@ -211,6 +209,8 @@
                     regencies: null,
                     provinces_id: null,
                     regencies_id: null,
+                    cities: null,
+                    selectedCity: null,
                 },
                 methods: {
                     getProvincesData(){
@@ -227,6 +227,13 @@
                                 self.regencies = response.data;
                             })
                     }, 
+                    getCity: function() {
+                        axios.get('getCity/' + {{ $user->provinces_id }})
+                        .then(function (response) {
+                            cities = response.data
+                            console.log(cities)
+                        })
+                     }
                 },
                 watch: {
                     provinces_id: function(val, oldVal) {
@@ -238,6 +245,21 @@
         </script>
         <script>
             jQuery(document).ready(function() {
+                $.ajax({
+                        url: 'getCity/' + {{ $user->provinces_id }},
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $.each(data, function (key, value) {
+                                $('select[name="regencies_id"]').append(
+                                    '<option value="' +
+                                    value.id + '">' + value.city_name + '</option>');
+                            });
+                            $('select[name="regencies_id"]').val({{ $user->regencies_id }})
+                            $('#couriers').attr("disabled", false); 
+                        }
+                    });
+
                 let totalBiayaValue = 0;
 
                 const jumlahItems = document.querySelectorAll(".items");
@@ -398,36 +420,13 @@
                 });
 
                 $('#services').hide();
-
-                $('select[name="province_to"]').on('change', function () {
-                    var cityId = $(this).val();
-                    if (cityId) {
-                        $.ajax({
-                            url: 'getCity/' + cityId,
-                            type: "GET",
-                            dataType: "json",
-                            success: function (data) {
-                                $('select[name="destination"]').empty();
-                                $.each(data, function (key, value) {
-                                    $('select[name="destination"]').append(
-                                        '<option value="' +
-                                        key + '">' + value + '</option>');
-                                });
-                            }
-                        });
-                        $('#couriers').attr("disabled", false); 
-                    } else {
-                        $('select[name="destination"]').empty();
-                        $('#couriers').attr("disabled", true); 
-                    }
-                });
     
                 $('select[name="couriers"]').on('change', function () {
                     var courier = $(this).val();
                     let ongkirShow = document.getElementById("ongkir")
                     let CSRFToken = '{{csrf_token()}}'
                     let dataRequest = {
-                        destination: $('select[name=destination] option').filter(':selected').val(),
+                        destination: $('select[name=regencies_id] option').filter(':selected').val(),
                         courier: courier
                     }
                     $.ajax({

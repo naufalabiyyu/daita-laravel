@@ -17,6 +17,7 @@
                         <div class="card-body">
                             <form id="locations" action="{{ route('dashboard-settings-redirect','dashboard-profile') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                {{-- ini blm bisa nyimpen? provice idnya ga kesimpen --}}
                                 <div class="form-row">
                                     <div class="form-group col-12 col-md-6">
                                         <label for="name">Nama</label>
@@ -44,10 +45,10 @@
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                         </select>
                                         <select v-else class="form-control"></select> --}}
-                                        <select name="province_to" class="form-control">
+                                        <select name="provinces_id" class="form-control">
                                             <option value="" holder>Pilih Provinsi</option>
                                             @foreach ($provinsi as $result)
-                                            <option value="{{ $result->id }}">{{ $result->province }}</option>
+                                            <option value="{{ $result->id }}" @php if ($user->provinces_id == $result->id) { echo "selected"; } @endphp >{{ $result->province }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -58,8 +59,8 @@
                                             <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
                                           </select>
                                           <select v-else class="form-control"></select> --}}
-                                          <select name="destination" class="form-control">
-                                            <option value="" holder>Pilih Kota</option>
+                                          <select name="regencies_id" class="form-control">
+                                            
                                         </select>
                                         </div>
                                       </div>
@@ -109,13 +110,15 @@
           regencies: null,
           provinces_id: null,
           regencies_id: null,
+          cities: null,
+          selectedCity: null,
         },
         methods: {
           getProvincesData() {
             var self = this;
             axios.get('{{ route('api-provinces') }}')
               .then(function (response) {
-                  self.provinces = response.data;
+                  self.provinces = response.data
               })
           },
           getRegenciesData() {
@@ -125,38 +128,62 @@
                   self.regencies = response.data;
               })
           },
+        getCity: function() {
+            axios.get('getCity/' + {{ $user->provinces_id }})
+            .then(function (response) {
+                cities = response.data
+                console.log(cities)
+            })
+          }
         },
         watch: {
-          provinces_id: function (val, oldVal) {
-            this.regencies_id = null;
-            this.getRegenciesData();
-          },
+            provinces_id: function(val, oldVal) {
+                this.regencies_id = null;
+                this.getRegenciesData();
+            },
         }
       });
     </script>
     <script>
-        $('select[name="province_to"]').on('change', function () {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: 'getCity/' + cityId,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="destination"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="destination"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
+        $( document ).ready(function() {
+            $.ajax({
+                url: 'getCity/' + {{ $user->provinces_id }},
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function (key, value) {
+                        $('select[name="regencies_id"]').append(
+                            '<option value="' +
+                            value.id + '">' + value.city_name + '</option>');
+                    });
+                    $('select[name="regencies_id"]').val({{ $user->regencies_id }})
+                }
+            });
+        });
+        $('select[name="provinces_id"]').on('change', function () {
+                    var cityId = $(this).val();
+                    if (cityId) {
+                        $.ajax({
+                            url: 'getCity/' + cityId,
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {
+                                $('select[name="regencies_id"]').empty();
+                                console.log(data);
+                                $.each(data, function (key, value) {
+                                    $('select[name="regencies_id"]').append(
+                                        '<option value="' +
+                                        value.id + '">' + value.city_name + '</option>');
+                                });
+                            }
                         });
+                        $('#couriers').attr("disabled", false); 
+                    } else {
+                        $('select[name="regencies_id"]').empty();
+                        $('#couriers').attr("disabled", true); 
                     }
                 });
-                $('#couriers').attr("disabled", false); 
-            } else {
-                $('select[name="destination"]').empty();
-                $('#couriers').attr("disabled", true); 
-            }
-        });
     </script>
 @endpush
 
