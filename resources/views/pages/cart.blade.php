@@ -133,7 +133,7 @@
                                     <label for="phone_number">Mobile<p style="color: #F32355; display: inline;"> *</p></label>
                                     <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" readonly>
                                 </div>
-
+                                <a href="{{ route('dashboard-profile') }}" class="mx-3 btn btn-success mt-3">Edit Shipping</a>
                             </div>
                         </div>
                         <div class="col-lg-5" data-aos="fade-left" data-aos-delay="500">

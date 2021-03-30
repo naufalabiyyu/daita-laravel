@@ -1,3 +1,10 @@
+// Responsive Variables 
+$xx-layout: 'only screen and (min-width: 1366px) and (max-width: 1600px)';
+$xl-layout: 'only screen and (min-width: 1200px) and (max-width: 1365px)';
+$lg-layout: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$md-layout:'only screen and (min-width: 768px) and (max-width: 991px)';
+$xs-layout:'only screen and (max-width: 767px)';
+$sm-layout: 'only screen and (min-width: 576px) and (max-width: 767px)';
 .navbar-store {
     padding-top: 0px;
     @include media-breakpoint-down(md) {}
@@ -22,14 +29,90 @@
         margin-left: -10px;
     }
     .btn-success {
-        background-color: #E7CBBE;
+        background-color: #DDEDD2;
         border: none;
         color: #707070;
         font-weight: 500;
+    }
+    .header-action-wrap {
+        &.header-action-flex {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        &.header-action-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &.header-action-mrg-1 {
+            .same-style {
+                margin-left: 55px;
+                @media #{$xs-layout} {
+                    margin-left: 35px;
+                }
+            }
+        }
+        .header-action-width {
+            flex: 0 0 50%;
+            max-width: 50%;
+            @media #{$xx-layout} {
+                flex: 0 0 40%;
+                max-width: 40%;
+            }
+            @media #{$xl-layout} {
+                flex: 0 0 40%;
+                max-width: 40%;
+            }
+            @media #{$lg-layout} {
+                justify-content: center;
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    }
+    .search-style-1 {
+        form {
+            .form-search-1 {
+                position: relative;
+                input {
+                    background-color: transparent;
+                    width: 450px;
+                    font-weight: 300;
+                    color: #B3B5C2;
+                    border: none;
+                    height: 42px;
+                    padding: 2px 40px 2px 0;
+                    border-bottom: 1px solid #D9DFE6;
+                    @media #{$xx-layout} {
+                        width: 350px;
+                    }
+                    @media #{$xl-layout} {
+                        width: 280px;
+                    }
+                }
+                button {
+                    padding: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border: none;
+                    font-size: 20px;
+                    color: #081348;
+                    transition: all .3s ease 0s;
+                    background-color: transparent;
+                    &:hover {
+                        color: #444E7A;
+                    }
+                }
+            }
+        }
     }
 }
 
 .navbar-fixed-top.scrolled {
     background-color: #fff;
-    transition: background-color 200ms linear;
+    // transition: background-color 200ms linear;
 }

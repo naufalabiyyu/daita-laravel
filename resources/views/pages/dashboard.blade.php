@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" class="w-75">
+                                        <img src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" class="w-100">
                                     </div>
                                     <div class="col-md-4">
                                         {{ $transaction->product->name ?? '' }}

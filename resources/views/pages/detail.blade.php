@@ -52,10 +52,10 @@
                                 <h1 style="margin-bottom: 15px;">{{ $product->name }}</h1>
                                 <div class="price">Rp {{ number_format($product->prices) }} </div>
                                 {!! $product->description !!}
+                                <span class="quantity-title">Quantity: </span>
                                 <div class="product-quantity d-flex flex-wrap align-items-center">
-                                    <span class="quantity-title">Quantity: </span>
                                     <form action="#">
-                                        <div class="quantity d-flex">
+                                        <div class="quantity d-flex mb-3">
                                             <button type="button" data-quantity="minus" data-field="quantity"><i class="fas fa-minus"></i></button>
                                             <input type="number" id="quantity" value="1"/>
                                             <button type="button" data-quantity="plus" data-field="quantity"><i class="fas fa-plus"></i></button>
