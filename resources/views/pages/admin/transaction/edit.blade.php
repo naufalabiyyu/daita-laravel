@@ -11,7 +11,7 @@
                 <h2 class="dashboard-title">Transaction</h2>
                 <p class="dashboard-subtitle">Edit transaction</p>
             </div>
-            <div class="dashboard-content">
+            <div class="dashboard-content" id="transactionDetails">
                 <div class="row">
                     <div class="col-md-12">
                         @if($errors->any())
@@ -29,28 +29,38 @@
                                     @method("PUT")
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Transaction_status</label>
-                                                <select name="transaction_status" class="form-control">
+                                                <select name="transaction_status" id="status" v-model="status" class="form-control">
                                                     <option value="{{ $item->transaction_status }} selected">{{ $item->transaction_status }}</option>
                                                     <option value="" disabled>-------------</option>
                                                     <option value="PENDING">PENDING</option>
                                                     <option value="SHIPPING">SHIPPING</option>
                                                     <option value="SUCCESS">SUCCESS</option>
-
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <template v-if="status == 'SHIPPING' "> 
+                                            <div class=" col-md-4">
+                                                <label>Input Resi</label>
+                                                <input type="text" class="form-control" name="resi" v-model="resi" > 
+                                            </div>
+                                            {{-- <div class="col-md-3">
+                                                <button type="submit" class="btn btn-success px-3" style="margin-top: 31px">Update Resi</button>
+                                            </div> --}}
+                                        </template>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-md-9">
                                             <div class="form-group">
                                                 <label>Total Price</label>
                                                 <input type="number" name="total_price" class="form-control" value="{{ $item->total_price }}" required >
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col text-right">
+                                    <div class="row mt-3">
+                                        <div class="col text-left">
                                             <button type="submit" class="btn btn-success px-5">
                                                 Save Now
                                             </button>
@@ -69,6 +79,22 @@
 
 @push('addon-script')
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script src="/vendor/vue/vue.js"></script>
+    <script>
+        var transactionDetails = new Vue({
+            el: '#transactionDetails',
+            data: {
+                status: "SHIPPING",
+                resi: "CGK2H03789568816",
+            },
+        })
+    </script>
     <script>
                         ClassicEditor
                                 .create( document.querySelector( '#editor' ) )

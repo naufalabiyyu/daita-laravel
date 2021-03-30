@@ -133,7 +133,7 @@
             <div class="d-lg-none col-12 col-md-6 mt-5 mb-5 text-center">
                 <img src="/images/gallery.png" alt="" style="width: 300px; height: 230px;">
             </div>
-            <div class="d-lg-none col-lg-6 mb-5 " data-aos="fade-left" data-aos-delay="600">
+            <div class="d-lg-none col-lg-6 mb-5 " data-aos="fade-up" data-aos-delay="600">
                 <h2 class="mb-3">Benefits of This Products</h2>
                 
                 <img src="/images/dot.png" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
