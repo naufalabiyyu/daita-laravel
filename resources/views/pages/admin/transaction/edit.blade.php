@@ -33,7 +33,6 @@
                                             <div class="form-group">
                                                 <label>Transaction_status</label>
                                                 <select name="transaction_status" id="status" v-model="status" class="form-control">
-                                                    <option value="{{ $item->transaction_status }} selected">{{ $item->transaction_status }}</option>
                                                     <option value="" disabled>-------------</option>
                                                     <option value="PENDING">PENDING</option>
                                                     <option value="SHIPPING">SHIPPING</option>
@@ -90,8 +89,8 @@
         var transactionDetails = new Vue({
             el: '#transactionDetails',
             data: {
-                status: "SHIPPING",
-                resi: "CGK2H03789568816",
+                status: "{{ $item->transaction_status }}",
+                resi: "{{ $td->resi }}",
             },
         })
     </script>
