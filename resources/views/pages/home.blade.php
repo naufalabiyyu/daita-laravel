@@ -69,10 +69,10 @@
                                         @endif 
                                       </a>
                                   </div>
-                                  <div class="product-content mt-3 p-2">
+                                  <div class="product-content mt-3 px-3 pb-2 ">
                                       <h4><a href="{{ route('detail', $product->slug) }}" class="">{{ $product->name }}</a></h4>
                                       <div class="product-price">
-                                          <span>$ 124</span>
+                                          <span class="text-danger">Rp {{ number_format($product->prices) }}</span>
                                           <!-- <span class="old-price">$ 130</span> -->
                                       </div>
                                   </div>
@@ -80,7 +80,7 @@
                                       <div class="product-content">
                                           <h4><a href="{{ route('detail', $product->slug) }}">{{ $product->name }}</a></h4>
                                           <div class="product-price">
-                                              <span>$ 124</span>
+                                              <span class="text-danger">Rp {{ number_format($product->prices) }}</span>
                                               <!-- <span class="old-price">$ 130</span> -->
                                           </div>
                                       </div>
@@ -97,11 +97,9 @@
               </div>
              </div>
             @empty
-            <div class="col-12 text-center py-5"
-								 data-aos = "fade-up"
-								 data-aos-delay="100">
-								 	No Product Found							  	
-						</div>
+            <div class="col-12 text-center py-5" data-aos = "fade-up" data-aos-delay="100">
+                No Product Found							  	
+            </div>
             @endforelse     
           </div>
           <div class="row">

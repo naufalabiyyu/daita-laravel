@@ -18,6 +18,7 @@ class HomeController extends Controller
         // $products = Product::with(['galleries'])->take(8)->get();
         $products = Product::with(['galleries'])->paginate(16);
 
+        // dd($products);
         return view('pages.home', [
             'products' => $products
         ]);
