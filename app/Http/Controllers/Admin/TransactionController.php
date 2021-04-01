@@ -97,9 +97,11 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $item = Transaction::findOrFail($id);
+        $TD = TransactionDetail::where(['transactions_id' => $id])->first();
 
         return view('pages.admin.transaction.edit' , [
-            'item' => $item
+            'item' => $item,
+            'td' => $TD
         ]);
     }
 
@@ -114,14 +116,21 @@ class TransactionController extends Controller
     {
         // Update Transaction
         $data = $request->all();
+        dd($data['resi']);
         $item = Transaction::findOrFail($id);
         $item->update($data);
 
 
         if ($data['transaction_status'] == "SHIPPING"){
-            // Update stock product
             $TransactonDetails = TransactionDetail::where(['transactions_id' => $id])->get();
             foreach($TransactonDetails as $TD){
+                // Update Resi
+                $UpdateResi = TransactionDetail::findOrFail($TD->id);
+                $UpdateResi->update([
+                    'resi' => $data['resi']
+                ]);
+
+                // Update stock
                 $item = Product::findOrFail($TD->products_id);
                 $item->update([
                     'stock' => $item->stock - $TD->quantity
