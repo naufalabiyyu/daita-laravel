@@ -77,7 +77,12 @@ Route::prefix('admin')
         Route::get('product/gallery/delete/{id}', 'ProductController@deleteGallery')->name('dashboard-product-gallery-delete'); 
 
         Route::resource('product-gallery', 'ProductGalleryController');
+        
         Route::resource('transaction', 'TransactionController');
+        // Route::get('/rekap', 'RekapControll@index');
+        Route::get('/transaction/filter', 'TransactionController@filter');
+        Route::get('/transaction/excel/{dari}/{ke}', 'TransactionController@eksporExcel')->name('excel.ekspor');
+        Route::get('/transaction/getDataRekap/{dari}/{ke}', 'TransactionController@getDataRekapBulanan');
         
     });
 

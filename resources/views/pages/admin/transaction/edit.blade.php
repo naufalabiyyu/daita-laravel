@@ -90,7 +90,7 @@
             el: '#transactionDetails',
             data: {
                 status: "{{ $item->transaction_status }}",
-                resi: "{{ $td->resi }}",
+                resi: "{{ $td->resi || "" }}",
             },
         })
     </script>

@@ -4,6 +4,7 @@
     Daita Skincare &#8211; Pancarkan Pesona Cantikmu 
 @endsection
 
+
 @section('content')
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
@@ -16,6 +17,29 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body p-md-4">
+                                <form method="get" action="/rekap">
+                                    @csrf
+                                    <div class="row mb-5 text-center">
+                                      <div class="col-sm-3">
+                                        <label>Dari tanggal: </label>
+                                        <input id="date-dari" width="270" name="dari" value=""/>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <label>Hingga tanggal: </label>
+                                        <input id="date-ke" width="270" name="ke" value=""/>
+                                      </div>
+                                    
+                                      <div class="row">
+                                        <div class="col-sm-3 mr-3">
+                                            <button type="submit" class="btn btn-primary px-3" name="button">Filter Tanggal</button>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <a href="" class="btn btn-success px-4">Ekspor Excel</a> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                      
+                                </form>
                                 <div class="table-responsive">
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
@@ -42,6 +66,17 @@
 @endsection
 
 @push('addon-script')
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script>
+    $(document).ready(function () {
+        
+        $('#date-dari').datepicker();
+
+
+        $('#date-ke').datepicker();
+    });
+    </script>
    <script>
        var datatable = $('#crudTable').DataTable({
            processing: true,
