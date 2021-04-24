@@ -19,7 +19,6 @@ class RekapEkspor implements FromCollection
     */
     public function collection()
     {
-        return Transaction::with('user')->where([['tanggal','>=', $this->dari],
-        ['tanggal','<=', $this->ke]])->orderBy('tanggal', 'ASC')->get();
+        return Transaction::with('user')->whereBetween('created_at', [$this->dari.'%', $this->ke.'%'])->orderBy('created_at', 'ASC')->get();
     }
 }
