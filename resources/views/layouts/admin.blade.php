@@ -32,9 +32,9 @@
                     <a href="{{ route('dashboard-product') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product')) ? 'active' : '' }}">
                         <img src="/images/SVG/wish.svg" alt="" class="mr-2">My Products
                     </a>
-                    <a href="{{ route('product-gallery.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}">
+                    {{-- <a href="{{ route('product-gallery.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}">
                         <img src="/images/SVG/wish.svg" alt="" class="mr-2">Galleries
-                    </a>
+                    </a> --}}
                     <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-active ">
                         <img src="/images/SVG/transaction.svg" alt="" class="mr-2">Transaction
                     </a>

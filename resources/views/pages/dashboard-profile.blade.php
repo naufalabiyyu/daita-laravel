@@ -96,54 +96,54 @@
 @endsection
 
 @push('addon-script')
-    <script src="/vendor/vue/vue.js"></script>
-    <script src="https://unpkg.com/vue-toasted"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<?php if ($user->provinces_id) { ?>
     <script>
-      var locations = new Vue({
-        el: "#locations",
-        mounted() {
-          this.getProvincesData();
-        },
-        data: {
-          provinces: null,
-          regencies: null,
-          provinces_id: null,
-          regencies_id: null,
-          cities: null,
-          selectedCity: null,
-        },
-        methods: {
-          getProvincesData() {
-            var self = this;
-            axios.get('{{ route('api-provinces') }}')
-              .then(function (response) {
-                  self.provinces = response.data
-              })
-          },
-          getRegenciesData() {
-            var self = this;
-            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-              .then(function (response) {
-                  self.regencies = response.data;
-              })
-          },
-        getCity: function() {
-            axios.get('getCity/' + {{ $user->provinces_id }})
-            .then(function (response) {
-                cities = response.data
-                console.log(cities)
-            })
-          }
-        },
-        watch: {
-            provinces_id: function(val, oldVal) {
-                this.regencies_id = null;
-                this.getRegenciesData();
-            },
-        }
-      });
+        console.log("bjir")
+        $( document ).ready(function() {
+            $.ajax({
+                url: 'getCity/' + {{ $user->provinces_id }},
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function (key, value) {
+                        $('select[name="regencies_id"]').append(
+                            '<option value="' +
+                            value.id + '">' + value.city_name + '</option>');
+                    });
+                    $('select[name="regencies_id"]').val({{ $user->regencies_id }})
+                }
+            });
+        });
     </script>
+<?php } ?>
+<script>
+    $('select[name="provinces_id"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getCity/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="regencies_id"]').empty();
+                            console.log(data);
+                            $.each(data, function (key, value) {
+                                $('select[name="regencies_id"]').append(
+                                    '<option value="' +
+                                    value.id + '">' + value.city_name + '</option>');
+                            });
+                        }
+                    });
+                    $('#couriers').attr("disabled", false); 
+                } else {
+                    $('select[name="regencies_id"]').empty();
+                    $('#couriers').attr("disabled", true); 
+                }
+            });
+</script>
+    
+    
     <script>
         $( document ).ready(function() {
             $.ajax({
