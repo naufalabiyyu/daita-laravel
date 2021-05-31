@@ -136,7 +136,7 @@ class ProductController extends Controller
 
         ProductGallery::create($gallery);
 
-        return redirect()->route('dashboard-product');
+        return redirect()->route('dashboard-product')->with('toast_success', 'Produk Berhasil Ditambahkan!');;
     }
 
     /**

@@ -45,29 +45,93 @@
 @endsection
 
 @push('addon-script')
-   <script>
-       var datatable = $('#crudTable').DataTable({
-           processing: true,
-           serverSide: true,
-           ordering: true,
-           ajax: {
-               url: '{!! url()->current() !!}',
-           },
-           columns: [
-               { data: 'id', name: 'id'},
-               { data: 'name', name: 'name'},
-               { data: 'email', name: 'email'},
-               { data: 'phone_number', name: 'phone_number'},
-               { data: 'roles', name: 'roles'},
-               {
-                   data: 'action',
-                   name: 'action',
-                   orderable: false,
-                   searcable: false,
-                   width: '15%'
-               },
-           ]
-       })
-    </script> 
+    <script>
+        var self = this;
+
+        
+        const dataTable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'id', name: 'id'},
+                { data: 'name', name: 'name'},
+                { data: 'email', name: 'email'},
+                { data: 'phone_number', name: 'phone_number'},
+                { data: 'roles', name: 'roles'},
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searcable: false,
+                    width: '15%'
+                },
+            ]
+        })
+    
+
+        function refreshDataTable() {
+            // Hapus baris
+            dataTable.rows().remove().draw();
+            // Isi baris
+            dataTable;
+        }
+
+        $(function() {
+            dataTable;
+        });
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        $("#crudTable tbody").on("click", "#delete", function () {
+            let dataTable = $("#crudTable").DataTable();
+            let data = dataTable.row($(this).parents("tr")).data();
+            let itemId = $(this).attr("itemId");
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#34a0a4',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let CSRFToken = "{{ csrf_token() }}"
+                        $.ajax({
+                            url: "{{ url('admin/user/') . '/' }}" + itemId,
+                            type: "POST",
+                            data: {
+                                _method: "DELETE",
+                                _token: CSRFToken
+                            },
+                            success: function () {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil di hapus!'
+                                });
+                                self.refreshDataTable();
+                                // coba lagi
+                            }
+                        });
+                    }
+                })
+        });
+
+    </script>
 @endpush
 

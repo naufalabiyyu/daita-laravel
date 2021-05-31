@@ -19,14 +19,14 @@
                             <div class="card-body p-md-4">
                                 {{-- <form method="POST"> --}}
                                 {{-- @csrf --}}
-                                <div class="row mb-5 text-center">
-                                    <div class="col-sm-3">
+                                <div class="row mb-5 text-center ">
+                                    <div class="col-sm-3 mr-5">
                                         <label>Dari tanggal: </label>
-                                        <input id="date-dari" width="270" name="dari" value="" />
+                                        <input id="date-dari" width="270" name="dari" value="" autocomplete="off" />
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mr-5">
                                         <label>Hingga tanggal: </label>
-                                        <input id="date-ke" width="270" name="ke" value="" />
+                                        <input id="date-ke" width="270" name="ke" value="" autocomplete="off" />
                                     </div>
 
                                     <div class="row">
