@@ -70,6 +70,7 @@ Route::prefix('admin')
         Route::get('product', 'ProductController@index')->name('dashboard-product');
         Route::get('product/create', 'ProductController@create')->name('dashboard-product-create');
         Route::post('product/', 'ProductController@store')->name('dashboard-product-store');
+        Route::delete('product/{id}', 'ProductController@destroy')->name('dashboard-product-delete');
         Route::get('product/{id}', 'ProductController@details')->name('dashboard-product-details');
         Route::post('product/{id}', 'ProductController@update')->name('dashboard-product-update');
         

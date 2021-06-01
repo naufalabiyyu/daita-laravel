@@ -104,6 +104,7 @@
     <script src="/vendor/jquery/jquery.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script> 
+    <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

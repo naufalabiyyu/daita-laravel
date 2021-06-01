@@ -20,12 +20,15 @@
                 <div class="row mt-4">
                     @foreach ($products as $product)
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block">
-                                <div class="card-body">
+                            
+                            <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block" >                              
+                                <div class="card-body" >
+                                    
                                     <img src="{{ Storage::url($product->galleries->first()->photos ?? '') }}" alt="" class="w-100 mb-2">
                                     <div class="myproduct-title ">{{ $product->name }}</div>
                                     <div class="product-price text-danger">Rp {{ number_format($product->prices) }}</div>
                                 </div>
+                                
                             </a>
                         </div>
                     @endforeach
@@ -36,4 +39,38 @@
 @endsection
 
 
+@push('addon-script')
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    const notifikasiHapus = sessionStorage.getItem("hapus");
+
+    if (notifikasiHapus) {
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil di hapus!'
+        });
+
+        // nah itu notifnya muncul terus
+        // yaudah tinggal hapus sessionnya
+        sessionStorage.removeItem("hapus")
+
+        // bjir
+        // gila jago bgt
+    }
+
+    // coba lagi dah wkwkwk
+    /// anjayy
+</script>
+@endpush
 

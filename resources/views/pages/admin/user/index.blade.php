@@ -46,8 +46,7 @@
 
 @push('addon-script')
     <script>
-        var self = this;
-
+        var self = this; 
         
         const dataTable = $('#crudTable').DataTable({
             processing: true,
@@ -124,8 +123,8 @@
                                     icon: 'success',
                                     title: 'Berhasil di hapus!'
                                 });
-                                self.refreshDataTable();
-                                // coba lagi
+                                self.refreshDataTable(); // oh buat ini nih
+                                // coba lagi 
                             }
                         });
                     }

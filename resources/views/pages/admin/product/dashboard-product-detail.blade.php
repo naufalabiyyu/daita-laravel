@@ -70,10 +70,17 @@
                                     Save Now
                                     </button>
                                     </div>
+                                    
                                 </div>
                             </div>
-                        </div>
+                        
                     </form>
+                        <div class="col-12 text-right">
+                            <button type="button" class="btn btn-danger btn-block px-5 btn-delete" productId={{ $product->id }} id="delete">
+                            Hapus Product
+                            </button>
+                        </div>
+                </div>
                 </div>
             </div>
             <div class="row mt-2">
@@ -120,6 +127,56 @@
     </script>
     <script>
         CKEDITOR.replace('editor');
+    </script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        $(".btn-delete").on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).parents('form');
+            let productId = $(this).attr("productId");
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#34a0a4',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let CSRFToken = "{{ csrf_token() }}"
+                        $.ajax({
+                            url: "{{ url('admin/product/') . '/' }}" + productId,
+                            type: "POST",
+                            data: {
+                                _method: "DELETE",
+                                _token: CSRFToken
+                            },
+                            success: function () {
+                                // Set Session storage
+                                sessionStorage.setItem("hapus", "1");
+                                window.location.href = "/admin/product"
+
+                            },
+                            error: function(ea) {
+                                console.log(ea)
+                            }
+                        });
+                    }
+                })
+            });
     </script>
 @endpush
 

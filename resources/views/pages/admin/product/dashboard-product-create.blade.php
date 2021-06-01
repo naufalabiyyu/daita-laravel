@@ -65,6 +65,7 @@
                                                 <textarea name="ingredients" id cols="30" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Thumbnails</label>

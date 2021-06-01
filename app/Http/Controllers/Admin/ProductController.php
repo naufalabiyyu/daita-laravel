@@ -66,6 +66,7 @@ class ProductController extends Controller
         
     }
 
+
     public function details(Request $request, $id)
     {
         $product = Product::with(['galleries'])->findOrFail($id);
@@ -103,6 +104,7 @@ class ProductController extends Controller
     public function create()
     {
         
+        // $product = Product::with(['galleries'])->findOrFail($id);
         // return view('pages.admin.product.create');
         return view('pages.admin.product.dashboard-product-create');
         
@@ -206,6 +208,6 @@ class ProductController extends Controller
         $item = product::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('dashboard-product');  
     }
 }
