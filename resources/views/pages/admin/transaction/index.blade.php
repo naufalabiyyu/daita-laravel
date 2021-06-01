@@ -17,8 +17,6 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body p-md-4">
-                                {{-- <form method="POST"> --}}
-                                {{-- @csrf --}}
                                 <div class="row mb-5 text-center ">
                                     <div class="col-sm-3 mr-5">
                                         <label>Dari tanggal: </label>

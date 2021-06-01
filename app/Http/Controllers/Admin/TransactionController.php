@@ -166,6 +166,7 @@ class TransactionController extends Controller
     $item = Transaction::findOrFail($id);
     $TD = TransactionDetail::where(['transactions_id' => $id])->first();
 
+    // dd($item);
     return view('pages.admin.transaction.edit', [
       'item' => $item,
       'td' => $TD
@@ -187,23 +188,33 @@ class TransactionController extends Controller
     $item = Transaction::findOrFail($id);
     $item->update($data);
 
-
     if ($data['transaction_status'] == "SHIPPING") {
-      $TransactonDetails = TransactionDetail::where(['transactions_id' => $id])->get();
-      foreach ($TransactonDetails as $TD) {
-        // Update Resi
-        $UpdateResi = TransactionDetail::findOrFail($TD->id);
-        $UpdateResi->update([
-          'resi' => $data['resi']
-        ]);
+      $TransactionDetails = TransactionDetail::where(['transactions_id' => $id])->get();
+      // Update Resi
+      $UpdateResi = Transaction::findOrFail($id);
+      $UpdateResi->update([
+        'resi' => $data['resi']
+      ]);
 
+      foreach ($TransactionDetails as $TD) {
         // Update stock
         $item = Product::findOrFail($TD->products_id);
         $item->update([
           'stock' => $item->stock - $TD->quantity
         ]);
       }
+
+    } else if ($data['transaction_status'] == "PENDING") {
+      $TransactionDetails = TransactionDetail::where(['transactions_id' => $id])->get();
+
+      foreach ($TransactionDetails as $TD) {
+        $item = Product::findOrFail($TD->products_id);
+        $item->update([
+          'stock' => $item->stock + $TD->quantity
+        ]);
+      }
     }
+      
 
     return redirect()->route('transaction.index');
   }

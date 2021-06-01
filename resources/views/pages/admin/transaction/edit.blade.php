@@ -40,9 +40,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <template v-if="status == 'SHIPPING' "> 
+                                        <template v-if="status == 'SHIPPING' ">
                                             <div class=" col-md-4">
-                                                <label>Input Resi</label>
+                                                <label>Input Resi : <b class="text-uppercase">{{ $item->courier }}</b> </label>
                                                 <input type="text" class="form-control" name="resi" v-model="resi" > 
                                             </div>
                                             {{-- <div class="col-md-3">
@@ -54,7 +54,7 @@
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <label>Total Price</label>
-                                                <input type="number" name="total_price" class="form-control" value="{{ $item->total_price }}" required >
+                                                <input type="number" name="total_price" class="form-control" value="{{ $item->total_price }}" required readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
             el: '#transactionDetails',
             data: {
                 status: "{{ $item->transaction_status }}",
-                resi: "{{ $td->resi || "" }}",
+                resi: "{{ $item->resi }}",
             },
         })
     </script>

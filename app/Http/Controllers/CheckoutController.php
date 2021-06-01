@@ -14,7 +14,7 @@ use Exception;
 use Midtrans\Snap;
 use Midtrans\Config;
 
-
+// disini ?
 class CheckoutController extends Controller
 {
     public function process(Request $request)
@@ -30,35 +30,46 @@ class CheckoutController extends Controller
             ->get();
 
         // Hitung total price
+        $subtotal = 0;
         $totalPrice = 0;
         foreach ($carts as $cart) {
-            $totalPrice += $cart->quantity * $cart->product->prices;
+            $subtotal += $cart->quantity * $cart->product->prices;
         }
         // Tambah ongkir
-        $totalPrice += $request->ongkir;
+        $totalPrice = $subtotal + $request->ongkir;
+        // gitu aja
+
+        // ini barengan sama transaksi
+        // sebelahan sama resi
+        // katanya mau bikin eh udah deng wkwkw
+        // itu barengan sama shipping price
+        // bjir
+        // jadi harus begimana? tambahin nama kurir di requestnya, kan itu ada request ongkir
+        // yaudah tinggal kurirnya
+
+         // Begitu bjir, bikin field baru doang brrti ya ?, oke bntr
 
         // Transaction create
         $transaction = Transaction::insertGetId([
+            'code' => $code,
             'users_id' => Auth::user()->id,
-            'shipping_price' => 0,
+            'sub_total' => $subtotal,
+            'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
-            'code' => $code,
+            'courier' => $request->couriers, // gini? yoi
+            'resi' => '',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         foreach ($carts as $cart) {
             // Tambahkan transaksi detail
-            $trx = 'TRX-' . mt_rand(000000, 999999);
 
             TransactionDetail::create([
                 'transactions_id' => $transaction,
                 'products_id' => $cart->product->id,
                 'prices' => $cart->product->prices,
-                'shipping_status' => 'PENDING',
-                'resi' => '',
-                'code' => $trx,
                 'quantity' => $cart->quantity
             ]);
         }
