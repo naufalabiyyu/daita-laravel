@@ -14,7 +14,7 @@ class AddQuantityFieldAtCartsTable extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->integer('quantity');
+            $table->integer('quantity')->after('users_id');
         });
     }
 

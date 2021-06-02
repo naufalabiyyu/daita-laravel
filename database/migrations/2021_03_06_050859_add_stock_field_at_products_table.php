@@ -14,7 +14,7 @@ class AddStockFieldAtProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('stock');
+            $table->integer('stock')->after('description');
         });
     }
 
