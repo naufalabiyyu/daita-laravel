@@ -139,7 +139,7 @@
                         <div class="col-lg-5" data-aos="fade-left" data-aos-delay="500">
                             <div class="card card-details card-right">
                                 <h2 class="">Payment Information</h2>
-                                <select name="couriers" id="couriers" class="form-control mt-3 mb-2" disabled>
+                                <select name="couriers" id="couriers" class="form-control mt-3 mb-2" disabled required>
                                     <option value="" holder>Pilih Kurir</option>
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
