@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 col-lg-7">
-                        <img src="/images/Logo.svg" alt="">
+                        <img src="{{ asset('public/images/Logo.svg') }}" alt="">
                         <ul class="list-unstyled mt-4">
                             <li><a href="" class="text-muted text-decoration-none">Address : Golden 8 Blok F no.15, Gading Serpong</a></li>
                             <li class="mt-2"><a href="" class="text-muted text-decoration-none">Phone : +628 7882712065</a></li>
@@ -45,7 +45,7 @@
     <div class="container-fluid ">
         <div class="row justify-content-center align-items-center pt-4 ">
             <div class="col-auto text-muted ">
-                2020 Copyright Store. All Rights Reserved.
+                2021 Copyright All Rights Reserved.
             </div>
         </div>
     </div>
