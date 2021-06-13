@@ -19,11 +19,17 @@ Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/details/{id}', 'DetailController@index')->name('detail');
 Route::post('/details/{id}', 'DetailController@add')->name('detail-add');
 
-Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
+// Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
 
 Route::get('/success', 'CartController@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
+
+Route::post('/payment/handling', 'CheckoutController@callback');
+Route::get('/payment/cancel', 'CheckoutController@midtranscancel');
+Route::get('/payment/finish', 'CheckoutController@midtransfinish');
+Route::get('/payment/unfinish', 'CheckoutController@midtransunfinish');
+Route::get('/payment/error', 'CheckoutController@midtranserror');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/cart', 'CartController@index')->name('cart');

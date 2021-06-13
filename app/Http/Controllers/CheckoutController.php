@@ -117,96 +117,107 @@ class CheckoutController extends Controller
         }
     }
 
+    public function midtranscancel()
+    {
+        return view('pages.midtrans.cancel');
+    }
+    public function midtransfinish(Request $request)
+    {
+        $code = $request->order_id;
+        //pakai $code soalnya takut di pakai lagi kodenaya
+        $db = Transaction::where('code',$code)->first();
+        
+        // return $db;
+        return view('pages.midtrans.selesai',compact('db')); 
+        //dah tinggal get aja di viewnya lanjut, diviewnya ya ?
+        //iya jadi nggak usah redirect , bedain tulisan aja 
+    }
+    public function midtransunfinish()
+    {
+        //disini ya? $code = apa tadi
+        //bukan, di finish
+        return view('pages.midtrans.gagal');
+    }
+    public function midtranserror()
+    {
+        return view('pages.midtrans.error');
+    }
     public function callback(Request $request)
     {
-        // Set konfigurasi midtrans
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
+        
+        $transaction = @$request->transaction_status;
+        $fraud = @$request->fraud_status;
 
-        // Buat instance midtrans notification
-        $notification = new Notification();
-
-        // Assign ke variable untuk memudahkan coding
-        $status = $notification->transaction_status;
-        $type = $notification->payment_type;
-        $fraud = $notification->fraud_status;
-        $order_id = $notification->order_id;
-
-        // Cari transaksi berdasarkan ID
-        $transaction = Transaction::findOrFail($order_id);
-
-        // Handle notification status midtrans
-        if ($status == 'capture') {
-            if ($type == 'credit_card'){
-                if($fraud == 'challenge'){
-                    $transaction->status = 'PENDING';
-                }
-                else {
-                    $transaction->status = 'SUCCESS';
-                }
+        // Storage::put('file.txt', $transaction);
+        // return;
+        if ($transaction == 'capture') {
+            if ($fraud == 'challenge') {
+              // TODO Set payment status in merchant's database to 'challenge'
+              
+                $update = Transaction::where('code',$request->order_id)->first();
+                $update->status_pay = 'FAILED';
+                $update->save();
+            return;
+              
+            }else if ($fraud == 'accept') {
+              // TODO Set payment status in merchant's database to 'success'
+              
+                $update = Transaction::where('code',$request->order_id)->first();
+                $update->status_pay = 'SUCCESS';
+                $update->save();
+            return;
+              
             }
-        }
-        else if ($status == 'settlement'){
-            $transaction->status = 'SUCCESS';
-        }
-        else if($status == 'pending'){
-            $transaction->status = 'PENDING';
-        }
-        else if ($status == 'deny') {
-            $transaction->status = 'CANCELLED';
-        }
-        else if ($status == 'expire') {
-            $transaction->status = 'CANCELLED';
-        }
-        else if ($status == 'cancel') {
-            $transaction->status = 'CANCELLED';
-        }
-
-        // Simpan transaksi
-        $transaction->save();
-
-        // Kirimkan email
-        if ($transaction)
-        {
-            if($status == 'capture' && $fraud == 'accept' )
-            {
-                //
+        }else if ($transaction == 'cancel') {
+            if ($fraud == 'challenge') {
+              // TODO Set payment status in merchant's database to 'failure'
+              
+                $update = Transaction::where('code',$request->order_id)->first();
+                $update->status_pay = 'FAILED';
+                $update->save();
+            return;
+              
+            }else if ($fraud == 'accept') {
+              // TODO Set payment status in merchant's database to 'failure'
+              
+                $update = Transaction::where('code',$request->order_id)->first();
+                $update->status_pay = 'CANCEL'; 
+                $update->save();
+            return;
             }
-            else if ($status == 'settlement')
-            {
-                //
-            }
-            else if ($status == 'success')
-            {
-                //
-            }
-            else if($status == 'capture' && $fraud == 'challenge' )
-            {
-                return response()->json([
-                    'meta' => [
-                        'code' => 200,
-                        'message' => 'Midtrans Payment Challenge'
-                    ]
-                ]);
-            }
-            else
-            {
-                return response()->json([
-                    'meta' => [
-                        'code' => 200,
-                        'message' => 'Midtrans Payment not Settlement'
-                    ]
-                ]);
-            }
-
-            return response()->json([
-                'meta' => [
-                    'code' => 200,
-                    'message' => 'Midtrans Notification Success'
-                ]
-            ]);
+        }else if ($transaction == 'deny') {
+      // TODO Set payment status in merchant's database to 'failure'
+              
+            $update = Transaction::where('code',$request->order_id)->first();
+            $update->status_pay = 'FAILED';
+            $update->save();
+            return;
+              
+        }else if($transaction == 'pending') {
+            
+                $update = Transaction::where('code',$request->order_id)->first();
+                $update->status_pay = 'PENDING';
+                $update->save();
+            return;
+        }else if($transaction == 'expire') {
+            
+            $update = Transaction::where('code',$request->order_id)->first();
+            $update->status_pay = 'EXPIRED';
+            $update->save();
+            return;
+        }else if($transaction == 'accept') {
+            
+            $update = Transaction::where('code',$request->order_id)->first();
+            $update->status_pay = 'SUCCESS';
+            $update->save();
+            return;
+        }else if($transaction == 'settlement') {
+            
+            $update = Transaction::where('code',$request->order_id)->first();
+            $update->status_pay = 'SUCCESS';
+            $update->save();
+            return;
         }
+        echo json_encode('berhasil');
     }
 }
