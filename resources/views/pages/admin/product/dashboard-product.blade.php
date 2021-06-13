@@ -24,7 +24,7 @@
                             <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block" >                              
                                 <div class="card-body" >
                                     
-                                    <img src="{{ Storage::url($product->galleries->first()->photos ?? '') }}" alt="" class="w-100 mb-2">
+                                    <img src="/public/{{ Storage::url($product->galleries->first()->photos ?? '') }}" alt="" class="w-100 mb-2">
                                     <div class="myproduct-title ">{{ $product->name }}</div>
                                     <div class="product-price text-danger">Rp {{ number_format($product->prices) }}</div>
                                 </div>
@@ -73,4 +73,3 @@
     /// anjayy
 </script>
 @endpush
-
