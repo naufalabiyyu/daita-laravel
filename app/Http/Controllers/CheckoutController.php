@@ -49,7 +49,9 @@ class CheckoutController extends Controller
         // yaudah tinggal kurirnya
 
          // Begitu bjir, bikin field baru doang brrti ya ?, oke bntr
-
+         if($subtotal == 0){
+            return redirect('/');
+        }
         // Transaction create
         $transaction = Transaction::insertGetId([
             'code' => $code,

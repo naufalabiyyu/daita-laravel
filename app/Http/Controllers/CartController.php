@@ -31,11 +31,15 @@ class CartController extends Controller
         
         $provinsi = Province::all(); 
 
-        return view('pages.cart', [
-            'carts' => $carts,
-            'user' => $user,
-            'provinsi' => $provinsi
-        ]);
+        if(count($carts) == 0){
+            return redirect('/');
+         }else{
+          return view('pages.cart', [
+             'carts' => $carts,
+             'user' => $user,
+             'provinsi' => $provinsi
+         ]);   
+         }
     }
 
     public function getCity($id) {
