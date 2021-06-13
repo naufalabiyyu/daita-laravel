@@ -23,9 +23,6 @@
     {{-- Page Content --}}   
     @yield('content')
 
-    {{-- Footer --}}
-    @include('includes.footer')
-
     {{-- Script --}}
     @stack('prepend-script')
     @include('includes.script')
