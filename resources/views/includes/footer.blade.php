@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 col-lg-7">
-                        <img src="{{ asset('public/images/Logo.svg') }}" alt="">
+                        <img src="{{ asset('images/Logo.svg') }}" alt="">
                         <ul class="list-unstyled mt-4">
                             <li><a href="" class="text-muted text-decoration-none">Address : Golden 8 Blok F no.15, Gading Serpong</a></li>
                             <li class="mt-2"><a href="" class="text-muted text-decoration-none">Phone : +628 7882712065</a></li>

@@ -99,7 +99,7 @@
 @endsection
 
 @push('addon-script')
-    <script src="{{ asset('public/vendor/vue/vue.js') }}"></script>
+    <script src="{{ asset('vendor/vue/vue.js') }}"></script>
         <script>
             var gallery = new Vue({
                 el: "#gallery",
@@ -112,7 +112,7 @@
                         @foreach($product->galleries as $gallery)
                          {
                              id: {{ $gallery->id }},
-                             url: "/public/{{ Storage::url($gallery->photos) }}",
+                             url: "{{ Storage::url($gallery->photos) }}",
                          },
                          @endforeach
                     ],
