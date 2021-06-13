@@ -1,7 +1,7 @@
 	 <!-- desktop version -->
 	 <nav class="d-none d-lg-flex navbar navbar-expand-lg navbar-light  fixed-top navbar-fixed-top px-5" data-aos="fade-down">
 		<a class="navbar-brand ml-3" href="{{ route('home') }}">
-			<img src="{{ asset('public/images/Logo.svg') }}" alt="" />
+			<img src="{{ asset('images/Logo.svg') }}" alt="" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
@@ -51,10 +51,10 @@
 								$carts = \App\Cart::where('users_id', Auth::user()->id)->count();
 							@endphp
 							@if ($carts > 0 )
-								<img src="{{ asset('public/images/icon_cart_filled.svg') }}" alt="">
+								<img src="{{ asset('images/icon_cart_filled.svg') }}" alt="">
 								<div class="card-badge">{{ $carts }}</div>
 							@else
-								<img src="{{ asset('public/images/icon_cart_empty.svg') }}" alt="">
+								<img src="{{ asset('images/icon_cart_empty.svg') }}" alt="">
 							@endif
 								
 							</a>
@@ -126,10 +126,10 @@
 							$carts = \App\Cart::where('users_id', Auth::user()->id)->count();
 						@endphp
 						@if ($carts > 0 )
-							<img src="{{ asset('public/images/icon_cart_filled.svg') }}" alt="">
+							<img src="{{ asset('images/icon_cart_filled.svg') }}" alt="">
 							<div class="card-badge">{{ $carts }}</div>
 						@else
-							<img src="{{ asset('public/images/icon_cart_empty.svg') }}" alt="">
+							<img src="{{ asset('images/icon_cart_empty.svg') }}" alt="">
 						@endif
 							
 						</a>

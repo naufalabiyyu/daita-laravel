@@ -77,7 +77,7 @@
 @endsection
 
 @push('addon-script')
-    <script src="{{ asset('public/vendor/vue/vue.js') }}"></script>
+    <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
     <script>
         $("#menu-toggle").click(function(e) {

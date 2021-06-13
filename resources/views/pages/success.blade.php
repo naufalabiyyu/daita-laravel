@@ -6,4 +6,5 @@
 
 @section('content')
     <!-- page content -->
+    succes
 @endsection

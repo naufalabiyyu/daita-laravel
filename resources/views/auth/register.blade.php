@@ -9,7 +9,7 @@
                     <div class="card" style="margin-top: 60px">
                         <div class="card-body card-register">
                             <div class="text-center">
-                                <img src="{{ asset('public/images/Logo.svg') }}" alt="" class="mb-4">
+                                <img src="{{ asset('images/Logo.svg') }}" alt="" class="mb-4">
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
