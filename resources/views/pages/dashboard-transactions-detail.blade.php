@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <!-- Image Mobile Version -->
                                         <div class="col-12 d-lg-none mb-3 mt-3">
-                                            <img src="/images/drawable-mdpi/product-details-dashboard.png" alt="">
+                                            <img src="{{ asset('public/images/drawable-mdpi/product-details-dashboard.png') }}" alt="">
                                         </div>
                                         <!-- End -->
                                         <div class="col-12 col-md-3">
@@ -55,6 +55,7 @@
                                             <div class="product-title">Status Pembayaran</div>
                                             <div class="product-subtitle {{ $transactions->transaction->status_pay == 'SUCCESS' ? 'text-success' : ($transactions->transaction->status_pay == 'PENDING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->status_pay }}</div>
                                         </div>
+                                        
                                         
                                     </div>
                                     <form action="{{ route('dashboard-transaction-update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
@@ -97,7 +98,7 @@
                                         </div>
                                         <!-- Image Desktop Version -->
                                         <div class="col-12 col-md-5 d-none d-lg-flex">
-                                            <img src="{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
+                                            <img src="/public/{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
                                         </div>
                                         <!-- End -->
                                     </div>
