@@ -5,13 +5,13 @@
         <div class="container">
             <div class="row page-login d-flex align-items-center">
                 <div class="section-left col-12 col-md-6 " data-aos="fade-down" data-aos-delay="300">
-                    <img src="/images/login_images.svg" alt="" class="w-85 d-none d-sm-flex">
+                    <img src="{{ asset('public/images/login_images.svg') }}" alt="" class="w-85 d-none d-sm-flex">
                 </div>
                 <div class="section-right col-12 col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
-                                <img src="/images/Logo.svg" alt="" class="mb-4">
+                                <img src="{{ asset('public/images/Logo.svg') }}" alt="" class="mb-4">
                             </div>
                             <form method="POST" action="{{ route('login') }}">
                             @csrf

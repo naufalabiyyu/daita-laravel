@@ -6,10 +6,10 @@
         <div class="container" id="register">
             <div class="row page-login d-flex align-items-center justify-content-center">
                 <div class="section-right col-12 col-md-5" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card">
+                    <div class="card" style="margin-top: 60px">
                         <div class="card-body card-register">
                             <div class="text-center">
-                                <img src="/images/Logo.svg" alt="" class="mb-4">
+                                <img src="{{ asset('public/images/Logo.svg') }}" alt="" class="mb-4">
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
