@@ -8,7 +8,7 @@
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
             <div class="dashboard-heading">
-                <h2 class="dashboard-title">#{{ $transactions->code }}</h2>
+                <h2 class="dashboard-title">#{{ $transactions->transaction->code }}</h2>
                 <p class="dashboard-subtitle">Transactions Details</p>
             </div>
             <div class="dashboard-content" id="transactionDetails">
@@ -47,9 +47,13 @@
                                             <div class="product-title">Jumlah</div>
                                             <div class="product-subtitle">{{ $transactions->quantity }} pcs</div>
                                         </div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="product-title">Payment Status</div>
+                                        <div class="col-12 col-md-3">
+                                            <div class="product-title">Status Transaksi</div>
                                             <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transactions->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->transaction_status }}</div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Status Pembayaran</div>
+                                            <div class="product-subtitle {{ $transactions->transaction->status_pay == 'SUCCESS' ? 'text-success' : ($transactions->transaction->status_pay == 'PENDING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->status_pay }}</div>
                                         </div>
                                         
                                     </div>
