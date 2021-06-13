@@ -16,7 +16,7 @@
                               <div class="slider-content-10 text-center slider-animated-1">
                                   <h1 class="animated">Skin</h1>
                                   <h2 class="animated">Care</h2>
-                                  <img class="animated" src="{{ asset('public/images/fashion-4-slider-1.png')}}" alt="slider">
+                                  <img class="animated" src="{{ asset('images/fashion-4-slider-1.png')}}" alt="slider">
                               </div>
                           </div>
                       </div>
@@ -27,7 +27,7 @@
                               <div class="slider-content-10 text-center slider-animated-1">
                                   <h1 class="animated">Skin</h1>
                                   <h2 class="animated">Care</h2>
-                                  <img class="animated" src="{{ asset('public/images/fashion-4-slider-1.png') }}" alt="slider">
+                                  <img class="animated" src="{{ asset('images/fashion-4-slider-1.png') }}" alt="slider">
                               </div>
                           </div>
                       </div>
@@ -63,9 +63,9 @@
                                   <div class="product-img product-img-zoom mb-25">
                                       <a href="{{ route('detail', $product->slug) }}">
                                         @if ($product->galleries->count())
-                                        <img src="public/{{ Storage::url($product->galleries->first()->photos) }}" alt="">
+                                        <img src="{{ Storage::url($product->galleries->first()->photos) }}" alt="">
                                         @else
-                                        <img src="{{ asset('public/images/product/no-img.jpg')}}" alt="">
+                                        <img src="{{ asset('images/product/no-img.jpg')}}" alt="">
                                         @endif 
                                       </a>
                                   </div>
@@ -116,30 +116,30 @@
         <div class="row">
             <!-- desktop version -->
             <div class="d-none d-lg-flex col-12 col-md-6 mt-5 mb-5" data-aos="fade-right" data-aos-delay="500">
-                <img src="{{ asset('public/images/gallery.png')}}" alt="" style="width: 500px; height: 360px;">
+                <img src="{{ asset('images/gallery.png')}}" alt="" style="width: 500px; height: 360px;">
             </div>
             <div class="d-none d-lg-block col-lg-6 mt-5 " data-aos="fade-left" data-aos-delay="600">
                 <h2 class="mb-3">Benefits of This Products</h2>
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
             </div>
             <!-- mobile version -->
             <div class="d-lg-none col-12 col-md-6 mt-5 mb-5 text-center">
-                <img src="{{ asset('public/images/gallery.png')}}" alt="" style="width: 300px; height: 230px;">
+                <img src="{{ asset('images/gallery.png')}}" alt="" style="width: 300px; height: 230px;">
             </div>
             <div class="d-lg-none col-lg-6 mb-5 " data-aos="fade-up" data-aos-delay="600">
                 <h2 class="mb-3">Benefits of This Products</h2>
                 
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
-                <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
-                <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
+                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
+                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
             </div>
         </div>
     </div>      
@@ -156,22 +156,22 @@
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 grid-item">
                       <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
-                          <a href="https://www.instagram.com/p/BuS0K_-hM3v/" target="_blank"><img src="{{ asset('public/images/gallery/gallery-2.jpg') }}" alt=""></a>
+                          <a href="https://www.instagram.com/p/BuS0K_-hM3v/" target="_blank"><img src="{{ asset('images/gallery/gallery-2.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item">
                       <div class="single-instafeed mb-4" data-aos="fade-up" data-aos-delay="200">
-                          <a href="https://www.instagram.com/p/BtzvAhChQDC/" target="_blank"><img src="{{ asset('public/images/gallery/gallery-3.jpg') }}" alt=""></a>
+                          <a href="https://www.instagram.com/p/BtzvAhChQDC/" target="_blank"><img src="{{ asset('images/gallery/gallery-3.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item">
                       <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
-                          <a href="https://www.instagram.com/p/BtumCdOBvE5/" target="_blank"><img src="{{ asset('public/images/gallery/gallery.jpg') }}" alt=""></a>
+                          <a href="https://www.instagram.com/p/BtumCdOBvE5/" target="_blank"><img src="{{ asset('images/gallery/gallery.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item" style="margin-top: 10px;">
                       <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
-                          <a href="https://www.instagram.com/p/BtPt8sRhohb/" target="_blank" s><img src="{{ asset('public/images/gallery/gallery-4.jpg') }}" alt=""></a>
+                          <a href="https://www.instagram.com/p/BtPt8sRhohb/" target="_blank" s><img src="{{ asset('images/gallery/gallery-4.jpg') }}" alt=""></a>
                       </div>
                   </div>
               </div>
@@ -181,11 +181,11 @@
 @endsection
 
 @push('addon-script')
-    <script src="{{ asset('public/vendor/slick.js ')}}"></script>
-    <script src="{{ asset('public/vendor/images-loaded.js ')}}"></script>
-    <script src="{{ asset('public/vendor/instafeed.js ')}}"></script>
-    <script src="{{ asset('public/vendor/isotope.js ')}}"></script>
-    <script src="{{ asset('public/vendor/scrollup.js')}}"></script>
+    <script src="{{ asset('vendor/slick.js ')}}"></script>
+    <script src="{{ asset('vendor/images-loaded.js ')}}"></script>
+    <script src="{{ asset('vendor/instafeed.js ')}}"></script>
+    <script src="{{ asset('vendor/isotope.js ')}}"></script>
+    <script src="{{ asset('vendor/scrollup.js')}}"></script>
     <script>
       (function($) {
           /*--------------------------------
