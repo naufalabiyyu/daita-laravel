@@ -20,15 +20,12 @@
                 <div class="row mt-4">
                     @foreach ($products as $product)
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            
                             <a href="{{ route('dashboard-product-details', $product->id) }}" class="card card-dashboard-product d-block" >                              
                                 <div class="card-body" >
-                                    
-                                    <img src="/public/{{ Storage::url($product->galleries->first()->photos ?? '') }}" alt="" class="w-100 mb-2">
+                                    <img src="{{ Storage::url($product->galleries->first()->photos ?? '') }}" alt="" class="w-100 mb-2">
                                     <div class="myproduct-title ">{{ $product->name }}</div>
                                     <div class="product-price text-danger">Rp {{ number_format($product->prices) }}</div>
-                                </div>
-                                
+                                </div>  
                             </a>
                         </div>
                     @endforeach
@@ -61,15 +58,9 @@
             title: 'Berhasil di hapus!'
         });
 
-        // nah itu notifnya muncul terus
-        // yaudah tinggal hapus sessionnya
+        // Hapus session
         sessionStorage.removeItem("hapus")
 
-        // bjir
-        // gila jago bgt
     }
-
-    // coba lagi dah wkwkwk
-    /// anjayy
 </script>
 @endpush

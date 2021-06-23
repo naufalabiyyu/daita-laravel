@@ -25,7 +25,6 @@
                     @endif
                     <form action="{{ route('dashboard-product-update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- <input type="hidden" name="users_id" value="{{ Auth::user()->id }}"> --}}
                         <div class="card card-list p-3">
                             <div class="card-body">
                                 <div class="row">
@@ -69,17 +68,19 @@
                                         <button type="submit" class="btn btn-success btn-block px-5">
                                     Save Now
                                     </button>
-                                    </div>
-                                    
+                                    </div>    
                                 </div>
                             </div>
-                        
                     </form>
                         <div class="col-12 text-right">
                             <button type="button" class="btn btn-danger btn-block px-5 btn-delete" productId={{ $product->id }} id="delete">
                             Hapus Product
                             </button>
                         </div>
+                        <div class="col-12 pt-3">
+                            <p class="text-warning">Note : Jika ingin menambahkan foto, harap save terlbih dahulu.</p>
+                        </div>
+                        
                 </div>
                 </div>
             </div>
@@ -103,7 +104,7 @@
                                         @csrf
                                         <input type="hidden" name="products_id" value="{{ $product->id }}">
                                         <input type="file" name="photos" id="file" style="display: none;" onchange="form.submit()">
-                                        <button type="button" class="btn btn-secondary btn-block mt-2" onclick="thisFileUpload()">
+                                        <button type="button" class="btn btn-secondary btn-block mt-3" onclick="thisFileUpload()">
                                         Tambah Foto
                                         </button>
                                     </form>
