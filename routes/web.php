@@ -19,8 +19,6 @@ Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/details/{id}', 'DetailController@index')->name('detail');
 Route::post('/details/{id}', 'DetailController@add')->name('detail-add');
 
-// Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
-
 Route::get('/success', 'CartController@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
@@ -42,15 +40,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    // Route::get('/dashboard/product', 'DashboardProductController@index')->name('dashboard-product');
-    // Route::get('/dashboard/product/create', 'DashboardProductController@create')->name('dashboard-product-create');
-    // Route::post('/dashboard/product/', 'DashboardProductController@store')->name('dashboard-product-store');
-    // Route::get('/dashboard/product/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
-    // Route::post('/dashboard/product/{id}', 'DashboardProductController@update')->name('dashboard-product-update');
-    
-    // Route::post('/dashboard/product/gallery/upload', 'DashboardProductController@uploadGallery')->name('dashboard-product-gallery-upload');
-    // Route::get('/dashboard/product/gallery/delete/{id}', 'DashboardProductController@deleteGallery')->name('dashboard-product-gallery-delete');
-
     Route::get('/dashboard/transactions', 'DashboardTransactionsController@index')->name('dashboard-transactions');
     Route::get('/dashboard/transactions/{id}', 'DashboardTransactionsController@details')->name('dashboard-transaction-details');
     Route::post('/dashboard/transactions/{id}', 'DashboardTransactionsController@update')->name('dashboard-transaction-update');
@@ -62,16 +51,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
-// 
-// Route::get('/transaction/{id}', 'DashboardController@details')->name('admin-dashboard-details');
-
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware(['auth','admin'])
     ->group(function() {
         Route::get('/', 'DashboardController@index')->name('admin-dashboard');
         Route::resource('user', 'UserController');
-        // Route::resource('product', 'ProductController');
 
         Route::get('product', 'ProductController@index')->name('dashboard-product');
         Route::get('product/create', 'ProductController@create')->name('dashboard-product-create');
