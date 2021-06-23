@@ -15,11 +15,11 @@ use Midtrans\Snap;
 use Midtrans\Config;
 use Midtrans\Notification;
 
-// disini ?
 class CheckoutController extends Controller
 {
     public function process(Request $request)
     {
+        // dd($request);
         // Save users data
         $user = Auth::user();
         $user->update($request->except('total_price'));
@@ -40,15 +40,6 @@ class CheckoutController extends Controller
         $totalPrice = $subtotal + $request->ongkir;
         // gitu aja
 
-        // ini barengan sama transaksi
-        // sebelahan sama resi
-        // katanya mau bikin eh udah deng wkwkw
-        // itu barengan sama shipping price
-        // bjir
-        // jadi harus begimana? tambahin nama kurir di requestnya, kan itu ada request ongkir
-        // yaudah tinggal kurirnya
-
-         // Begitu bjir, bikin field baru doang brrti ya ?, oke bntr
          if($subtotal == 0){
             return redirect('/');
         }
@@ -60,7 +51,8 @@ class CheckoutController extends Controller
             'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
-            'courier' => $request->couriers, // gini? yoi
+            'courier' => $request->couriers, 
+            'service' => $request->service, 
             'resi' => '',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
@@ -151,7 +143,6 @@ class CheckoutController extends Controller
         $fraud = @$request->fraud_status;
 
         // Storage::put('file.txt', $transaction);
-        // return;
         if ($transaction == 'capture') {
             if ($fraud == 'challenge') {
               // TODO Set payment status in merchant's database to 'challenge'

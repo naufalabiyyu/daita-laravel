@@ -423,11 +423,11 @@
     
                 $('select[name="couriers"]').on('change', function () {
                     var courier = $(this).val();
-                    let ongkirShow = document.getElementById("ongkir")
-                    let CSRFToken = '{{csrf_token()}}'
-                    let dataRequest = {
+                    const ongkirShow = document.getElementById("ongkir")
+                    const CSRFToken = '{{csrf_token()}}'
+                    const dataRequest = {
                         destination: $('select[name=regencies_id] option').filter(':selected').val(),
-                        courier: courier
+                        courier: courier,
                     }
                     $.ajax({
                         url: 'getOngkir',
@@ -448,15 +448,15 @@
 
                             data.map(item => {
                                 $('select[name="services"]').append(
-                                    '<option value="' +
-                                        item.cost[0].value + '">' + item.service + ' - ' + ' est ' + item.cost[0].etd + ' hari' + '</option>');
+                                    '<option value="' + item.service + ' - ' + ' est ' + item.cost[0].etd + ' hari'
+                                        + '" ongkir="' + item.cost[0].value + '">' + item.service + ' - ' + ' est ' + item.cost[0].etd + ' hari' + '</option>');
                             })
                         }
                     });
                 });
 
                 $('select[name="services"]').on('change', function () {
-                    let hargaOngkir = parseInt($(this).val())
+                    let hargaOngkir = parseInt($('option:selected', this).attr('ongkir'))
                     let ongkirShow = document.getElementById("ongkir")
                     let totalBiaya = document.getElementById('totalBiaya')
 
