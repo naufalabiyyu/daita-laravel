@@ -76,10 +76,6 @@ class TransactionController extends Controller
 
   public function getDataRekapBulanan($dari, $ke)
   {
-    //$namabulan="April";//$request->bulan;
-    //$bulan = $this->ubahBulan($namabulan);
-    //$tahun="2020";//$request->tahun;
-    //$dataRekap['transaksi'] = Transaksi::with('jadwal','lapangan')->where('tanggal','like', $tahun.'-'.$bulan.'-'.'%')->orderBy('tanggal', 'ASC')->get();
     $dataRekap['transaksi'] = Transaction::with('user')->where([
       ['created_at', '>=', $dari],
       ['created_at', '<=', $ke]
@@ -166,7 +162,6 @@ class TransactionController extends Controller
     $item = Transaction::findOrFail($id);
     $TD = TransactionDetail::where(['transactions_id' => $id])->first();
 
-    // dd($item);
     return view('pages.admin.transaction.edit', [
       'item' => $item,
       'td' => $TD
@@ -184,7 +179,6 @@ class TransactionController extends Controller
   {
     // Update Transaction
     $data = $request->all();
-    // dd($data['resi']);
     $item = Transaction::findOrFail($id);
     $item->update($data);
 

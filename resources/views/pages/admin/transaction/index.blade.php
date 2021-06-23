@@ -47,7 +47,8 @@
                                                 <th>ID</th>
                                                 <th>Nama</th>
                                                 <th>Harga</th>
-                                                <th>Status</th>
+                                                <th>Transaction</th>
+                                                <th>Payment</th>
                                                 <th>Dibuat</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -100,6 +101,10 @@
                     name: 'transaction_status'
                 },
                 {
+                    data: 'status_pay',
+                    name: 'status_pay'
+                },
+                {
                     data: 'created_at',
                     name: 'created_at'
                 },
@@ -145,6 +150,10 @@
                     {
                         data: 'transaction_status',
                         name: 'transaction_status'
+                    },
+                    {
+                    data: 'status_pay',
+                    name: 'status_pay'
                     },
                     {
                         data: 'created_at',

@@ -45,9 +45,6 @@
                                                 <label>Input Resi : <b class="text-uppercase">{{ $item->courier }}</b> </label>
                                                 <input type="text" class="form-control" name="resi" v-model="resi" > 
                                             </div>
-                                            {{-- <div class="col-md-3">
-                                                <button type="submit" class="btn btn-success px-3" style="margin-top: 31px">Update Resi</button>
-                                            </div> --}}
                                         </template>
                                     </div>  
                                     <div class="row">
