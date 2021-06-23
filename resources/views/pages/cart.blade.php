@@ -228,7 +228,7 @@
                             })
                     }, 
                     getCity: function() {
-                        axios.get('getCity/' + {{ $user->provinces_id }})
+                        axios.get('getCity/' + {{ $user->provinces_id ? $user->provinces_id : 0 }})
                         .then(function (response) {
                             cities = response.data
                             console.log(cities)
@@ -245,8 +245,11 @@
         </script>
         <script>
             jQuery(document).ready(function() {
-                $.ajax({
-                        url: 'getCity/' + {{ $user->provinces_id }},
+                let province_id = "{{ $user->provinces_id }}"
+                if (province_id != "") {
+                    console.log("jalan")
+                    $.ajax({
+                        url: 'getCity/' + {{ $user->provinces_id ? $user->provinces_id : 0 }},
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
@@ -259,6 +262,7 @@
                             $('#couriers').attr("disabled", false); 
                         }
                     });
+                }
 
                 let totalBiayaValue = 0;
 
