@@ -52,7 +52,7 @@ class CheckoutController extends Controller
             'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
             'courier' => $request->couriers, 
-            'service' => $request->service, 
+            'service' => $request->services, 
             'resi' => '',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
