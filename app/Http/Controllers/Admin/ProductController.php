@@ -71,7 +71,7 @@ class ProductController extends Controller
     {
         $product = Product::with(['galleries'])->findOrFail($id);
         
-        // dd($product);
+        // return $product;
         return view('pages.admin.product.dashboard-product-detail', [
             'product' => $product
         ]);

@@ -8,7 +8,7 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Facial Foam</h2>
+            <h2 class="dashboard-title">{{ $product->name }}</h2>
             <p class="dashboard-subtitle">Product Details</p>
         </div>
         <div class="dashboard-content">
