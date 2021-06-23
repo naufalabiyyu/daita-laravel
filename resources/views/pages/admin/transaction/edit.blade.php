@@ -41,8 +41,8 @@
                                             </div>
                                         </div>
                                         <template v-if="status == 'SHIPPING' ">
-                                            <div class=" col-md-4">
-                                                <label>Input Resi : <b class="text-uppercase">{{ $item->courier }}</b> </label>
+                                            <div class="col-md-4">
+                                                <label>Input Resi : <b class="text-uppercase text-success">{{ $item->courier }} {{ $item->service }} </b> </label>
                                                 <input type="text" class="form-control" name="resi" v-model="resi" > 
                                             </div>
                                         </template>
