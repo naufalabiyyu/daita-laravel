@@ -23,7 +23,7 @@
             <!-- Sidebar -->
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="{{ asset('images/monitor.png') }}" alt="" class="my-3 w-50">
+                    <img src="{{ asset('images/tes/admin.svg') }}" alt="" class="my-3" style="width: 150px;">
                 </div>
                 <div class="list-group list-group-flush ">
                     <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-active  mt-5">

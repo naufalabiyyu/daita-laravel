@@ -11,7 +11,7 @@
                 <h2 class="dashboard-title">Dashboard</h2>
                 <p class="dashboard-subtitle">Look what you have made today!</p>
             </div>
-            <div class="dashboard-content">
+            {{-- <div class="dashboard-content">
                 <div class="row mt-5">
                     <div class="col-12 mt-2">
                         <h5 class="mb-3">Recent Transaction</h5>
@@ -39,6 +39,35 @@
                         </a>
                         @endforeach 
                     </div>
+                </div>
+            </div> --}}   
+            <div class="rows">
+                <div class="column" style="margin-right: -100px">
+                    <a href="{{ route('home') }}" class="card-home credentialing">
+                        <div class="overlay"></div>
+                        <div class="circle">
+                            <img src="images/tes/house.svg">
+                        </div>
+                        <p>Back to Store</p>
+                    </a>
+                </div>
+                <div class="column">
+                    <a href="{{ route('dashboard-transactions') }}" class="card-home credentialing">
+                        <div class="overlay"></div>
+                        <div class="circle">
+                            <img src="images/tes/transaction.svg">
+                        </div>
+                        <p>My Transaction</p>
+                    </a>
+                </div>
+                <div class="column" style="margin-left: -100px">
+                    <a href="{{ route('dashboard-profile') }}" class="card-home credentialing">
+                        <div class="overlay"></div>
+                        <div class="circle">
+                            <img src="images/tes/setting.svg">
+                        </div>
+                        <p>My Profile</p>
+                    </a>
                 </div>
             </div>
         </div>
