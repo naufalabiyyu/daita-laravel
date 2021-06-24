@@ -29,7 +29,7 @@
                             <img src="images/tes/money.svg">
                         </div>
                         <p>Revenue</p>
-                        <h3>Rp {{ $revenue }}</h3>
+                        <h3>Rp {{ number_format($revenue) }}</h3>
                     </a>
                 </div>
                 <div class="column" style="margin-left: -100px">
