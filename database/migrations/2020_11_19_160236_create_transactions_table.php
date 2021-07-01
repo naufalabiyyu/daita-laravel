@@ -22,8 +22,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('total_price')->length(8);
             $table->string('transaction_status')->length(8);  // (UNPAID/PENDING/SUCCESS/FAILED)  
             $table->string('status_pay')->length(8)->nullable(); 
-            $table->string('courier')->length(10);
-            $table->string('service')->length(10)->nullable(); 
+            $table->string('courier')->length(20);
+            $table->string('service')->length(20)->nullable(); 
             $table->string('resi')->length(20);       
             
 
