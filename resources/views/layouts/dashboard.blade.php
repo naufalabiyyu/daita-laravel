@@ -28,9 +28,6 @@
                     <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-active  mt-5 {{ (request()->is('dashboard')) ? 'active' : ''  }}">
                         <img src="{{ asset('images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
                     </a>
-                    <a href="#" class="list-group-item list-group-item-active ">
-                        <img src="{{ asset('images/SVG/wish.svg') }}" alt="" class="mr-2">My Wishlist
-                    </a>
                     <a href="{{ route('dashboard-transactions') }}" class="list-group-item list-group-item-active {{ (request()->is('dashboard/transactions*')) ? 'active' : ''}}">
                         <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
                     </a>
