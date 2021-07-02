@@ -14,7 +14,7 @@
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Full Name</label>
+                                    <label>Username</label>
                                     <input id="name" 
                                     type="text" 
                                     
@@ -223,8 +223,8 @@
             },
             data() {
                 return {
-                    name: "User",
-                    email: "User@daita.com",
+                    name: "",
+                    email: "",
                     phone: "62",
                     email_unavailable: false    
                 }

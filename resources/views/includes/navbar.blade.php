@@ -12,17 +12,14 @@
 						<a class="nav-link " href="{{ route('home') }}">Home</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " href="#about-section">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link " href="#">Customer Care &nbsp;</a>
+						<a class="nav-link " href="{{ route('contact-us') }}">Contact Us</a>
 					</li>
 					@guest
-					{{-- <li class="nav-item">
-						<a class="nav-link " href="{{ route('register') }}">Sign Up</a>
-					</li> --}}
-					   <li class="nav-item">
-						<a class="btn btn-success nav-link px-4 shadow-sm" style="background-color: #fceebd;" href="{{ route('login') }}">Sign In</a> 
+					<li class="nav-item">
+						<a class="nav-link " href="{{ route('login') }}">Sign in</a>
+					</li>
+					<li class="nav-item">
+						<a class="btn btn-success nav-link px-4 shadow-sm" style="background-color: #fceebd;" href="{{ route('register') }}">Sign Up</a> 
 					</li>
 					@endguest
 				</ul>
