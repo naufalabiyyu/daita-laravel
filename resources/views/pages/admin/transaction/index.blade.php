@@ -19,22 +19,21 @@
                             <div class="card-body p-md-4">
                                 <div class="row mb-5 text-center ">
                                     <div class="col-sm-3 mr-5">
-                                        <label>Dari tanggal: </label>
+                                        <label>From </label>
                                         <input id="date-dari" width="270" name="dari" value="" autocomplete="off" />
                                     </div>
                                     <div class="col-sm-3 mr-5">
-                                        <label>Hingga tanggal: </label>
+                                        <label>To </label>
                                         <input id="date-ke" width="270" name="ke" value="" autocomplete="off" />
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-3 mr-3">
-                                            <button onclick="filter()" class="btn btn-primary px-3" name="button">Filter
-                                                Tanggal</button>
+                                            <button onclick="filter()" class="btn btn-primary px-4" name="button">Filter
+                                                Date</button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <button onclick="exportKeExcel()" class="btn btn-success px-4">Ekspor
-                                                Excel</button>
+                                            <button onclick="exportKeExcel()" class="btn btn-success px-4">Print Report</button>
                                         </div>
                                     </div>
                                 </div>

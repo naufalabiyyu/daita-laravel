@@ -44,16 +44,20 @@
                                             <div class="product-subtitle">{{ $transactions->created_at }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
-                                            <div class="product-title">Jumlah</div>
+                                            <div class="product-title">Quantity</div>
                                             <div class="product-subtitle">{{ $transactions->quantity }} pcs</div>
                                         </div>
                                         <div class="col-12 col-md-3">
-                                            <div class="product-title">Status Transaksi</div>
+                                            <div class="product-title">Transaction Status</div>
                                             <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transactions->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->transaction_status }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
-                                            <div class="product-title">Status Pembayaran</div>
+                                            <div class="product-title">Payment Status</div>
                                             <div class="product-subtitle {{ $transactions->transaction->status_pay == 'SUCCESS' ? 'text-success' : ($transactions->transaction->status_pay == 'PENDING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->status_pay }}</div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Courier - Resi</div>
+                                            <div class="product-subtitle"><p class="d-inline text-uppercase text-success">{{ $transactions->transaction->courier }}</p> - {{ $transactions->transaction->service }}</div>
                                         </div>
                                         
                                         

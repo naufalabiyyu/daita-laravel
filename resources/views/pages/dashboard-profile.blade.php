@@ -72,11 +72,11 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6 ">
                                         <label for="phone_number">Country</label>
-                                        <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}">
+                                        <input type="text" class="form-control" id="country" name="country" value="Indonesia" readonly>
                                     </div>
                                     <div class="form-group pl-3 pl-lg-4 col-md-6">
                                         <label for="phone_number">Mobile</label>
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" 
                                     </div>
                                 </div>
                                 <div class="row">

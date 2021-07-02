@@ -55,29 +55,26 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="">Cara Penggunaan</label>
-                                                <textarea name="how_to_use" id cols="30" rows="4" class="form-control"></textarea>
+                                                <label for="">How to use</label>
+                                                <textarea name="how_to_use" id cols="30" rows="6" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="">Bahan - bahan</label>
-                                                <textarea name="ingredients" id cols="30" rows="4" class="form-control"></textarea>
+                                                <label for="">Ingredients</label>
+                                                <textarea name="ingredients" id cols="30" rows="6" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="">Thumbnails</label>
-                                                <input type="file" name="photos" class="form-control pt-1">
-                                                <p class="text-muted">
-                                                    Kamu dapat memilih lebih dari satu gambar.
-                                                </p>
+                                                <label for="">Thumbnail</label>
+                                                <input type="file" name="photos" class="form-control pt-1"><p class=" pl-2 text-danger">* Image must be 764 x 560 pixel</p>
                                             </div>
                                         </div>
                                         <div class="col-12 text-right">
                                             <button type="submit" class="btn btn-success btn-block px-5">
-                                            Save Now
+                                            Add Product
                                             </button>
                                         </div>
 

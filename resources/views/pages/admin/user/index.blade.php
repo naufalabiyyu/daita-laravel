@@ -9,15 +9,15 @@
         <div class="container-fluid">
             <div class="dashboard-heading">
                 <h2 class="dashboard-title">Admin Dashboard</h2>
-                <p class="dashboard-subtitle">this is daita skincare admin page!</p>
+                <p class="dashboard-subtitle">This is daita skincare admin page!</p>
             </div>
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body p-md-4">
-                                <a href="{{ route('user.create') }}" class="btn btn-info mb-3">
-                                    + Tambah User Baru
+                                <a href="{{ route('user.create') }}" class="btn btn-success mb-3">
+                                    + Add New User
                                 </a>
                                 <div class="table-responsive">
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">

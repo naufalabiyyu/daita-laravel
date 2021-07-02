@@ -68,7 +68,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Konfirmasi Password</label>
+                                    <label>Confirm Password</label>
                                     <input id="password-confirm" 
                                     type="password" 
                                     class="form-control @error('password_confirmation') is-invalid @enderror" 
@@ -83,7 +83,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Handphone</label>
+                                    <label>Mobile</label>
                                     <input id = "phone_number"
                                     type="number" 
                                     class="form-control" 

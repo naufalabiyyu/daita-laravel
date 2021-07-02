@@ -35,7 +35,7 @@
                                             <th>IMAGE</th>
                                             <th>PRODUCT NAME</th>
                                             <th>QUANTITY</th>
-                                            <th>PRICE</th>
+                                            <th>PRICE/PCS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,8 +86,14 @@
                     <div class="row mt-4">
                         <div class="col-lg-7 " data-aos="fade-right" data-aos-delay="500">
                             <div class="card card-details  ">
-                                <div class="form-group  col-lg-12">
-                                    <h2 class="">Shipping Address</h2>
+                                <div class="form-row pl-3">
+                                    <div class="form-group col-lg-7 ">
+                                        <h2>Shipping Information</h2>
+                                    </div>
+                                    <div class="form-group col-lg-5 text-right">
+                                        <a href="{{ route('dashboard-profile') }}" class="mx-3 btn btn-success mt-3">Edit Shipping</a>
+                                    </div>
+                                    
                                 </div>
                                 <div class="form-group  col-lg-12">
                                     <label for="address_one">Address 1<p style="color: #F32355; display: inline;"> *</p> </label>
@@ -104,8 +110,9 @@
                                         {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
                                             <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                         </select> --}}
-                                        <select name="provinces_id" class="form-control"disabled>
-                                            <option value="" holder>Pilih Provinsi</option>
+                                        {{-- <input type="text" class="form-control" value="{{ $provinsi->id }}" readonly> --}}
+                                        <select name="provinces_id" class="form-control" disabled style="appearance: none;">
+                                            <option value="" holder></option>
                                             @foreach ($provinsi as $result)
                                             <option value="{{ $result->id }}" @php if ($user->provinces_id == $result->id) { echo "selected"; } @endphp  >{{ $result->province }}</option>
                                             @endforeach
@@ -116,7 +123,7 @@
                                         {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
                                             <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                         </select> --}}
-                                        <select name="regencies_id" class="form-control" disabled> </select>
+                                        <select name="regencies_id" class="form-control" disabled style="appearance: none;"> </select>
                                     </div>
                                 </div>
                                 <div class="form-row pl-3 pr-3">
@@ -133,12 +140,11 @@
                                     <label for="phone_number">Mobile<p style="color: #F32355; display: inline;"> *</p></label>
                                     <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" readonly>
                                 </div>
-                                <a href="{{ route('dashboard-profile') }}" class="mx-3 btn btn-success mt-3">Edit Shipping</a>
                             </div>
                         </div>
                         <div class="col-lg-5" data-aos="fade-left" data-aos-delay="500">
                             <div class="card card-details card-right">
-                                <h2 class="">Payment Information</h2>
+                                <h2 class="">Payment Details</h2>
                                 <select name="couriers" id="couriers" class="form-control mt-3 mb-2" disabled required>
                                     <option value="" holder>Pilih Kurir</option>
                                     <option value="jne">JNE</option>
@@ -148,10 +154,6 @@
                                 <select name="services" id="services" class="form-control mt-3 mb-2">
                                 </select>
                                 <table class="pay-info">
-                                {{-- <tr>
-                                        <td width="50%">ID transaction</td>
-                                        <td class="text-right" style="color: #B1B1B1;">#DA280800</td>
-                                </tr> --}}
                                 </tr>
                                     <td width="50% " >Sub total</td>
                                      <td width="50% " class="text-right" style="color: green;" id="subTotal"></td>
@@ -165,7 +167,7 @@
                                     <input type="hidden" name="ongkir">
                                     <td width="50% " class="text-right" id="ongkir">Rp 0</td>
                                 </tr>
-                                    <td width="50% " >Total Biaya</td>
+                                    <td width="50% " >Total</td>
                                      <td width="50% " class="text-right" style="color: green;" id="totalBiaya"></td>
                                 </tr>
                                 

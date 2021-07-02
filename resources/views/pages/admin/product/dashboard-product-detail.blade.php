@@ -36,14 +36,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Stok</label>
-                                            <input type="number" name="stock" class="form-control" value="{{ $product->stock }}" required>
+                                            <label for="">Price</label>
+                                            <input type="number" class="form-control uang" name="prices" value="{{ $product->prices }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Price</label>
-                                            <input type="number" class="form-control uang" name="prices" value="{{ $product->prices }}">
+                                            <label>Stock</label>
+                                            <input type="number" name="stock" class="form-control" value="{{ $product->stock }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -54,13 +54,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Cara Penggunaan</label>
+                                            <label for="">How to use</label>
                                             <textarea name="how_to_use" id cols="30" rows="4" class="form-control">{!! $product->how_to_use !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Bahan - bahan</label>
+                                            <label for="">Ingredients</label>
                                             <textarea name="ingredients" id cols="30" rows="4" class="form-control">{!! $product->ingredients !!}</textarea>
                                         </div>
                                     </div>
@@ -104,7 +104,8 @@
                                         @csrf
                                         <input type="hidden" name="products_id" value="{{ $product->id }}">
                                         <input type="file" name="photos" id="file" style="display: none;" onchange="form.submit()">
-                                        <button type="button" class="btn btn-secondary btn-block mt-3" onclick="thisFileUpload()">
+                                        <p class="text-danger">* Image must be 764 x 560 pixel</p>
+                                        <button type="button" class="btn btn-secondary btn-block" onclick="thisFileUpload()">
                                         Tambah Foto
                                         </button>
                                     </form>

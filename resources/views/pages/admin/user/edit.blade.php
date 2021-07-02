@@ -31,7 +31,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Nama User</label>
+                                                <label>Username</label>
                                                 <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
                                             </div>
                                         </div>
@@ -45,12 +45,12 @@
                                             <div class="form-group">
                                                 <label>Password User</label>
                                                 <input type="password" name="password" class="form-control" >
-                                                <small>Kosongkan jika tidak ingin mengganti password.</small>
+                                                <small class="text-danger">Kosongkan jika tidak ingin mengganti password.</small>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Nomor Handphone</label>
+                                                <label>Mobile</label>
                                                 <input type="text" class="form-control" name="phone_number" value="{{ $item->phone_number }}" >
                                             </div>
                                         </div>
