@@ -28,7 +28,7 @@
                                     <div class="col-md-3">
                                         {{ $transaction->created_at ?? '' }}
                                     </div>
-                                    <div class="col-md-3 {{ $transaction->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transaction->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger') }}">
+                                    <div class="col-md-3 {{ $transaction->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transaction->transaction->transaction_status == 'SHIPPING' ? 'text-warning': ($transaction->transaction->transaction_status == 'PROCESS' ? 'text-warning' : 'text-danger'))  }}">
                                     {{ $transaction->transaction->transaction_status ?? '' }}
                                     </div>
                                     <div class="col-md-1 d-none d-md-block">

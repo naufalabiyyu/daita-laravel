@@ -115,6 +115,7 @@ class CheckoutController extends Controller
     {
         return view('pages.midtrans.cancel');
     }
+
     public function midtransfinish(Request $request)
     {
         $code = $request->order_id;
@@ -126,21 +127,24 @@ class CheckoutController extends Controller
         //dah tinggal get aja di viewnya lanjut, diviewnya ya ?
         //iya jadi nggak usah redirect , bedain tulisan aja 
     }
+
     public function midtransunfinish()
     {
         //disini ya? $code = apa tadi
         //bukan, di finish
         return view('pages.midtrans.gagal');
     }
+
     public function midtranserror()
     {
         return view('pages.midtrans.error');
     }
+
     public function callback(Request $request)
     {
         
-        $transaction = @$request->transaction_status;
-        $fraud = @$request->fraud_status;
+        $transaction = $request->transaction_status;
+        $fraud = $request->fraud_status;
 
         // Storage::put('file.txt', $transaction);
         if ($transaction == 'capture') {
@@ -149,6 +153,7 @@ class CheckoutController extends Controller
               
                 $update = Transaction::where('code',$request->order_id)->first();
                 $update->status_pay = 'FAILED';
+                $update->transaction_status = 'PENDING';
                 $update->save();
             return;
               
@@ -157,6 +162,7 @@ class CheckoutController extends Controller
               
                 $update = Transaction::where('code',$request->order_id)->first();
                 $update->status_pay = 'SUCCESS';
+                $update->transaction_status = 'PROCESS';
                 $update->save();
             return;
               
@@ -167,6 +173,7 @@ class CheckoutController extends Controller
               
                 $update = Transaction::where('code',$request->order_id)->first();
                 $update->status_pay = 'FAILED';
+                $update->transaction_status = 'PENDING';
                 $update->save();
             return;
               
@@ -174,7 +181,8 @@ class CheckoutController extends Controller
               // TODO Set payment status in merchant's database to 'failure'
               
                 $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'CANCEL'; 
+                $update->status_pay = 'CANCEL';
+                $update->transaction_status = 'PENDING';
                 $update->save();
             return;
             }
@@ -183,6 +191,7 @@ class CheckoutController extends Controller
               
             $update = Transaction::where('code',$request->order_id)->first();
             $update->status_pay = 'FAILED';
+            $update->transaction_status = 'PENDING';
             $update->save();
             return;
               
@@ -190,24 +199,28 @@ class CheckoutController extends Controller
             
                 $update = Transaction::where('code',$request->order_id)->first();
                 $update->status_pay = 'PENDING';
+                $update->transaction_status = 'PENDING';
                 $update->save();
             return;
         }else if($transaction == 'expire') {
             
             $update = Transaction::where('code',$request->order_id)->first();
             $update->status_pay = 'EXPIRED';
+            $update->transaction_status = 'PENDING';
             $update->save();
             return;
         }else if($transaction == 'accept') {
             
             $update = Transaction::where('code',$request->order_id)->first();
             $update->status_pay = 'SUCCESS';
+            $update->transaction_status = 'PROCESS';
             $update->save();
             return;
         }else if($transaction == 'settlement') {
             
             $update = Transaction::where('code',$request->order_id)->first();
             $update->status_pay = 'SUCCESS';
+            $update->transaction_status = 'PROCESS';
             $update->save();
             return;
         }

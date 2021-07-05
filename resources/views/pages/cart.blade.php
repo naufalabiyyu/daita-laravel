@@ -273,6 +273,7 @@
                 const totalBiaya = document.getElementById('totalBiaya')
                 let productPriceShow;
                 let totalHarga = 0;
+                let hargaPajak = 0;
 
                 for(i = 0; i < jumlahItems.length; i++){
                     const firstQuantity = document.getElementById('quantity' + i).value
@@ -281,11 +282,12 @@
                     const firstHargaProduk = hargaProduk * firstQuantity
 
                     totalHarga += firstHargaProduk;
+                    hargaPajak = (10 / 100) * totalHarga;
                     
                     productPriceShow.innerText = 'Rp. ' + parseFloat(hargaProduk, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiayaValue = totalHarga
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + hargaPajak, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga + hargaPajak
                 }
 
                 // Ketika quantity diganti manual tanpa klik tombol
@@ -318,9 +320,12 @@
                         updateHarga = hargaProduk * (currenValueInput - quantity)
                         totalHarga -= updateHarga;
                     }
+
+                    hargaPajak = (10 / 100) * totalHarga;
+
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiayaValue = totalHarga
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + hargaPajak, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga + hargaPajak
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
@@ -365,9 +370,10 @@
                     // Update Produk Price
                     updateHarga = hargaProduk * (quantity - currentVal )
                     totalHarga += updateHarga;
+                    hargaPajak = (10 / 100) * totalHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiayaValue = totalHarga
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + hargaPajak, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga + hargaPajak
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
@@ -407,9 +413,10 @@
 
                     updateHarga = hargaProduk * (currentVal - quantity)
                     totalHarga -= updateHarga;
+                    hargaPajak = (10 / 100) * totalHarga;
                     subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + 10000, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
-                    totalBiayaValue = totalHarga
+                    totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga + hargaPajak, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
+                    totalBiayaValue = totalHarga + hargaPajak
 
                     // Update quantity 
                     let productId = $(this).attr('data-productId');
