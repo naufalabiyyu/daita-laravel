@@ -45,7 +45,7 @@ selesai
                   Transaction Processed!
                 </h2>
                 <p>
-                  Silahkan tunggu konfirmasi email dari kami dan kami akan
+                  Silahkan tunggu, pesanan sedang kami proses, kami akan
                   menginformasikan resi secept mungkin!
                 </p>
                 <div>
