@@ -35,8 +35,13 @@
                     {{-- <a href="{{ route('product-gallery.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}">
                         <img src="{{ asset('public/images/SVG/wish.svg') }}" alt="" class="mr-2">Galleries
                     </a> --}}
+<<<<<<< HEAD
                     <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-active ">
                         <img src="{{ asset('public/images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
+=======
+                    <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-active  {{ (request()->is('admin/transaction')) ? 'active' : '' }}">
+                        <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transactions
+>>>>>>> 8108f51ded3c89aba8e418ad3cd7781f4bb1d714
                     </a>
                     <a href="{{ route('user.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/user*')) ? 'active' : '' }}">
                         <img src="{{ asset('public/images/SVG/profile.svg') }}" alt="" class="mr-2">Users

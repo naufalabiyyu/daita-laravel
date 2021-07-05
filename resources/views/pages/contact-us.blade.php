@@ -8,19 +8,28 @@
 <div class="breadcrumb-area breadcrumb-mt bg-gray breadcrumb-ptb-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
-            <h2>Contact Us</h2>
-            <p>Seamlessly predominate enterprise metrics without performance based process improvements.</p>
+            <h1 class="font-weight-bold">Contact Us</h1>
+            <p>need help ? talk to us</p>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="breadcrumb-img-1">
         <img src="{{ asset('public/images/tes/breadcrumb-1.png') }}" alt="">
     </div>
     <div class="breadcrumb-img-2">
         <img src="{{ asset('public/images/tes/breadcrumb-2.png') }}" alt="">
     </div>
+=======
+    {{-- <div class="breadcrumb-img-1">
+        <img src="/images/tes/breadcrumb-1.png" alt="">
+    </div>
+    <div class="breadcrumb-img-2">
+        <img src="/images/tes/breadcrumb-2.png" alt="">
+    </div> --}}
+>>>>>>> 8108f51ded3c89aba8e418ad3cd7781f4bb1d714
 </div>
 
-<section class="services-area " style="margin-top: 50px; margin-bottom: -50px;">
+<section class="services-area " style="margin-top: 75px; margin-bottom: -50px;">
     <div class="content-area">
         <div class="single-service single-contact-info">
             <div class="icon-area">

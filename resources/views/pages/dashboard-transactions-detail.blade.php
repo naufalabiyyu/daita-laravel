@@ -49,11 +49,11 @@
                                         </div>
                                         <div class="col-12 col-md-3">
                                             <div class="product-title">Transaction Status</div>
-                                            <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transactions->transaction->transaction_status == 'SHIPPING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->transaction_status }}</div>
+                                            <div class="product-subtitle {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'text-success' : ($transactions->transaction->transaction_status == 'SHIPPING' ? 'text-warning': ($transactions->transaction->transaction_status == 'PROCESS' ? 'text-warning' : 'text-danger'))  }}">{{ $transactions->transaction->transaction_status }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Payment Status</div>
-                                            <div class="product-subtitle {{ $transactions->transaction->status_pay == 'SUCCESS' ? 'text-success' : ($transactions->transaction->status_pay == 'PENDING' ? 'text-warning' : 'text-danger')  }}">{{ $transactions->transaction->status_pay }}</div>
+                                            <div class="product-subtitle {{ $transactions->transaction->status_pay == 'SUCCESS' ? 'text-success' : 'text-danger' }}">{{ $transactions->transaction->status_pay }}</div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Courier - Resi</div>
