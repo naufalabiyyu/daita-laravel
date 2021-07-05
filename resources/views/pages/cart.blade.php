@@ -44,7 +44,7 @@
                                         <tr>
                                             <td style="width: 25%;">
                                                 @if ($cart->product->galleries)
-                                                    <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}" alt="" class="cart-image">
+                                                    <img src="/public/{{ Storage::url($cart->product->galleries->first()->photos) }}" alt="" class="cart-image">
                                                 @endif
                                             </td>
                                             <td style="width: 25%;">
@@ -196,7 +196,7 @@
 @endsection
 
 @push('addon-script')
-    <script src="{{ asset('vendor/vue/vue.js')}}"></script>
+    <script src="{{ asset('public/vendor/vue/vue.js')}}"></script>
     <script src="https://unpkg.com/vue-toasted"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>

@@ -11,7 +11,7 @@
 
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="{{ asset('style/main.css')}}" rel="stylesheet" />
+    <link href="{{ asset('public/style/main.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>
     @stack('addon-style')
 </head>
@@ -23,27 +23,27 @@
             <!-- Sidebar -->
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="{{ asset('images/tes/admin.svg') }}" alt="" class="my-3" style="width: 150px;">
+                    <img src="{{ asset('public/images/tes/admin.svg') }}" alt="" class="my-3" style="width: 150px;">
                 </div>
                 <div class="list-group list-group-flush ">
                     <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-active  mt-5">
-                        <img src="{{ asset('images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
+                        <img src="{{ asset('public/images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
                     </a>
                     <a href="{{ route('dashboard-product') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product')) ? 'active' : '' }}">
-                        <img src="{{ asset('images/SVG/wish.svg') }}" alt="" class="mr-2">My Products
+                        <img src="{{ asset('public/images/SVG/wish.svg') }}" alt="" class="mr-2">My Products
                     </a>
                     {{-- <a href="{{ route('product-gallery.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}">
-                        <img src="{{ asset('images/SVG/wish.svg') }}" alt="" class="mr-2">Galleries
+                        <img src="{{ asset('public/images/SVG/wish.svg') }}" alt="" class="mr-2">Galleries
                     </a> --}}
                     <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-active ">
-                        <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
+                        <img src="{{ asset('public/images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
                     </a>
                     <a href="{{ route('user.index') }}" class="list-group-item list-group-item-active {{ (request()->is('admin/user*')) ? 'active' : '' }}">
-                        <img src="{{ asset('images/SVG/profile.svg') }}" alt="" class="mr-2">Users
+                        <img src="{{ asset('public/images/SVG/profile.svg') }}" alt="" class="mr-2">Users
                     </a>
                     <a href="{{ route('logout') }}" 
 					   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-active ">
-                        <img src="{{ asset('images/SVG/sign-out-dashboard.svg') }}" alt="">
+                        <img src="{{ asset('public/images/SVG/sign-out-dashboard.svg') }}" alt="">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                         </form>
@@ -104,16 +104,16 @@
 
      @stack('prepend-script')
     <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('vendor/jquery/jquery.js')}}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script> 
-    <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
+    <script src="{{ asset('public/vendor/jquery/jquery.js')}}"></script>
+    <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('public/vendor/sweetalert/sweetalert.all.js') }}"></script> 
+    <script src="{{ asset('public/vendor/dropzone/dropzone.js') }}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    <script src="{{ asset('script/navbar-scroll.js')}}"></script>
+    <script src="{{ asset('public/script/navbar-scroll.js')}}"></script>
     <script>
         $("#menu-toggle").click(function(e) {
             e.preventDefault();

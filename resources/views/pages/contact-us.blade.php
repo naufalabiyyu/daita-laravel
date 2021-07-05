@@ -13,10 +13,10 @@
         </div>
     </div>
     <div class="breadcrumb-img-1">
-        <img src="/images/tes/breadcrumb-1.png" alt="">
+        <img src="{{ asset('public/images/tes/breadcrumb-1.png') }}" alt="">
     </div>
     <div class="breadcrumb-img-2">
-        <img src="/images/tes/breadcrumb-2.png" alt="">
+        <img src="{{ asset('public/images/tes/breadcrumb-2.png') }}" alt="">
     </div>
 </div>
 

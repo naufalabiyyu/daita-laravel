@@ -11,7 +11,7 @@
 
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="{{ asset('style/main.css')}}" rel="stylesheet" />
+    <link href="{{ asset('public/style/main.css')}}" rel="stylesheet" />
     @stack('addon-style')
 </head>
 
@@ -22,17 +22,17 @@
             <!-- Sidebar -->
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="{{ asset('images/Logo.svg') }}" alt="" class="my-4">
+                    <img src="{{ asset('public/images/Logo.svg') }}" alt="" class="my-4">
                 </div>
                 <div class="list-group list-group-flush ">
                     <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-active  mt-5 {{ (request()->is('dashboard')) ? 'active' : ''  }}">
-                        <img src="{{ asset('images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
+                        <img src="{{ asset('public/images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
                     </a>
                     <a href="{{ route('dashboard-transactions') }}" class="list-group-item list-group-item-active {{ (request()->is('dashboard/transactions*')) ? 'active' : ''}}">
-                        <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
+                        <img src="{{ asset('public/images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
                     </a>
                     <a href="{{ route('dashboard-profile') }}" class="list-group-item list-group-item-active {{ (request()->is('dashboard/profile*')) ? 'active' : '' }}">
-                        <img src="{{ asset('images/SVG/profile.svg') }}" alt="" class="mr-2">Profile
+                        <img src="{{ asset('public/images/SVG/profile.svg') }}" alt="" class="mr-2">Profile
                     </a>
                     <a href="{{ route('logout') }}" 
 					   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item list-group-item-active ">
@@ -49,7 +49,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light navbar-store fixed-top" data-aos="fade-down">
                     <div class="container-fluid">
                         <button class="btn btn-secondary d-md-none mr-auto mr-2" id="menu-toggle">
-                            <img src="{{ asset('images/view-headline.svg') }}" alt="">
+                            <img src="{{ asset('public/images/view-headline.svg') }}" alt="">
                         </button>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav ">
                         <span class="navbar-toggler-icon"></span>
@@ -79,10 +79,10 @@
                                                 $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
                                             @endphp
                                             @if ($carts > 0 )
-                                                <img src="{{ asset('images/icon_cart_filled.svg') }}" alt="">
+                                                <img src="{{ asset('public/images/icon_cart_filled.svg') }}" alt="">
                                                 <div class="card-badge">{{ $carts }}</div>
                                             @else
-                                                <img src="{{ asset('images/icon_cart_empty.svg') }}" alt="">
+                                                <img src="{{ asset('public/images/icon_cart_empty.svg') }}" alt="">
                                             @endif
                                         </a>
                                     </li>
@@ -110,13 +110,13 @@
 
      @stack('prepend-script')
     <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('public/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    <script src="{{ asset('script/navbar-scroll.js')}}"></script>
+    <script src="{{ asset('public/script/navbar-scroll.js')}}"></script>
     <script>
         $("#menu-toggle").click(function(e) {
             e.preventDefault();

@@ -16,7 +16,7 @@
                     <a href="{{ url('admin/user') }}" class="card-admin credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="images/tes/testimonials.svg">
+                            <img src="{{ asset('public/images/tes/testimonials.svg') }}">
                         </div>
                         <p>Customer</p>
                         <h2>{{ $customer }}</h2>
@@ -26,7 +26,7 @@
                     <a href="{{ url('/admin/transaction') }}" class="card-admin credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="images/tes/money.svg">
+                            <img src="{{ asset('public/images/tes/money.svg') }}">
                         </div>
                         <p>Revenue</p>
                         <h3>Rp {{ number_format($revenue) }}</h3>
@@ -36,7 +36,7 @@
                     <a href="{{ url('/admin/transaction') }}" class="card-admin credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="images/tes/deal.svg">
+                            <img src="{{ asset('public/images/tes/deal.svg') }}">
                         </div>
                         <p>Transaction</p>
                         <h2>{{ $transaction }}</h2>
