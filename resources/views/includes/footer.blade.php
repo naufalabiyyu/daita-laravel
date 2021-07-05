@@ -12,10 +12,9 @@
                         </ul>
                         <div class="widget-social ">
                             <ul class="list-unstyled ">
-                                <li><a href="# "><i class="fab fa-facebook-f " style="color: #0C0D36;"></i></a></li>
-                                <li><a href="# "><i class="fab fa-twitter" style="color: #0C0D36;"></i></a></li>
-                                <li><a href="# "><i class="fab fa-google-plus-g" style="color: #0C0D36;"></i></a></li>
-                                <li><a href="# "><i class="fab fa-youtube" style="color: #0C0D36;"></i></a></li>
+                                <li><a href="https://www.facebook.com/DaitaCosmetic" target="_blank"><i class="fab fa-facebook-f " style="color: #0C0D36;"></i></a></li>
+                                <li><a href="https://www.instagram.com/daitacosmeticofficial/" target="_blank"><i class="fab fa-instagram" style="color: #0C0D36;"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UC2avgMmSBEOt5CaehnkjWHg" target="_blank"><i class="fab fa-youtube" style="color: #0C0D36;"></i></a></>
                             </ul>
                         </div>
                     </div>

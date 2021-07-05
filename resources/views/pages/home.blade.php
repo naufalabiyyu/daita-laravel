@@ -35,10 +35,9 @@
               </div>
           </div>
           <div class="social-icon-2">
-              <a href="# "><i class="fab fa-facebook-f " ></i></a>
-              <a href="# "><i class="fab fa-twitter" ></i></a>
-              <a href="# "><i class="fab fa-google-plus-g" ></i></a>
-              <a href="# "><i class="fab fa-youtube" ></i></a>
+              <a href="https://www.facebook.com/DaitaCosmetic" target="_blank"><i class="fab fa-facebook-f " ></i></a>
+              <a href="https://www.instagram.com/daitacosmeticofficial/" target="_blank"><i class="fab fa-instagram" ></i></a>
+              <a href="https://www.youtube.com/channel/UC2avgMmSBEOt5CaehnkjWHg" target="_blank"><i class="fab fa-youtube" ></i></a>
           </div>
       </div>
     </section>
@@ -119,7 +118,7 @@
                 <img src="{{ asset('images/gallery.png')}}" alt="" style="width: 500px; height: 360px;">
             </div>
             <div class="d-none d-lg-block col-lg-6 mt-5 " data-aos="fade-left" data-aos-delay="600">
-                <h2 class="mb-3">Benefits of This Products</h2>
+                <h2 class="mb-3" style="margin-top: 50px;">Benefits of This Products</h2>
                 <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
                 <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
                 <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
@@ -145,32 +144,32 @@
     </div>      
     </section>
     <section class="instagram" style="margin-top: 125px;">
-      <div class="instagram-area mega-fashion-instagram pt-160 pb-1100">
+      <div class="instagram-area mega-fashion-instagram pt-160 pb-1100" data-aos="fade-up" data-aos-delay="500">
           <div class="container-fluid">
               <div class="row grid">
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item">
-                      <div class="section-title-9 mega-fashion-instagram-title" data-aos="fade-up" data-aos-delay="500">
+                      <div class="section-title-9 mega-fashion-instagram-title" >
                           <h2 class="font-weight-bolder">Follow Us On <br> Instagram</h2>
                           <span class="mrg-dec">@daitacosmeticofficial</span>
                       </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 grid-item">
-                      <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
+                      <div class="single-instafeed mb-3" >
                           <a href="https://www.instagram.com/p/BuS0K_-hM3v/" target="_blank"><img src="{{ asset('images/gallery/gallery-2.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item">
-                      <div class="single-instafeed mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="single-instafeed mb-4" >
                           <a href="https://www.instagram.com/p/BtzvAhChQDC/" target="_blank"><img src="{{ asset('images/gallery/gallery-3.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item">
-                      <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
+                      <div class="single-instafeed mb-3" >
                           <a href="https://www.instagram.com/p/BtumCdOBvE5/" target="_blank"><img src="{{ asset('images/gallery/gallery.jpg') }}" alt=""></a>
                       </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item" style="margin-top: 10px;">
-                      <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
+                      <div class="single-instafeed mb-3" >
                           <a href="https://www.instagram.com/p/BtPt8sRhohb/" target="_blank" s><img src="{{ asset('images/gallery/gallery-4.jpg') }}" alt=""></a>
                       </div>
                   </div>
