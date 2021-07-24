@@ -23,7 +23,7 @@
                                 </ul>
                             </div>
                     @endif
-                    <form action="{{ route('dashboard-product-update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard-product-update', $product->id_product) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card card-list p-3">
                             <div class="card-body">
@@ -73,7 +73,7 @@
                             </div>
                     </form>
                         <div class="col-12 text-right">
-                            <button type="button" class="btn btn-danger btn-block px-5 btn-delete" productId={{ $product->id }} id="delete">
+                            <button type="button" class="btn btn-danger btn-block px-5 btn-delete" productId={{ $product->id_product }} id="delete">
                             Hapus Product
                             </button>
                         </div>
@@ -102,7 +102,7 @@
                                 <div class="col-12">
                                     <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="products_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="products_id" value="{{ $product->id_product }}">
                                         <input type="file" name="photos" id="file" style="display: none;" onchange="form.submit()">
                                         <p class="text-danger">* Image must be 764 x 560 pixel</p>
                                         <button type="button" class="btn btn-secondary btn-block" onclick="thisFileUpload()">

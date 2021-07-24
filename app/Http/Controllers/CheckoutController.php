@@ -63,7 +63,7 @@ class CheckoutController extends Controller
 
             TransactionDetail::create([
                 'transactions_id' => $transaction,
-                'products_id' => $cart->product->id,
+                'products_id' => $cart->product->id_product,
                 'prices' => $cart->product->prices,
                 'quantity' => $cart->quantity
             ]);

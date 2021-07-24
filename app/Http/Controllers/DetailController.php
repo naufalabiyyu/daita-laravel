@@ -31,7 +31,7 @@ class DetailController extends Controller
         // Kalo ID nya sama dengan yang mau ditambahkan lagi
         // Maka tambahkan quantitynya aja
         $produkDiKeranjang = Cart::where(['products_id' => $id, 'users_id' => $userId])->first();
-        $produkDetail = Product::where(['id' => $id])->first();
+        $produkDetail = Product::where(['id_product' => $id])->first();
 
         // Quantity tidak boleh lebih dari stock
         if ($quantity > $produkDetail['stock']){
