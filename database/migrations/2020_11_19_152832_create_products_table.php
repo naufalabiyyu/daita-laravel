@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->integer('id_product');
+            $table->increments('id_product');  // Primary key pake increments daripada integer
             $table->string('name')->length(30);
             $table->string('slug')->length(40);
             $table->longText('description');
@@ -22,7 +22,6 @@ class CreateProductsTable extends Migration
             $table->integer('prices')->length(8);
             $table->longText('how_to_use');
             $table->longText('ingredients');
-            $table->primary('id_product');
             
             $table->softDeletes();
             $table->timestamps();
