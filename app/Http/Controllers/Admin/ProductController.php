@@ -23,6 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['galleries'])->get();
+
         return view('pages.admin.product.dashboard-product', [
             'products' => $products
         ]);    
