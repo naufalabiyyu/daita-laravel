@@ -54,9 +54,9 @@
                                                 <form action="#">
                                                 <input type="hidden" value="{{ csrf_token() }}" id="quantityToken">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" data-formQuantity="quantity" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"/>
-                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" data-formQuantity="quantity" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
@@ -65,7 +65,7 @@
                                                 <div class="product-title" id="productPrice{{ $index }}" >{{ $cart->product->prices }}</div>
                                             </td>
                                             <td class="align-middle">
-                                                <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                                                <form action="{{ route('cart-delete', $cart->id_cart) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn"><i class="fas fa-times fa-2x" style="color: #F32355;"></i></button>
