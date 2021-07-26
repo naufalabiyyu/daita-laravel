@@ -28,8 +28,4 @@ class Product extends Model
     {
         return $this->hasMany(ProductGallery::class, 'products_id', 'id_product');
     }
-    
-   
-    
-
 }
