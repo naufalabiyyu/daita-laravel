@@ -48,7 +48,7 @@
                                         <select name="provinces_id" class="form-control">
                                             <option value="" holder>Pilih Provinsi</option>
                                             @foreach ($provinsi as $result)
-                                            <option value="{{ $result->id }}" @php if ($user->provinces_id == $result->id) { echo "selected"; } @endphp >{{ $result->province }}</option>
+                                            <option value="{{ $result->id_province }}" @php if ($user->provinces_id == $result->id_province) { echo "selected"; } @endphp >{{ $result->province }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -98,7 +98,6 @@
 @push('addon-script')
 <?php if ($user->provinces_id) { ?>
     <script>
-        console.log("bjir")
         $( document ).ready(function() {
             $.ajax({
                 url: 'getCity/' + {{ $user->provinces_id }},
@@ -109,7 +108,7 @@
                     $.each(data, function (key, value) {
                         $('select[name="regencies_id"]').append(
                             '<option value="' +
-                            value.id + '">' + value.city_name + '</option>');
+                            value.id_city + '">' + value.city_name + '</option>');
                     });
                     $('select[name="regencies_id"]').val({{ $user->regencies_id }})
                 }
@@ -131,7 +130,7 @@
                             $.each(data, function (key, value) {
                                 $('select[name="regencies_id"]').append(
                                     '<option value="' +
-                                    value.id + '">' + value.city_name + '</option>');
+                                    value.id_city + '">' + value.city_name + '</option>');
                             });
                         }
                     });
@@ -155,7 +154,7 @@
                     $.each(data, function (key, value) {
                         $('select[name="regencies_id"]').append(
                             '<option value="' +
-                            value.id + '">' + value.city_name + '</option>');
+                            value.id_city + '">' + value.city_name + '</option>');
                     });
                     $('select[name="regencies_id"]').val({{ $user->regencies_id }})
                 }
@@ -174,7 +173,7 @@
                                 $.each(data, function (key, value) {
                                     $('select[name="regencies_id"]').append(
                                         '<option value="' +
-                                        value.id + '">' + value.city_name + '</option>');
+                                        value.id_city + '">' + value.city_name + '</option>');
                                 });
                             }
                         });
