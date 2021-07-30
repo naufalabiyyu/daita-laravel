@@ -16,11 +16,11 @@ class Cart extends Model
 
     public function product() 
     {
-        return $this->hasOne(Product::class, 'id', 'products_id', 'quantity'); // karena setiap item cart itu punya 1 product 
+        return $this->hasOne(Product::class, 'id_product', 'products_id', 'quantity'); // karena setiap item cart itu punya 1 product 
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id', 'id'); 
+        return $this->belongsTo(User::class, 'users_id', 'id_user'); 
     }
 }

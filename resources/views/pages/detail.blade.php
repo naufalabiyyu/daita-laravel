@@ -63,7 +63,7 @@
                                     </form>
                                 </div>
                                 @auth
-                                    <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('detail-add', $product->id_product) }}" method="POST" enctype="multipart/form-data">
                                     <input type="hidden" name="quantity" value="1" />
                                     @csrf
                                         <button type="submit" class="btn btn-success text-white mt-3 pd-cart">
@@ -111,7 +111,7 @@
                     photos: [
                         @foreach($product->galleries as $gallery)
                          {
-                             id: {{ $gallery->id }},
+                             id: {{ $gallery->id_gallery }},
                              url: "/public/{{ Storage::url($gallery->photos) }}",
                          },
                          @endforeach

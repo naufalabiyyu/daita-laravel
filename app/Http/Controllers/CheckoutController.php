@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         // process Checkout
         $code = 'STORE-' . mt_rand(000000, 999999);
         $carts = Cart::with(['product', 'user'])
-            ->where('users_id', Auth::user()->id)
+            ->where('users_id', Auth::user()->id_user)
             ->get();
 
         // Hitung total price
@@ -46,7 +46,7 @@ class CheckoutController extends Controller
         // Transaction create
         $transaction = Transaction::insertGetId([
             'code' => $code,
-            'users_id' => Auth::user()->id,
+            'users_id' => Auth::user()->id_user,
             'sub_total' => $subtotal,
             'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
@@ -63,7 +63,7 @@ class CheckoutController extends Controller
 
             TransactionDetail::create([
                 'transactions_id' => $transaction,
-                'products_id' => $cart->product->id,
+                'products_id' => $cart->product->id_product,
                 'prices' => $cart->product->prices,
                 'quantity' => $cart->quantity
             ]);
@@ -71,7 +71,7 @@ class CheckoutController extends Controller
 
         // Delete Cart Data
         Cart::with(['product', 'user'])
-            ->where('users_id', Auth::user()->id)
+            ->where('users_id', Auth::user()->id_user)
             ->delete();
 
         // Set your Merchant Server Key

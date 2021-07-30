@@ -45,7 +45,7 @@
 						<li>
 							<a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
 							@php
-								$carts = \App\Cart::where('users_id', Auth::user()->id)->count();
+								$carts = \App\Cart::where('users_id', Auth::user()->id_user)->count();
 							@endphp
 							@if ($carts > 0 )
 								<img src="{{ asset('public/images/icon_cart_filled.svg') }}" alt="">
@@ -90,6 +90,7 @@
 					<a class="nav-link " href="#">Customer Care &nbsp;</a>
 				</li>
 				@guest
+				{{-- knp ini?, error dimari --}}
 				{{-- <li class="nav-item">
 					<a class="nav-link " href="{{ route('register') }}">Sign Up</a>
 				</li> --}}
@@ -120,7 +121,7 @@
 					<li>
 						<a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
 						@php
-							$carts = \App\Cart::where('users_id', Auth::user()->id)->count();
+							$carts = \App\Cart::where('users_id', Auth::user()->id_user)->count();
 						@endphp
 						@if ($carts > 0 )
 							<img src="{{ asset('public/images/icon_cart_filled.svg') }}" alt="">

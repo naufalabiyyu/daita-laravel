@@ -19,8 +19,8 @@ class ChangeNullableFieldAtUsersTable extends Migration
             $table->integer('provinces_id')->nullable()->change();
             $table->integer('regencies_id')->nullable()->change();
             $table->integer('zip_code')->nullable()->change();
-            $table->string('country')->nullable()->change();
-            $table->string('phone_number')->nullable()->change();
+            $table->string('country')->nullable()->change()->length(10);
+            $table->string('phone_number')->nullable()->change()->length(15);
         });
     }
 

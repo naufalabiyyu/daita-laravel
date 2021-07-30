@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductGallery extends Model
 {
+    protected $table = "product_galleries";
+    protected $primaryKey = 'id_gallery';
+
     protected $fillable = [
         'photos', 'products_id'
     ];
@@ -16,6 +19,6 @@ class ProductGallery extends Model
 
     public function product() 
     {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Product::class, 'products_id', 'id_product');
     }
 }

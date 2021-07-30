@@ -62,7 +62,7 @@
                                         
                                         
                                     </div>
-                                    <form action="{{ route('dashboard-transaction-update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('dashboard-transaction-update', $transactions->id_transaction_detail) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
                                         <div class="col-12 mt-4 mb-3">
@@ -80,11 +80,11 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">Province</div>
-                                                    <div class="product-subtitle">{{ App\Province::find($transactions->transaction->user->provinces_id)->province }}</div>
+                                                    <div class="product-subtitle">{{ App\Province::where('id_province', $transactions->transaction->user->provinces_id)->first()->province }}</div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">City</div>
-                                                    <div class="product-subtitle">{{ App\City::find($transactions->transaction->user->regencies_id)->city_name }}</div>
+                                                    <div class="product-subtitle">{{ App\City::where('id_city', $transactions->transaction->user->regencies_id)->first()->city_name }}</div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="product-title">Postal Kode</div>
@@ -103,6 +103,7 @@
                                         <!-- Image Desktop Version -->
                                         <div class="col-12 col-md-5 d-none d-lg-flex">
                                             <img src="/public/{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
+                                            <img src="{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
                                         </div>
                                         <!-- End -->
                                     </div>

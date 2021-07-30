@@ -25,7 +25,7 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('transaction.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('transaction.update', $item->id_transaction) }}" method="POST" enctype="multipart/form-data">
                                     @method("PUT")
                                     @csrf
                                     <div class="row">

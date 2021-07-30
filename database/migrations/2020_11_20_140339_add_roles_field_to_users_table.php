@@ -14,7 +14,7 @@ class AddRolesFieldToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('roles')->default('USER')->after('password'); // USER,ADMIN
+            $table->string('roles')->default('USER')->after('password')->length(5); // USER,ADMIN
         });
     }
 

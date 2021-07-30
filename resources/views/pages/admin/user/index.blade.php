@@ -56,7 +56,7 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'id', name: 'id'},
+                { data: 'id_user', name: 'id_user'},
                 { data: 'name', name: 'name'},
                 { data: 'email', name: 'email'},
                 { data: 'phone_number', name: 'phone_number'},

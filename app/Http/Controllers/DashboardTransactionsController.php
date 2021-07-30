@@ -13,8 +13,8 @@ class DashboardTransactionsController extends Controller
     {
         $transactions = TransactionDetail::with(['transaction.user','product.galleries'])
                             ->whereHas('transaction', function($transaction){
-                                $transaction->where('users_id', Auth::user()->id);
-                            })->orderBy('id','desc')->get();
+                                $transaction->where('users_id', Auth::user()->id_user);
+                            })->orderBy('id_transaction_detail','desc')->get();
                             
         return view('pages.dashboard-transactions',[
             'transactions' => $transactions
@@ -23,7 +23,7 @@ class DashboardTransactionsController extends Controller
     public function details(Request $request, $id)
     {
         $transactions = TransactionDetail::with(['transaction.user','product.galleries'])
-                            ->findOrFail($id);
+                            ->where('id_transaction_detail', $id)->firstOrFail(); // dsini ya
         // dd($transactions);
         return view('pages.dashboard-transactions-detail',[
             'transactions' => $transactions

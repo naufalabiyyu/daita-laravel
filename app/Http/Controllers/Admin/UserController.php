@@ -35,7 +35,7 @@ class UserController extends Controller
                                     Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('user.edit', $item->id) .  '">
+                                    <a class="dropdown-item" href="' . route('user.edit', $item->id_user) .  '">
                                     Sunting
                                     </a>
                                     <button type="submit" class="dropdown-item text-danger btn-delete" itemId =' . $item->id . ' id="delete">
@@ -71,6 +71,8 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        unset($data['_method']);
+        unset($data['_token']);
 
         $data['password'] = bcrypt($request->password);
 

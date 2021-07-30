@@ -21,7 +21,7 @@ class ProvinceSeeder extends Seeder
 
         foreach($provinces as $province) {
             $data_province[] = [
-                'id' => $province['province_id'],
+                'id_province' => $province['province_id'],
                 'province' => $province['province']
             ];
         }

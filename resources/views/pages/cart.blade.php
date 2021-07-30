@@ -54,9 +54,9 @@
                                                 <form action="#">
                                                 <input type="hidden" value="{{ csrf_token() }}" id="quantityToken">
                                                     <div class="quantity">
-                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" data-formQuantity="quantity" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"/>
-                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-plus"></i></button>
+                                                        <button type="button" data-quantity="minus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" data-formQuantity="quantity" name="formInput{{ $index }}" id="quantity{{ $index }}" value="{{ $cart->quantity }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"/>
+                                                        <button type="button" data-quantity="plus" data-field="formInput{{ $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id_cart }}" data-productPrice="{{ $cart->product->prices }}"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                 </form>
                                             </td>
@@ -65,7 +65,7 @@
                                                 <div class="product-title" id="productPrice{{ $index }}" >{{ $cart->product->prices }}</div>
                                             </td>
                                             <td class="align-middle">
-                                                <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                                                <form action="{{ route('cart-delete', $cart->id_cart) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn"><i class="fas fa-times fa-2x" style="color: #F32355;"></i></button>
@@ -114,7 +114,7 @@
                                         <select name="provinces_id" class="form-control" disabled style="appearance: none;">
                                             <option value="" holder></option>
                                             @foreach ($provinsi as $result)
-                                            <option value="{{ $result->id }}" @php if ($user->provinces_id == $result->id) { echo "selected"; } @endphp  >{{ $result->province }}</option>
+                                            <option value="{{ $result->id_province }}" @php if ($user->provinces_id == $result->id_province) { echo "selected"; } @endphp  >{{ $result->province }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -258,7 +258,7 @@
                             $.each(data, function (key, value) {
                                 $('select[name="regencies_id"]').append(
                                     '<option value="' +
-                                    value.id + '">' + value.city_name + '</option>');
+                                    value.id_city + '">' + value.city_name + '</option>');
                             });
                             $('select[name="regencies_id"]').val({{ $user->regencies_id }})
                             $('#couriers').attr("disabled", false); 

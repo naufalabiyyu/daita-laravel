@@ -24,14 +24,14 @@ class DetailController extends Controller
 
     public function add(Request $request, $id)
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::user()->id_user;
         $quantity = $request->input('quantity');
 
         // Cari dulu produk yang ada di keranjang
         // Kalo ID nya sama dengan yang mau ditambahkan lagi
         // Maka tambahkan quantitynya aja
         $produkDiKeranjang = Cart::where(['products_id' => $id, 'users_id' => $userId])->first();
-        $produkDetail = Product::where(['id' => $id])->first();
+        $produkDetail = Product::where(['id_product' => $id])->first();
 
         // Quantity tidak boleh lebih dari stock
         if ($quantity > $produkDetail['stock']){
