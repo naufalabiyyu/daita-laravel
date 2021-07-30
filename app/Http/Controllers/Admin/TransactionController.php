@@ -39,9 +39,9 @@ class TransactionController extends Controller
 
   public function filter(Request $request)
   {
-    $dariTanggal = date($request->dari);
-    $keTanggal = date($request->ke);
-    $dataFilter = Transaction::with('user')->whereBetween('created_at', [$dariTanggal . '%', $keTanggal . '%']);
+    $dariTanggal = date('Y-m-d', strtotime($request->dari . ' +1 day'));
+    $keTanggal = date('Y-m-d', strtotime($request->ke . ' +1 day'));
+    $dataFilter = Transaction::with('user')->whereBetween('transactions.created_at', [$dariTanggal . '%', $keTanggal . '%']);
     return $this->renderDataTable($dataFilter);
   }
 
@@ -101,10 +101,10 @@ class TransactionController extends Controller
                           Aksi
                       </button>
                       <div class="dropdown-menu">
-                          <a class="dropdown-item" href="' . route('transaction.edit', $item->id) .  '">
+                          <a class="dropdown-item" href="' . route('transaction.edit', $item->id_transaction) .  '">
                           Sunting
                           </a>
-                          <form action="' . route('transaction.destroy', $item->id) . '" method="POST">
+                          <form action="' . route('transaction.destroy', $item->id_transaction) . '" method="POST">
                               ' . method_field('delete') . csrf_field() . '
                               <button type="submit" class="dropdown-item text-danger">
                                   Hapus
@@ -159,7 +159,7 @@ class TransactionController extends Controller
    */
   public function edit($id)
   {
-    $item = Transaction::findOrFail($id);
+    $item = Transaction::where('id_transaction', $id)->first();
     $TD = TransactionDetail::where(['transactions_id' => $id])->first();
 
     return view('pages.admin.transaction.edit', [
@@ -179,14 +179,14 @@ class TransactionController extends Controller
   {
     // Update Transaction
     $data = $request->all();
-    $item = Transaction::findOrFail($id);
-    $item->update($data);
+    unset($data['_method']);
+    unset($data['_token']);
+    Transaction::where('id_transaction', $id)->update($data);
 
     if ($data['transaction_status'] == "SHIPPING") {
       $TransactionDetails = TransactionDetail::where(['transactions_id' => $id])->get();
       // Update Resi
-      $UpdateResi = Transaction::findOrFail($id);
-      $UpdateResi->update([
+      Transaction::where('id_transaction', $id)->update([
         'resi' => $data['resi']
       ]);
 

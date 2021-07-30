@@ -84,8 +84,8 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [{
-                    data: 'id',
-                    name: 'id'
+                    data: 'id_transaction',
+                    name: 'id_transaction'
                 },
                 {
                     data: 'user.name',
@@ -118,8 +118,9 @@
         })
 
         function filter() {
-            let dariTanggal = new Date($('#date-dari').val()).toISOString().split('T')[0];
-            let sampaiTanggal = new Date($('#date-ke').val()).toISOString().split('T')[0];
+            let dariTanggal = $('#date-dari').val()
+            let sampaiTanggal = $('#date-ke').val()
+            console.log(dariTanggal)
             $("#crudTable").dataTable().fnDestroy()
             $('#crudTable').DataTable({
                 processing: true,
@@ -135,8 +136,8 @@
                     url: "{{ route('filter') }}",
                 },
                 columns: [{
-                        data: 'id',
-                        name: 'id'
+                    data: 'id_transaction',
+                    name: 'id_transaction'
                     },
                     {
                         data: 'user.name',

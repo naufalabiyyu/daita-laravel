@@ -14,7 +14,7 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_transaction');
             $table->string('code')->length(20);
             $table->integer('users_id')->length(20); 
             $table->integer('sub_total')->length(8);

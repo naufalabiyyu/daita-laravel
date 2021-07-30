@@ -24,7 +24,7 @@ class DetailController extends Controller
 
     public function add(Request $request, $id)
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::user()->id_user;
         $quantity = $request->input('quantity');
 
         // Cari dulu produk yang ada di keranjang

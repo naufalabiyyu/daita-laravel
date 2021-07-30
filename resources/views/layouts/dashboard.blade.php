@@ -76,7 +76,7 @@
                                     <li>
                                         <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                                             @php
-                                                $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
+                                                $carts = \App\Cart::where('users_id', Auth::user()->id_user)->count();
                                             @endphp
                                             @if ($carts > 0 )
                                                 <img src="{{ asset('images/icon_cart_filled.svg') }}" alt="">
