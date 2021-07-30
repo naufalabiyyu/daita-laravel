@@ -92,9 +92,9 @@
                                 @foreach ($product->galleries as $gallery)
                                     <div class="col-md-4">
                                         <div class="gallery-container">
-                                            <img src="{{ Storage::url($gallery->photos ?? '') }}" alt="" class="w-100">
+                                            <img src="/public/{{ Storage::url($gallery->photos ?? '') }}" alt="" class="w-100">
                                             <a href="{{ route('dashboard-product-gallery-delete', $gallery->id) }}" class="delete-gallery">
-                                                <img src="{{ asset('images/icon-delete.svg') }}" alt="">
+                                                <img src="{{ asset('public/images/icon-delete.svg') }}" alt="">
                                             </a>
                                         </div>
                                     </div>

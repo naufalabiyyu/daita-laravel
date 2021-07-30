@@ -118,7 +118,6 @@
                 <img src="{{ asset('public/images/gallery.png')}}" alt="" style="width: 500px; height: 360px;">
             </div>
             <div class="d-none d-lg-block col-lg-6 mt-5 " data-aos="fade-left" data-aos-delay="600">
-<<<<<<< HEAD
                 <h2 class="mb-3">Benefits of This Products</h2>
                 <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
                 <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
@@ -126,15 +125,6 @@
                 <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
                 <img src="{{ asset('public/images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
                 <img src="{{ asset('public/images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
-=======
-                <h2 class="mb-3" style="margin-top: 50px;">Benefits of This Products</h2>
-                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Flek Hitam Menahun<br>
-                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Bekas Jerawat<br>
-                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencerahkan Wajah<br>
-                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat<br>
-                <img src="{{ asset('images/dot.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Mencegah Penuaan Dini<br>
-                <img src="{{ asset('images/dot2.png')}}" style="width: 35px; height: 35px;" class="mr-2 p-2">Menghilangkan Jerawat
->>>>>>> 8108f51ded3c89aba8e418ad3cd7781f4bb1d714
             </div>
             <!-- mobile version -->
             <div class="d-lg-none col-12 col-md-6 mt-5 mb-5 text-center">
@@ -164,7 +154,6 @@
                       </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 grid-item">
-<<<<<<< HEAD
                       <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
                           <a href="https://www.instagram.com/p/BuS0K_-hM3v/" target="_blank"><img src="{{ asset('public/images/gallery/gallery-2.jpg') }}" alt=""></a>
                       </div>
@@ -182,7 +171,6 @@
                   <div class="col-lg-3 col-md-6 col-sm-6 grid-item" style="margin-top: 10px;">
                       <div class="single-instafeed mb-3" data-aos="fade-up" data-aos-delay="200">
                           <a href="https://www.instagram.com/p/BtPt8sRhohb/" target="_blank" s><img src="{{ asset('public/images/gallery/gallery-4.jpg') }}" alt=""></a>
-=======
                       <div class="single-instafeed mb-3" >
                           <a href="https://www.instagram.com/p/BuS0K_-hM3v/" target="_blank"><img src="{{ asset('images/gallery/gallery-2.jpg') }}" alt=""></a>
                       </div>
