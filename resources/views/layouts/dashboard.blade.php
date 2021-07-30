@@ -29,7 +29,7 @@
                         <img src="{{ asset('images/SVG/dashboard.svg') }}" alt="" class="mr-2 ">Dashboard
                     </a>
                     <a href="{{ route('dashboard-transactions') }}" class="list-group-item list-group-item-active {{ (request()->is('dashboard/transactions*')) ? 'active' : ''}}">
-                        <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transaction
+                        <img src="{{ asset('images/SVG/transaction.svg') }}" alt="" class="mr-2">Transactions
                     </a>
                     <a href="{{ route('dashboard-profile') }}" class="list-group-item list-group-item-active {{ (request()->is('dashboard/profile*')) ? 'active' : '' }}">
                         <img src="{{ asset('images/SVG/profile.svg') }}" alt="" class="mr-2">Profile
