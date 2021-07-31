@@ -70,7 +70,7 @@ class CartController extends Controller
     }
 
     public function update(Request $request, $id){
-        $cart = Cart::findOrFail($id);
+        $cart = Cart::where('id_cart', $id);
         $cart->update([
             'quantity' => $request->quantity
         ]);
