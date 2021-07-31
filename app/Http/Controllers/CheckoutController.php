@@ -36,8 +36,12 @@ class CheckoutController extends Controller
         foreach ($carts as $cart) {
             $subtotal += $cart->quantity * $cart->product->prices;
         }
-        // Tambah ongkir
-        $totalPrice = $subtotal + $request->ongkir;
+        // Hitung pajak
+        $pajak = intval((10/100) * $subtotal);
+
+        // Hitung total price + pajak
+        $totalPrice = $subtotal + $request->ongkir + $pajak;
+        // tes, oii oke udah waras wkwkwk
         // gitu aja
 
          if($subtotal == 0){
@@ -103,12 +107,39 @@ class CheckoutController extends Controller
         try {
             // Get Snap Payment Page URL
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
-
+            
             // Redirect to Snap Payment Page
             return redirect($paymentUrl);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function getStatusMidtrans($orderId) {
+        $auth = "Basic U0ItTWlkLXNlcnZlci1GVmxBM0RiUUNkb2NZZ0FOOVFDS0VPejA=";
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.sandbox.midtrans.com/v2/" . $orderId . "/status",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_POSTFIELDS =>"\n\n",
+        CURLOPT_HTTPHEADER => array(
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Authorization: " . $auth,
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
     }
 
     public function midtranscancel()
@@ -121,8 +152,13 @@ class CheckoutController extends Controller
         $code = $request->order_id;
         //pakai $code soalnya takut di pakai lagi kodenaya
         $db = Transaction::where('code',$code)->first();
+        $transactionMidtrans = $this->getStatusMidtrans($code);
+        // itu redirect midtransnya ke localhost dulu oy
+        // gua mau liat callbacknya
         
-        // return $db;
+        $this->callback($transactionMidtrans);
+        // die(); //tuh bisa
+        return $db;
         return view('pages.midtrans.selesai',compact('db')); 
         //dah tinggal get aja di viewnya lanjut, diviewnya ya ?
         //iya jadi nggak usah redirect , bedain tulisan aja 
@@ -140,9 +176,10 @@ class CheckoutController extends Controller
         return view('pages.midtrans.error');
     }
 
-    public function callback(Request $request)
+    public function callback($request)
     {
-        
+
+        $request = json_decode($request);
         $transaction = $request->transaction_status;
         $fraud = $request->fraud_status;
 
@@ -151,77 +188,74 @@ class CheckoutController extends Controller
             if ($fraud == 'challenge') {
               // TODO Set payment status in merchant's database to 'challenge'
               
-                $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'FAILED';
-                $update->transaction_status = 'PENDING';
-                $update->save();
+              Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
             return;
               
             }else if ($fraud == 'accept') {
               // TODO Set payment status in merchant's database to 'success'
               
-                $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'SUCCESS';
-                $update->transaction_status = 'PROCESS';
-                $update->save();
+              Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCCESS'
+            ]);
             return;
               
             }
         }else if ($transaction == 'cancel') {
             if ($fraud == 'challenge') {
               // TODO Set payment status in merchant's database to 'failure'
-              
-                $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'FAILED';
-                $update->transaction_status = 'PENDING';
-                $update->save();
+              Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
             return;
               
             }else if ($fraud == 'accept') {
               // TODO Set payment status in merchant's database to 'failure'
-              
-                $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'CANCEL';
-                $update->transaction_status = 'PENDING';
-                $update->save();
+
+              Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'CANCEL',
+                'transaction_status' => 'PENDING'
+            ]);
             return;
             }
         }else if ($transaction == 'deny') {
-      // TODO Set payment status in merchant's database to 'failure'
-              
-            $update = Transaction::where('code',$request->order_id)->first();
-            $update->status_pay = 'FAILED';
-            $update->transaction_status = 'PENDING';
-            $update->save();
+            // TODO Set payment status in merchant's database to 'failure' 
+
+            Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
             return;
               
         }else if($transaction == 'pending') {
-            
-                $update = Transaction::where('code',$request->order_id)->first();
-                $update->status_pay = 'PENDING';
-                $update->transaction_status = 'PENDING';
-                $update->save();
+                Transaction::where('code',$request->order_id)->update([
+                    'status_pay' => 'PENDING',
+                    'transaction_status' => 'PENDING'
+                ]);
             return;
         }else if($transaction == 'expire') {
             
-            $update = Transaction::where('code',$request->order_id)->first();
-            $update->status_pay = 'EXPIRED';
-            $update->transaction_status = 'PENDING';
-            $update->save();
+            Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'EXPIRED',
+                'transaction_status' => 'PENDING'
+            ]);
             return;
         }else if($transaction == 'accept') {
             
-            $update = Transaction::where('code',$request->order_id)->first();
-            $update->status_pay = 'SUCCESS';
-            $update->transaction_status = 'PROCESS';
-            $update->save();
+            Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCESS'
+            ]);
             return;
         }else if($transaction == 'settlement') {
-            
-            $update = Transaction::where('code',$request->order_id)->first();
-            $update->status_pay = 'SUCCESS';
-            $update->transaction_status = 'PROCESS';
-            $update->save();
+            Transaction::where('code',$request->order_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCESS'
+            ]);
             return;
         }
         echo json_encode('berhasil');
