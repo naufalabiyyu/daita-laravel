@@ -50,7 +50,7 @@ class CheckoutController extends Controller
             'sub_total' => $subtotal,
             'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
-            'transaction_status' => 'PENDING',
+            'transaction_status' => 'PROCESS', 
             'courier' => $request->couriers, 
             'service' => $request->services, 
             'resi' => '',
@@ -122,7 +122,7 @@ class CheckoutController extends Controller
         //pakai $code soalnya takut di pakai lagi kodenaya
         $db = Transaction::where('code',$code)->first();
         
-        // return $db;
+        return $db;
         return view('pages.midtrans.selesai',compact('db')); 
         //dah tinggal get aja di viewnya lanjut, diviewnya ya ?
         //iya jadi nggak usah redirect , bedain tulisan aja 

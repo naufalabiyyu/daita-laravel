@@ -103,7 +103,6 @@
                                         <!-- Image Desktop Version -->
                                         <div class="col-12 col-md-5 d-none d-lg-flex">
                                             <img src="/public/{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
-                                            <img src="{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" class="w-100 ">
                                         </div>
                                         <!-- End -->
                                     </div>
