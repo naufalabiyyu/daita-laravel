@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/public/{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" class="w-75">
+                                        <img src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" class="w-75">
                                     </div>
                                     <div class="col-md-4">
                                         {{ $transaction->product->name ?? '' }}
@@ -32,7 +32,7 @@
                                     {{ $transaction->transaction->transaction_status ?? '' }}
                                     </div>
                                     <div class="col-md-1 d-none d-md-block">
-                                        <img src="{{ asset('public/images/drawable-mdpi/dashboard-row-right.png') }}" alt="">
+                                        <img src="{{ asset('images/drawable-mdpi/dashboard-row-right.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>

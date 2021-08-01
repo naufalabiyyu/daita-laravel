@@ -82,7 +82,7 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-    <script src="{{ asset('public/vendor/vue/vue.js') }}"></script>
+    <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script>
         var transactionDetails = new Vue({
             el: '#transactionDetails',

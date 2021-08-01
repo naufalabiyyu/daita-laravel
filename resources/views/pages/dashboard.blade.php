@@ -16,7 +16,7 @@
                     <a href="{{ route('home') }}" class="card-home credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="{{ asset('public/images/tes/house.svg') }}">
+                            <img src="{{ asset('images/tes/house.svg') }}">
                         </div>
                         <p>Back to Store</p>
                     </a>
@@ -25,7 +25,7 @@
                     <a href="{{ route('dashboard-transactions') }}" class="card-home credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="{{ asset('public/images/tes/transaction.svg') }}">
+                            <img src="{{ asset('images/tes/transaction.svg') }}">
                         </div>
                         <p>My Transaction</p>
                     </a>
@@ -34,7 +34,7 @@
                     <a href="{{ route('dashboard-profile') }}" class="card-home credentialing">
                         <div class="overlay"></div>
                         <div class="circle">
-                            <img src="{{ asset('public/images/tes/setting.svg') }}">
+                            <img src="{{ asset('images/tes/setting.svg') }}">
                         </div>
                         <p>My Profile</p>
                     </a>
