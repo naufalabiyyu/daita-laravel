@@ -59,8 +59,7 @@
                                             <div class="product-title">Courier - Resi</div>
                                             <div class="product-subtitle"><p class="d-inline text-uppercase text-success">{{ $transactions->transaction->courier }}</p> - {{ $transactions->transaction->service }}</div>
                                         </div>
-                                        
-                                        
+                        
                                     </div>
                                     <form action="{{ route('dashboard-transaction-update', $transactions->id_transaction_detail) }}" method="POST" enctype="multipart/form-data">
                                         @csrf

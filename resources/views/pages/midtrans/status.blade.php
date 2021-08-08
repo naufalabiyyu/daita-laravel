@@ -15,7 +15,7 @@ selesai
               <div class="col-lg-6 text-center">
                 <img src="{{ asset('images/checkout.svg') }}" alt="" class="mb-4" />
                 <h2>
-                  Transaction Failed!
+                  Waiting Your Payment
                 </h2>
                 <p>
                   Silahkan selesaikan pembayaran yang telah ditentukan 
@@ -69,7 +69,7 @@ selesai
               <div class="col-lg-6 text-center">
                 <img src="{{ asset('images/checkout.svg') }}" alt="" class="mb-4" />
                 <h2>
-                  Transaction Expired!
+                  Transaction Failed!
                 </h2>
                 <p>
                   Silahkan Order Kembali!

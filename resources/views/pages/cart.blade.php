@@ -21,8 +21,7 @@
                 </div>
             </div>
         </section>
-
-
+        
         <section class="store-cart" >
             <div class="container">
                 <div class="card card-details " data-aos="fade-up" data-aos-delay="100">
@@ -181,17 +180,10 @@
                     </div>
                 </div>
             </form>
-           
-            
-            
             </div>
         </section>
         </div>
         </section>
-
-
-
-
     </div>
 @endsection
 

@@ -12,12 +12,6 @@
             <p>need help ? talk to us</p>
         </div>
     </div>
-    {{-- <div class="breadcrumb-img-1">
-        <img src="{{ asset('images/tes/breadcrumb-1.png') }}" alt="">
-    </div>
-    <div class="breadcrumb-img-2">
-        <img src="{{ asset('images/tes/breadcrumb-2.png') }}" alt="">
-    </div> --}}
 </div>
 
 <section class="services-area " style="margin-top: 75px; margin-bottom: -50px;">

@@ -159,7 +159,7 @@ class CheckoutController extends Controller
         // $this->callback($transactionMidtrans);
         // die(); //tuh bisa
         // return $db;
-        return view('pages.midtrans.selesai',compact('db')); 
+        return view('pages.midtrans.status',compact('db')); 
         //dah tinggal get aja di viewnya lanjut, diviewnya ya ?
         //iya jadi nggak usah redirect , bedain tulisan aja 
     }
