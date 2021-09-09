@@ -38,7 +38,7 @@ class UserController extends Controller
                                     <a class="dropdown-item" href="' . route('user.edit', $item->id_user) .  '">
                                     Sunting
                                     </a>
-                                    <button type="submit" class="dropdown-item text-danger btn-delete" itemId =' . $item->id . ' id="delete">
+                                    <button type="submit" class="dropdown-item text-danger btn-delete" itemId =' . $item->id_user . ' id="delete">
                                             Hapus
                                         </button>
                                 </div>

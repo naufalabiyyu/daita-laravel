@@ -69,7 +69,7 @@ Route::prefix('admin')
         Route::post('product/gallery/upload', 'ProductController@uploadGallery')->name('dashboard-product-gallery-upload');
         Route::get('product/gallery/delete/{id}', 'ProductController@deleteGallery')->name('dashboard-product-gallery-delete'); 
 
-        Route::resource('product-gallery', 'ProductGalleryController');
+        // Route::resource('product-gallery', 'ProductGalleryController');
         
         Route::resource('transaction', 'TransactionController');
         Route::post('/rekap', 'TransactionController@rekap')->name('rekap');

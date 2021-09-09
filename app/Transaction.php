@@ -11,6 +11,9 @@ class Transaction extends Model
      *
      * @var array
      */
+
+    protected $primaryKey = 'id_transaction';
+
     protected $fillable = [
         'code',
         'users_id',
