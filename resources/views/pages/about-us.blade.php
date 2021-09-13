@@ -41,44 +41,24 @@
         </div>
     </div>
 </div>
-<div class="our-mission-area pt-160 pb-160">
+<div class="about-story-area pt-120 pb-120">
     <div class="container">
+        <h2 style="font-weight: 600;" class="text-center mb-5">How To Order</h2>
         <div class="row">
-            <div class="col-lg-6">
-                <div class="product-tab-list-7 nav mb-60">
-                    <a class="active" href="#product-1" data-toggle="tab">
-                        Mission
-                    </a>
-                    <a href="#product-2" data-toggle="tab">
-                        Vision
-                    </a>
-                    <a href="#product-3" data-toggle="tab">
-                        Goal
-                    </a>
-                </div>
-                <div class="tab-content jump">
-                    <div id="product-1" class="tab-pane active">
-                        <div class="mission-content">
-                            <p>Conveniently repurpose web-enabled supply chains after technically sound action items. Progressively implement granular e-markets whereas customized niches. Assertively envisioneer sticky intellectual capital for user-centric leadership skills.</p>
-                            <p>Assertively envisioneer sticky intellectual capital for user-centric leadership skills.</p>
-                        </div>
-                    </div>
-                    <div id="product-2" class="tab-pane">
-                        <div class="mission-content">
-                            <p>Conveniently repurpose web-enabled supply chains after technically sound action items. Progressively implement granular e-markets whereas customized niches. Assertively envisioneer sticky intellectual capital for user-centric leadership skills.</p>
-                        </div>
-                    </div>
-                    <div id="product-3" class="tab-pane">
-                        <div class="mission-content">
-                            <p>Conveniently repurpose web-enabled supply chains after technically sound action items. Progressively implement granular e-markets whereas customized niches.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-4 col-md-4 text-center">
+                <i class="far fa-address-card fa-5x mb-4"></i>
+                <h4>1. Pilih Produk</h4>
+                <p>Anda dapat memilih produk yang ingin dibeli dengan menekan tombol <b>Add to Cart</b> kemudian isi alamat pengiriman dan kurir pengirim sebelum melakukan checkout pembayaran. </p>
             </div>
-            <div class="col-lg-6">
-                <div class="mission-img">
-                    <img src="assets/images/about/mission-img.jpg" alt="">
-                </div>
+            <div class="col-lg-4 col-md-4 text-center">
+                <i class="far fa-money-bill-alt fa-5x mb-4"></i>
+                <h4>2. Checkout Pembayaran</h4>
+                <p>Setelah itu anda harus melakukan pembayaran sesuai dengan nominal yang tertera pada total pembayaran dengan menggunakan metode pembayaran yang tersedia pada website.</p>
+            </div>
+            <div class="col-lg-4 col-md-4 text-center">
+                <i class="fas fa-motorcycle fa-5x mb-3"></i>
+                <h4>3. Pemesanan Dikirimkan</h4>
+                <p>Setelah menerima pembayaran kami akan segera mengirim pesanan anda ke alamat yang sudah anda berikan. silahkan tunggu 2-3* hari kerja hingga pesanan anda sampai.</p>
             </div>
         </div>
     </div>
